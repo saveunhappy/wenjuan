@@ -1,8 +1,9 @@
 package com.course.server.service;
 
-import org.springframework.stereotype.Service;
 import com.course.server.domain.Test;
+import com.course.server.domain.TestExample;
 import com.course.server.mapper.TestMapper;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,6 +13,9 @@ public class TestService {
     @Resource
     private TestMapper testMapper;
     public List<Test> list(){
-        return testMapper.list();
+        TestExample example = new TestExample();
+        TestExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo("1");
+        return testMapper.selectByExample(example);
     }
 }
