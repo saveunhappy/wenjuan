@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from './view/login.vue';
 import Admin from './view/admin.vue';
+import Welcome from './view/admin/welcome.vue';
 Vue.use(Router);
 export default new Router({
     mode:'history',
@@ -16,7 +17,11 @@ export default new Router({
         },
         {
             path: "/admin",
-            component:Admin
+            component:Admin,
+            children:[{
+                path: "welcome",
+                component:Welcome,
+            }]
         }
     ]
 })
