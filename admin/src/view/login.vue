@@ -19,7 +19,7 @@
                   <div class="widget-main">
                     <h4 class="header blue lighter bigger">
                       <i class="ace-icon fa fa-coffee green"></i>
-                     请输入用户名和密码
+                      请输入用户名和密码
                     </h4>
 
                     <div class="space-6"></div>
@@ -78,7 +78,7 @@
 <script>
 $('body').attr('class', 'login-layout light-login');
 export default {
-  name: 'App',
+  name: 'login',
 
 }
 </script>
