@@ -19,6 +19,7 @@ export default new Router({
             path: "/admin",
             component:Admin,
             children:[{
+                //子路由不要斜杠开头
                 path: "welcome",
                 component:Welcome,
             }]
