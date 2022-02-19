@@ -353,7 +353,7 @@
         </div><!-- /.sidebar-shortcuts -->
 
         <ul class="nav nav-list">
-          <li class="">
+          <li class="" id="welcome-sidebar">
             <a href="index.html">
               <i class="menu-icon fa fa-tachometer"></i>
               <span class="menu-text"> 欢迎 </span>
@@ -400,7 +400,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-              <li class="">
+              <li class="active" id="business-chapter-sidebar">
                 <a href="tables.html">
                   <i class="menu-icon fa fa-caret-right"></i>
                   大章管理
@@ -477,6 +477,20 @@
     methods:{
       login(){
         this.$router.push("/admin")
+      },
+      activeSidebar:function (id){
+        //兄弟菜单去掉active样式，自身增加active样式
+        $("#" + id).siblings().removeClass("active");
+        $("#" + id).siblings().find("li").removeClass("active");
+        $("#" + id).addClass("active");
+        //如果有父菜单，父菜单的兄弟菜单去掉open active,父菜单增加open active
+        let parentLi = $("#" + id).parents("li");
+        if(parentLi){
+          parentLi.siblings().removeClass("active");
+          parentLi.addClass("active");
+        }
+
+
       }
     }
   }
