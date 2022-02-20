@@ -79,6 +79,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "chapter",
   data: function () {
@@ -95,11 +97,24 @@ export default {
   methods: {
     list() {
       let _this = this;
-      _this.$ajax.get("http://127.0.0.1:9000/business/admin/chapter/list").then((response) => {
+      _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/list",
+      {
+        page:1,
+            size:1
+      }).then((response) => {
         console.log("查询大章列表结果", response);
-        _this.chapters = response.data;
+        _this.chapters = response.data.list;
       })
+      // axios.post("http://127.0.0.1:9000/business/admin/chapter/list",
+      //     {
+      //       page:1,
+      //       size:1
+      //     }).then((response) => {
+      //     console.log("查询大章列表结果", response);
+      //     _this.chapters = response.data.list;
+      // })
     }
+
   }
 }
 </script>
