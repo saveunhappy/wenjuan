@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/admin/chapter")
 public class ChapterController {
+    public static final String BUSINESS_NAME = "大章";
     @Resource
     private ChapterService chapterService;
     @PostMapping("/list")
