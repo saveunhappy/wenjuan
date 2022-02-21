@@ -47,7 +47,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">表单</h4>
           </div>
           <div class="modal-body">
@@ -55,7 +56,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
-                  <input v-model="chapter.name" class="form-control" placeholder="名称" >
+                  <input v-model="chapter.name" class="form-control" placeholder="名称">
                 </div>
               </div>
               <div class="form-group">
@@ -84,7 +85,7 @@ export default {
   components: {Pagination},
   data: function () {
     return {
-      chapter : {},
+      chapter: {},
       chapters: []
     }
   },
@@ -97,13 +98,13 @@ export default {
     // this.$parent.activeSidebar("business-chapter-sidebar");
   },
   methods: {
-    add(){
+    add() {
       //这个add的作用就是点开那个模态框，新增是save
       let _this = this;
       _this.chapter = {}
       $("#form-modal").modal('show');
     },
-    edit(chapter){
+    edit(chapter) {
       //这个add的作用就是点开那个模态框，新增是save
       let _this = this;
       _this.chapter = $.extend({}, chapter);
@@ -119,7 +120,7 @@ export default {
         console.log("查询大章列表结果", response);
         let resp = response.data;
         _this.chapters = resp.content.list;
-        _this.$refs.pagination.render(page,resp.content.total);
+        _this.$refs.pagination.render(page, resp.content.total);
       })
     },
     save() {
@@ -128,10 +129,10 @@ export default {
           _this.chapter).then((response) => {
         console.log("查询大章列表结果", response);
         let resp = response.data;
-        if(resp.success){
+        if (resp.success) {
           $("#form-modal").modal('hide');
           _this.list(1)
-
+          toast.success("保存成功");
         }
       })
     },
@@ -148,15 +149,11 @@ export default {
         confirmButtonText: '确认删除'
       }).then((result) => {
         if (result.isConfirmed) {
-          _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/delete/"+id).then((response) => {
+          _this.$ajax.post("http://127.0.0.1:9000/business/admin/chapter/delete/" + id).then((response) => {
             console.log("删除大章列表结果", response);
             let resp = response.data;
-            if(resp.success){
-              Swal.fire(
-                  '删除成功!',
-                  '你已经删除成功',
-                  'success'
-              )
+            if (resp.success) {
+              toast.success("删除成功");
               _this.list(1)
 
             }
