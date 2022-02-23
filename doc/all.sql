@@ -40,3 +40,5 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小结';
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, create_at, updated_at)
 VALUES ('00000001','测试小节01','00000001','00000000','',500,'F',1,now(),now());
+
+show full columns from section
