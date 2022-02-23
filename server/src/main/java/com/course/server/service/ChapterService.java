@@ -28,13 +28,7 @@ public class ChapterService {
         List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
         PageInfo pageInfo = new PageInfo(chapterList);
         pageDto.setTotal(pageInfo.getTotal());
-//        List<ChapterDto> chapterDtoList = new ArrayList<>();
-//        for (int i = 0; i < chapterList.size(); i++) {
-//            Chapter chapter = chapterList.get(i);
-//            ChapterDto chapterDto = new ChapterDto();
-//            BeanUtils.copyProperties(chapter,chapterDto);
-//            chapterDtoList.add(chapterDto);
-//        }
+
         List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList, ChapterDto.class);
         pageDto.setList(chapterDtoList);
     }
