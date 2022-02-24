@@ -49,7 +49,7 @@ public class SectionDto {
      * 创建时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date createAt;
+    private Date createdAt;
 
     /**
      * 修改时间
@@ -121,12 +121,12 @@ public class SectionDto {
         this.sort = sort;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
@@ -152,7 +152,7 @@ public class SectionDto {
         sb.append(", time=").append(time);
         sb.append(", charge=").append(charge);
         sb.append(", sort=").append(sort);
-        sb.append(", createAt=").append(createAt);
+        sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append("]");
         return sb.toString();

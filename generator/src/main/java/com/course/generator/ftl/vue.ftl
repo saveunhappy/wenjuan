@@ -15,7 +15,10 @@
     <table id="simple-table" class="table  table-bordered table-hover">
       <thead>
       <tr><#list fieldList as field>
-        <th>${field.nameCn}</th></#list>
+          <#if field.nameHump!="createdAt" && field.nameHump!="updatedAt">
+         <th>${field.nameCn}</th>
+          </#if>
+        </#list>
         <th>操作</th>
       </tr>
 
@@ -24,7 +27,13 @@
       <tbody>
       <tr v-for="${domain} in ${domain}s">
         <#list fieldList as field>
-          <td>{{ ${domain}.${field.nameHump} }}</td>
+          <#if field.nameHump!="createdAt" && field.nameHump!="updatedAt">
+<#--            <#if field.enums>-->
+<#--              <td>{{${field.enumsConst} | optionKV(${domain}.${field.nameHump})}}</td>-->
+<#--            <#else>-->
+              <td>{{${domain}.${field.nameHump}}}</td>
+<#--            </#if>-->
+          </#if>
         </#list>
         <td>
 
@@ -52,12 +61,14 @@
           <div class="modal-body">
             <form class="form-horizontal">
               <#list fieldList as field>
+                <#if field.name!="id" && field.nameHump!="createdAt" && field.nameHump!="updatedAt">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">${field.nameCn}</label>
                   <div class="col-sm-10">
                     <input v-model="${domain}.${field.nameHump}" class="form-control">
                   </div>
                 </div>
+                </#if>
               </#list>
             </form>
           </div>
