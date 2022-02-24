@@ -37,7 +37,7 @@ CREATE TABLE `section` (
     `create_at` DATETIME(3) COMMENT '创建时间',
     `updated_at` DATETIME(3) COMMENT '修改时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小结';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小节';
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, create_at, updated_at)
 VALUES ('00000001','测试小节01','00000001','00000000','',500,'F',1,now(),now());
 
