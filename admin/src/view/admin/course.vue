@@ -36,12 +36,15 @@
             </h3>
             <p>{{course.summary}}</p>
             <p>
-              <button v-on:click="edit(course)" class="btn btn-xs btn-info">
-                <i class="ace-icon fa fa-pencil bigger-120"></i>
+              <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
+                大章
+              </button>
+              <button v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
+                编辑
               </button>
 
-              <button v-on:click="del(course.id)" class="btn btn-xs btn-danger">
-                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+              <button v-on:click="del(course.id)" class="btn btn-white btn-xs btn-info btn-round">
+                删除
               </button>
             </p>
           </div>
@@ -286,7 +289,13 @@ export default {
           }
         })
     });
-    }
+    },
+    toChapter(course) {
+      //这个add的作用就是点开那个模态框，新增是save
+      let _this = this;
+      SessionStorage.set("course", course);
+      _this.$router.post("/business/chapter");
+    },
 
   }
 }
