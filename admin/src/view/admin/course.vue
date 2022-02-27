@@ -292,10 +292,6 @@ export default {
 }
 </script>
 <style>
-  img{
-    width: 360px;
-    height: 202px;
-  }
   .caption h3{
     font-size: 20px;
   }
