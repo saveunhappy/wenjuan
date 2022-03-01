@@ -21,9 +21,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/courseimooc?serverTimezone=Asia/Shanghai"
-                        userId="courseimooc"
-                        password="courseimooc">
+                        connectionURL="jdbc:mysql://localhost:3306/plantadoption?serverTimezone=Asia/Shanghai"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
         <!-- domain类的位置 -->
@@ -47,7 +47,7 @@
 <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
 <!--        <table tableName="teacher" domainObjectName="Teacher"/>-->
 <!--        <table tableName="file" domainObjectName="File"/>-->
-        <table tableName="user" domainObjectName="User"/>
+<!--        <table tableName="user" domainObjectName="User"/>-->
 <!--        <table tableName="resource" domainObjectName="Resource"/>-->
 <!--        <table tableName="role" domainObjectName="Role"/>-->
 <!--        <table tableName="role_resource" domainObjectName="RoleResource"/>-->
@@ -55,5 +55,8 @@
 <!--        <table tableName="member" domainObjectName="Member"/>-->
 <!--        <table tableName="sms" domainObjectName="Sms"/>-->
 <!--        <table tableName="member_course" domainObjectName="MemberCourse"/>-->
+
+                <table tableName="plant" domainObjectName="Plant"/>
+
     </context>
 </generatorConfiguration>

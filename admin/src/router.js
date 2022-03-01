@@ -7,6 +7,7 @@ import Course from "./view/admin/course.vue";
 import Chapter from "./view/admin/chapter.vue";
 import Section from "./view/admin/section.vue";
 import User from "./view/admin/user.vue";
+import Member from "./view/admin/member.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -54,6 +55,12 @@ export default new Router({
                     path: "business/user",
                     name:"business/user",
                     component:User,
+                }
+                ,
+                {
+                    path: "business/member",
+                    name:"business/member",
+                    component:Member,
                 }
                 ]
         }

@@ -75,43 +75,43 @@
 
             <b class="arrow"></b>
           </li>
-          <li class="">
-            <a href="#" class="dropdown-toggle">
-              <i class="menu-icon fa fa-list"></i>
-              <span class="menu-text"> 系统管理 </span>
-              <b class="arrow fa fa-angle-down"></b>
-            </a>
+<!--          <li class="">-->
+<!--            <a href="#" class="dropdown-toggle">-->
+<!--              <i class="menu-icon fa fa-list"></i>-->
+<!--              <span class="menu-text"> 系统管理 </span>-->
+<!--              <b class="arrow fa fa-angle-down"></b>-->
+<!--            </a>-->
 
-            <b class="arrow"></b>
+<!--            <b class="arrow"></b>-->
 
-            <ul class="submenu">
-              <li class="active" id="business-user-sidebar">
-                <router-link to="/business/user">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  用户管理
-                </router-link>
-                <b class="arrow"></b>
-              </li>
+<!--            <ul class="submenu">-->
+<!--&lt;!&ndash;              <li class="active" id="business-user-sidebar">&ndash;&gt;-->
+<!--&lt;!&ndash;                <router-link to="/business/user">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <i class="menu-icon fa fa-caret-right"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  用户管理&ndash;&gt;-->
+<!--&lt;!&ndash;                </router-link>&ndash;&gt;-->
+<!--&lt;!&ndash;                <b class="arrow"></b>&ndash;&gt;-->
+<!--&lt;!&ndash;              </li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;              <li class="">&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="business-user-sidebar">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <i class="menu-icon fa fa-caret-right"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                  用户管理&ndash;&gt;-->
+<!--&lt;!&ndash;                </a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <b class="arrow"></b>&ndash;&gt;-->
+<!--&lt;!&ndash;              </li>&ndash;&gt;-->
 
 <!--              <li class="">-->
-<!--                <a href="business-user-sidebar">-->
+<!--                <a href="jqgrid.html">-->
 <!--                  <i class="menu-icon fa fa-caret-right"></i>-->
-<!--                  用户管理-->
+<!--                  权限管理-->
 <!--                </a>-->
 
 <!--                <b class="arrow"></b>-->
 <!--              </li>-->
-
-              <li class="">
-                <a href="jqgrid.html">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  权限管理
-                </a>
-
-                <b class="arrow"></b>
-              </li>
-            </ul>
-          </li>
+<!--            </ul>-->
+<!--          </li>-->
           <li class="active open">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
@@ -122,6 +122,25 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
+
+              <li class="active" id="business-user-sidebar">
+                <router-link to="/business/user">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  管理员管理
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+
+
+              <li class="active" id="business-member-sidebar">
+                <router-link to="/business/member">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  用户管理
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+
+
               <li class="active" id="business-course-sidebar">
                 <router-link to="/business/course">
                   <i class="menu-icon fa fa-caret-right"></i>
