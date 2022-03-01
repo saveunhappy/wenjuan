@@ -15,6 +15,7 @@ public class ChapterController {
     public static final String BUSINESS_NAME = "大章";
     @Resource
     private ChapterService chapterService;
+
     @PostMapping("/list")
     public ResponseDto chapter(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
@@ -22,6 +23,7 @@ public class ChapterController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
+
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto){
         ResponseDto responseDto = new ResponseDto();
