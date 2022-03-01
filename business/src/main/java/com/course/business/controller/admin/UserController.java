@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.dto.LoginUserDto;
 import com.course.server.dto.UserDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
@@ -39,6 +40,14 @@ public class UserController {
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
         userService.delete(id);
+        return responseDto;
+    }
+
+    @PostMapping("/login")
+    public ResponseDto login(@RequestBody UserDto userDto){
+        ResponseDto responseDto = new ResponseDto();
+        LoginUserDto LoginUserDto = userService.login(userDto);
+        responseDto.setContent(LoginUserDto);
         return responseDto;
     }
 

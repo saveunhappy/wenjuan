@@ -2,6 +2,7 @@ package com.course.server.service;
 
 import com.course.server.domain.User;
 import com.course.server.domain.UserExample;
+import com.course.server.dto.LoginUserDto;
 import com.course.server.dto.UserDto;
 import com.course.server.dto.PageDto;
 import com.course.server.exception.BusinessException;
@@ -20,12 +21,14 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 @Service
 public class UserService {
     @Resource
     private UserMapper userMapper;
-    public void list(PageDto pageDto){
-        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
+
+    public void list(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         UserExample userExample = new UserExample();
         List<User> userList = userMapper.selectByExample(userExample);
         PageInfo pageInfo = new PageInfo(userList);
@@ -35,25 +38,26 @@ public class UserService {
         pageDto.setList(userDtoList);
     }
 
-    public void save(UserDto userDto){
+    public void save(UserDto userDto) {
         User user = CopyUtil.copy(userDto, User.class);
 
-        if(StringUtils.isEmpty(userDto.getId())){
+        if (StringUtils.isEmpty(userDto.getId())) {
             this.insert(user);
-        }else{
+        } else {
             this.update(user);
         }
     }
 
-    private void insert(User user){
+    private void insert(User user) {
         user.setId(UuidUtil.getShortUuid());
         User userDb = this.selectByLoginName(user.getLoginName());
-        if(userDb != null){
+        if (userDb != null) {
             throw new BusinessException(BusinessExceptionCode.USER_LOGIN_NAME_EXIST);
         }
         userMapper.insert(user);
     }
-    private void update(User user){
+
+    private void update(User user) {
         userMapper.updateByPrimaryKey(user);
     }
 
@@ -63,19 +67,38 @@ public class UserService {
 
     /**
      * 根据登录名查询用户信息
+     *
      * @param loginName
      * @return
      */
-    public User selectByLoginName(String loginName){
+    public User selectByLoginName(String loginName) {
 
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andLoginNameEqualTo(loginName);
         List<User> userList = userMapper.selectByExample(userExample);
-        if(CollectionUtils.isEmpty(userList)){
+        if (CollectionUtils.isEmpty(userList)) {
             return null;
-        }else{
+        } else {
             return userList.get(0);
         }
     }
+
+
+    public LoginUserDto login(UserDto userDto) {
+        User user = selectByLoginName(userDto.getLoginName());
+        if (user == null){
+            //用户名不存在
+            throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+        }else{
+            if(user.getPassword().equals(userDto.getPassword())){
+                return CopyUtil.copy(user,LoginUserDto.class);
+                //登录成功
+            }else {
+                //密码不对
+                throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+            }
+        }
+    }
+
 }
