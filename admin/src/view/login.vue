@@ -97,10 +97,10 @@ export default {
         console.log("查询用户列表结果", response);
         let resp = response.data;
         if (resp.success) {
+          SessionStorage.set("USER",resp.content);
           _this.$router.push("/welcome")
         }else{
           Toast.warning(resp.message);
-
         }
       })
 

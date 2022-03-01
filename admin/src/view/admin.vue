@@ -25,36 +25,35 @@
           <ul class="nav ace-nav">
             <li class="light-green dropdown-modal">
               <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                <img class="nav-user-photo" src="../../public/ace/assets/images/avatars/user.jpg" alt="Jason's Photo"/>
                 <span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>欢迎:</small>
+									{{ loginUser.name }}
 								</span>
 
                 <i class="ace-icon fa fa-caret-down"></i>
               </a>
 
               <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                <li>
-                  <a href="#">
-                    <i class="ace-icon fa fa-cog"></i>
-                    Settings
-                  </a>
-                </li>
+<!--                <li>-->
+<!--                  <a href="#">-->
+<!--                    <i class="ace-icon fa fa-cog"></i>-->
+<!--                    Settings-->
+<!--                  </a>-->
+<!--                </li>-->
+
+<!--                <li>-->
+<!--                  <a href="profile.html">-->
+<!--                    <i class="ace-icon fa fa-user"></i>-->
+<!--                    Profile-->
+<!--                  </a>-->
+<!--                </li>-->
+
+<!--                <li class="divider"></li>-->
 
                 <li>
-                  <a href="profile.html">
-                    <i class="ace-icon fa fa-user"></i>
-                    Profile
-                  </a>
-                </li>
-
-                <li class="divider"></li>
-
-                <li>
-                  <a href="#">
+                  <a v-on:click="logout()" href="#">
                     <i class="ace-icon fa fa-power-off"></i>
-                    Logout
+                    退出登录
                   </a>
                 </li>
               </ul>
@@ -208,10 +207,17 @@
 
   export default {
     name: "admin",
-    mounted() {
+    data: function () {
+      return {
+        loginUser: {},
+      }
+    },
+    mounted: function () {
+      let _this = this;
       $("body").removeClass("login-layout light-login");
       $("body").attr("class", "no-skin");
       $.getScript('/ace/assets/js/ace.min.js');
+      _this.loginUser = SessionStorage.get("USER");
     },
     watch: {
       $route: {
@@ -235,6 +241,13 @@
       login(){
         this.$router.push("/admin")
       },
+      logout(){
+        let _this = this;
+        SessionStorage.set("USER",null);
+        _this.$router.push("/login")
+
+      },
+
       activeSidebar:function (id){
         //兄弟菜单去掉active样式，自身增加active样式
         $("#" + id).siblings().removeClass("active");
