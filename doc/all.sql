@@ -79,12 +79,12 @@ insert into user (id, login_name, name, password) VALUES
 
 drop table if exists `member`;
 create table `member` (
-                        `id` char(8) not null default '' comment 'id',
-                        `login_name` varchar(50) not null comment '登录名',
-                        `name` varchar(50) comment '昵称',
-                        `status` char(1) comment '领养状态状态|枚举[PlantStatusEnum]:PUBLISH("P","发布"),DRAFT("D","草稿")',
-                        primary key (`id`),
-                        unique key `login_name_unique` (`login_name`)
+      `id` char(8) not null default '' comment 'id',
+      `login_name` varchar(50) not null comment '登录名',
+      `name` varchar(50) comment '昵称',
+      `password` char(32) not null comment '密码',
+      primary key (`id`),
+      unique key `login_name_unique` (`login_name`)
 ) engine=innodb default charset=utf8mb4 comment='用户';
 insert into member (id, login_name, name, password) VALUES
 ('10000000','test','测试','test');
@@ -96,12 +96,15 @@ create table `plant` (
                           `name` varchar(50) not null comment '绿植名称',
                           `summary` varchar(2000)  comment '概述',
                           `image` varchar(2000) comment '绿植封面',
+                          `status` char(1) comment '状态|枚举[PlantStatusEnum]:YES("1", "已被领养"),NO("0", "未被领养")',
                           `created_at` datetime(3) comment '创建时间',
                           `updated_at` datetime(3) comment '修改时间',
                           primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='用户';
-insert into plant (id, name, summary, image, created_at, updated_at) VALUES
+insert into plant (id, name, summary, image,status, created_at, updated_at) VALUES
 ('00000001','花','这朵花很好看','https://mycv.oss-cn-beijing.aliyuncs.com/img/6.jpg?versionId=CAEQGhiBgMCHsebl.RciIDc2NmIxZjE1OTM2ZTRlZDZiM2FiM2IwNjYzOGRjZmFk'
-,now(),now());
+,'0',now(),now());
 
+
+insert into
 

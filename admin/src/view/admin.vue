@@ -112,7 +112,7 @@
 <!--              </li>-->
 <!--            </ul>-->
 <!--          </li>-->
-          <li class="active open">
+          <li class="open">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
               <span class="menu-text"> 业务管理 </span>
@@ -123,7 +123,7 @@
 
             <ul class="submenu">
 
-              <li class="active" id="business-user-sidebar">
+              <li class="" id="business-user-sidebar">
                 <router-link to="/business/user">
                   <i class="menu-icon fa fa-caret-right"></i>
                   管理员管理
@@ -132,7 +132,7 @@
               </li>
 
 
-              <li class="active" id="business-member-sidebar">
+              <li class="" id="business-member-sidebar">
                 <router-link to="/business/member">
                   <i class="menu-icon fa fa-caret-right"></i>
                   用户管理
@@ -140,15 +140,45 @@
                 <b class="arrow"></b>
               </li>
 
+              <li class="" id="business-plant-sidebar">
+                <router-link to="/business/plant">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  绿植管理
+                </router-link>
+                <b class="arrow"></b>
+              </li>
 
-              <li class="active" id="business-course-sidebar">
+
+              <li class="" id="business-userLog-sidebar">
+                <router-link to="/business/userLog">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  领养信息审核
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+
+              <li class="" id="business-applyPassed-sidebar">
+                <router-link to="/business/applyPassed">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  领养审核通过
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+              <li class="" id="business-applyDeny-sidebar">
+                <router-link to="/business/applyDeny">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  领养审核未通过
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+              <li class="" id="business-course-sidebar">
                 <router-link to="/business/course">
                   <i class="menu-icon fa fa-caret-right"></i>
                   课程管理
                 </router-link>
                 <b class="arrow"></b>
               </li>
-              <li class="active" id="business-chapter-sidebar">
+              <li class="" id="business-chapter-sidebar">
                 <router-link to="/business/chapter">
                   <i class="menu-icon fa fa-caret-right"></i>
                   大章管理
@@ -156,7 +186,7 @@
                 <b class="arrow"></b>
               </li>
 
-              <li class="active" id="business-section-sidebar">
+              <li class="" id="business-section-sidebar">
                 <router-link to="/business/section">
                   <i class="menu-icon fa fa-caret-right"></i>
                   小节管理
@@ -275,6 +305,7 @@
         //如果有父菜单，父菜单的兄弟菜单去掉open active,父菜单增加open active
         let parentLi = $("#" + id).parents("li");
         if(parentLi){
+          parentLi.siblings().find("li").removeClass("active");
           parentLi.siblings().removeClass("active");
           parentLi.addClass("active");
         }

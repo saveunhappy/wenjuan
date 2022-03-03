@@ -11,6 +11,8 @@ public class Plant {
 
     private String image;
 
+    private String status;
+
     private Date createdAt;
 
     private Date updatedAt;
@@ -47,6 +49,14 @@ public class Plant {
         this.image = image;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -73,6 +83,7 @@ public class Plant {
         sb.append(", name=").append(name);
         sb.append(", summary=").append(summary);
         sb.append(", image=").append(image);
+        sb.append(", status=").append(status);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append("]");

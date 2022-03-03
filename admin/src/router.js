@@ -8,11 +8,16 @@ import Chapter from "./view/admin/chapter.vue";
 import Section from "./view/admin/section.vue";
 import User from "./view/admin/user.vue";
 import Member from "./view/admin/member.vue";
+import Plant from "./view/admin/plant.vue";
+import ApplyPassed from "./view/admin/applyPassed.vue";
+import ApplyDeny from "./view/admin/applyDeny.vue";
+import UserLog from "./view/admin/userLog.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
     base:process.env.BASE_URL,
-    routes:[{
+    routes:[
+        {
         path: "*",
         redirect:"/login",
     },
@@ -61,6 +66,30 @@ export default new Router({
                     path: "business/member",
                     name:"business/member",
                     component:Member,
+                }
+                ,
+                {
+                    path: "business/plant",
+                    name:"business/plant",
+                    component:Plant,
+                }
+                ,
+                {
+                    path: "business/applyPassed",
+                    name:"business/applyPassed",
+                    component:ApplyPassed,
+                }
+                ,
+                {
+                    path: "business/applyDeny",
+                    name:"business/applyDeny",
+                    component:ApplyDeny,
+                }
+                ,
+                {
+                    path: "business/userLog",
+                    name:"business/userLog",
+                    component:UserLog,
                 }
                 ]
         }

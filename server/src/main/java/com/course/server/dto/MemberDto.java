@@ -23,6 +23,16 @@ public class MemberDto {
      */
     private String password;
 
+    /**
+     * 家庭住址
+     */
+    private String address;
+
+    /**
+     * 手机号
+     */
+    private String telphone;
+
     public String getId() {
         return id;
     }
@@ -55,6 +65,22 @@ public class MemberDto {
         this.password = password;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
 
     @Override
     public String toString() {
@@ -66,6 +92,8 @@ public class MemberDto {
         sb.append(", loginName=").append(loginName);
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
+        sb.append(", address=").append(address);
+        sb.append(", telphone=").append(telphone);
         sb.append("]");
         return sb.toString();
     }
