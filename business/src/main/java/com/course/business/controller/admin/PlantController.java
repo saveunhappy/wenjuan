@@ -2,6 +2,7 @@ package com.course.business.controller.admin;
 
 import com.course.server.dto.PlantDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.PlantPageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.PlantService;
 import com.course.server.util.ValidatorUtil;
@@ -16,10 +17,10 @@ public class PlantController {
     @Resource
     private PlantService plantService;
     @PostMapping("/list")
-    public ResponseDto plant(@RequestBody PageDto pageDto){
+    public ResponseDto plant(@RequestBody PlantPageDto plantPageDto){
         ResponseDto responseDto = new ResponseDto();
-        plantService.list(pageDto);
-        responseDto.setContent(pageDto);
+        plantService.list(plantPageDto);
+        responseDto.setContent(plantPageDto);
         return responseDto;
     }
     @PostMapping("/save")

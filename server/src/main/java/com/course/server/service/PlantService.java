@@ -4,6 +4,7 @@ import com.course.server.domain.Plant;
 import com.course.server.domain.PlantExample;
 import com.course.server.dto.PlantDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.PlantPageDto;
 import com.course.server.enums.AdoptStatus;
 import com.course.server.enums.ApplyStatus;
 import com.course.server.enums.PlantStatusEnum;
@@ -24,15 +25,19 @@ import java.util.Date;
 public class PlantService {
     @Resource
     private PlantMapper plantMapper;
-    public void list(PageDto pageDto){
-        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
+    public void list(PlantPageDto plantPageDto){
+        PageHelper.startPage(plantPageDto.getPage(),plantPageDto.getSize());
         PlantExample plantExample = new PlantExample();
+        PlantExample.Criteria criteria = plantExample.createCriteria();
+        if(!StringUtils.isEmpty(plantPageDto.getStatus())){
+            criteria.andStatusEqualTo(plantPageDto.getStatus());
+        }
         List<Plant> plantList = plantMapper.selectByExample(plantExample);
         PageInfo pageInfo = new PageInfo(plantList);
-        pageDto.setTotal(pageInfo.getTotal());
+        plantPageDto.setTotal(pageInfo.getTotal());
 
         List<PlantDto> plantDtoList = CopyUtil.copyList(plantList, PlantDto.class);
-        pageDto.setList(plantDtoList);
+        plantPageDto.setList(plantDtoList);
     }
 
     public void save(PlantDto plantDto){

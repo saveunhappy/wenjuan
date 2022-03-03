@@ -1,27 +1,18 @@
 <template>
   <main role="main">
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1>绿植领养平台</h1>
-        <p class="lead text-muted">
-          种子变绿植的过程不仅是碳中和的过程，也是爱地球理念传播的过程,低碳环保的大学生生活
-          ,从一颗传播爱与生命的绿植种子开始。
-        </p>
-        <p>
-          <router-link to="list" class="btn btn-primary my-2 p-3 font-weight-bold">点击查看所有绿植</router-link>
-        </p>
-      </div>
-    </section>
-
     <div class="album py-5 bg-light">
       <div class="container">
-        <div class="title1">最新上线</div>
         <div class="row">
-          <div v-for="o in news" class="col-md-4">
-            <the-plant v-bind:plant="o"></the-plant>
-
+          <div class="col-md-12">
+            <pagination ref="pagination" v-bind:list="listPlants"></pagination>
           </div>
+        </div>
+        <br>
+        <div class="row">
+          <div v-for="o in plants" class="col-md-4">
+            <the-plant v-bind:plant="o"></the-plant>
+          </div>
+          <h3 v-show="plants.length === 0">没有待领养的植物</h3>
         </div>
       </div>
     </div>
@@ -31,26 +22,32 @@
 
 <script>
 import ThePlant from "@/components/the-plant";
+import Pagination from "@/components/pagination";
 export default {
-  name: "index",
-  components: {ThePlant},
+  name: "list",
+  components: {Pagination, ThePlant},
   data: function (){
     return{
-      news:[],
+      plants:[],
     }
   },
   mounted() {
     let _this = this;
-    _this.listNew();
+    _this.$refs.pagination.size=5
+    _this.listPlants(1);
   },
   methods: {
-    listNew(){
+    listPlants(page){
       let _this = this;
-      _this.$ajax.get(process.env.VUE_APP_SERVER + "/business/web/plant/list-new").then((response) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/web/plant/list",{
+        page: page,
+        size: _this.$refs.pagination.size
+      }).then((response) => {
         console.log("查询用户列表结果", response);
         let resp = response.data;
         if(resp.success){
-          _this.news = resp.content.list;
+          _this.plants = resp.content.list;
+          _this.$refs.pagination.render(page,resp.content.total);
           console.log(resp)
         }
       })

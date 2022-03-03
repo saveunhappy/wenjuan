@@ -5,8 +5,13 @@
       <h4 class="">{{plant.name}}</h4>
       <p class="card-text">{{plant.summary}}</p>
       <div class="d-flex justify-content-between align-items-center">
+
         <div class="btn-group">
           <button type="button" class="btn btn-sm btn-outline-secondary">绿植详情</button>
+        </div>
+
+        <div class="text-muted">
+          <span class="badge badge-info">{{PLANT_STATUS | optionKV(plant.status)}}</span>
         </div>
       </div>
     </div>
@@ -20,7 +25,9 @@ export default {
     plant:{},
   },
   data: function (){
-    return {}
+    return {
+      PLANT_STATUS:PLANT_STATUS,
+    }
   },
 }
 </script>

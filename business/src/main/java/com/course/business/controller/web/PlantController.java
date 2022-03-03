@@ -2,7 +2,9 @@ package com.course.business.controller.web;
 
 import com.course.server.dto.PageDto;
 import com.course.server.dto.PlantDto;
+import com.course.server.dto.PlantPageDto;
 import com.course.server.dto.ResponseDto;
+import com.course.server.enums.PlantStatusEnum;
 import com.course.server.service.PlantService;
 import com.course.server.util.ValidatorUtil;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,11 @@ public class PlantController {
     @Resource
     private PlantService plantService;
     @PostMapping("/list")
-    public ResponseDto plant(@RequestBody PageDto pageDto){
+    public ResponseDto plant(@RequestBody PlantPageDto plantPageDto){
         ResponseDto responseDto = new ResponseDto();
-        plantService.list(pageDto);
-        responseDto.setContent(pageDto);
+        plantPageDto.setStatus(PlantStatusEnum.NO.getCode());
+        plantService.list(plantPageDto);
+        responseDto.setContent(plantPageDto);
         return responseDto;
     }
     @PostMapping("/save")
