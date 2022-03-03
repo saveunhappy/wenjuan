@@ -4,6 +4,9 @@ import com.course.server.domain.Plant;
 import com.course.server.domain.PlantExample;
 import com.course.server.dto.PlantDto;
 import com.course.server.dto.PageDto;
+import com.course.server.enums.AdoptStatus;
+import com.course.server.enums.ApplyStatus;
+import com.course.server.enums.PlantStatusEnum;
 import com.course.server.mapper.PlantMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
@@ -56,5 +59,18 @@ public class PlantService {
 
     public void delete(String id) {
         plantMapper.deleteByPrimaryKey(id);
+    }
+
+    public void listNew(PageDto pageDto){
+        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
+        PlantExample plantExample = new PlantExample();
+        plantExample.createCriteria().andStatusEqualTo(PlantStatusEnum.NO.getCode());
+        plantExample.setOrderByClause("created_at desc");
+        List<Plant> plantList = plantMapper.selectByExample(plantExample);
+        PageInfo pageInfo = new PageInfo(plantList);
+        pageDto.setTotal(pageInfo.getTotal());
+
+        List<PlantDto> plantDtoList = CopyUtil.copyList(plantList, PlantDto.class);
+        pageDto.setList(plantDtoList);
     }
 }
