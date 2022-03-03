@@ -3,11 +3,13 @@
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1>Album example1111</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1>绿植领养平台</h1>
+        <p class="lead text-muted">
+          种子变绿植的过程不仅是碳中和的过程，也是爱地球理念传播的过程,低碳环保的大学生生活
+          ,从一颗传播爱与生命的绿植种子开始。
+        </p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">点击查看所有绿植</a>
         </p>
       </div>
     </section>
