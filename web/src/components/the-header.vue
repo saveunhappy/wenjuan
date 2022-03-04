@@ -64,10 +64,9 @@ export default {
   methods: {
   logout(){
     let _this = this;
-    SessionStorage.set("LOGIN_MEMBER",null);
+    Tool.setLoginMember(null);
     _this.loginMember = {};
     Toast.success("退出登录成功");
-
     _this.$router.push("/");
   },
     openLoginModal() {

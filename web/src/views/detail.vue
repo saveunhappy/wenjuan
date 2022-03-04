@@ -13,7 +13,7 @@
             </p>
             <p class="course-head-desc">{{plant.summary}}</p>
             <p class="course-head-button-links">
-              <a v-show="!memberCourse.id" v-on:click="enroll()" class="btn btn-lg btn-primary btn-shadow" href="javascript:;">申请领养</a>
+              <a v-show="!memberCourse.id" v-on:click="adopt()" class="btn btn-lg btn-primary btn-shadow" href="javascript:;">申请领养</a>
               <a v-show="memberCourse.id" href="#" class="btn btn-lg btn-success btn-shadow disabled">您已领养</a>
             </p>
           </div>
@@ -46,10 +46,54 @@ export default {
       _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/plant/find/' + _this.id).then((response)=>{
         let resp = response.data;
         _this.plant = resp.content;
+
+
+        _this.getEnroll();
+
         // 获取报名信息
         // _this.getEnroll();
       })
     },
+    getEnroll() {
+      let _this = this;
+      let loginMember = Tool.getLoginMember();
+      if (Tool.isEmpty(loginMember)) {
+        console.log("未登录");
+        return;
+      }
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/memberPlant/get-enroll', {
+        plantId: _this.plant.id,
+        memberId: loginMember.id
+      }).then((response)=>{
+        let resp = response.data;
+        if (resp.success) {
+          _this.memberCourse = resp.content || {};
+        }
+      });
+    },
+
+    adopt(){
+      let _this = this;
+      let loginMember = Tool.getLoginMember();
+      if (Tool.isEmpty(loginMember)) {
+        Toast.warning("请先登录");
+        return;
+      }
+      _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/memberPlant/adopt',{
+        plantId:_this.plant.id,
+        memberId:loginMember.id
+      }).then((response)=>{
+        let resp = response.data;
+        if(resp.success){
+          _this.memberCourse = resp.content;
+          Toast.success("领养成功")
+        }else{
+          Toast.warning(resp.messages);
+        }
+        // 获取报名信息
+        // _this.getEnroll();
+      })
+    }
 
   }
 }

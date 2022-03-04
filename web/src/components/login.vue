@@ -240,6 +240,7 @@
 
 
             _this.$parent.setLoginMember(loginMember);
+            Tool.setLoginMember(resp.content);
             $("#login-modal").modal("hide");
           } else {
             Toast.warning(resp.message);
