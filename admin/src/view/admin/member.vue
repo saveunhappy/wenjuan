@@ -22,10 +22,6 @@
          <th>昵称</th>
 
          <th>密码</th>
-
-         <th>家庭住址</th>
-
-         <th>手机号</th>
         <th>操作</th>
       </tr>
 
@@ -37,8 +33,6 @@
               <td>{{member.loginName}}</td>
               <td>{{member.name}}</td>
               <td>{{member.password}}</td>
-              <td>{{member.address}}</td>
-              <td>{{member.telphone}}</td>
         <td>
 
           <div class="hidden-sm hidden-xs btn-group">
@@ -82,18 +76,7 @@
                     <input v-model="member.password" class="form-control">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">家庭住址</label>
-                  <div class="col-sm-10">
-                    <input v-model="member.address" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">手机号</label>
-                  <div class="col-sm-10">
-                    <input v-model="member.telphone" class="form-control">
-                  </div>
-                </div>
+
             </form>
           </div>
           <div class="modal-footer">
@@ -163,7 +146,7 @@ export default {
           || !Validator.length(_this.member.name, "昵称", 1, 50)
           || !Validator.require(_this.member.password, "密码")
           || !Validator.length(_this.member.address, "家庭住址", 1, 50)
-          || !Validator.length(_this.member.telphone, "手机号", 1, 2000)
+          || !Validator.length(_this.member.mobile, "手机号", 1, 2000)
         ) {
           return;
         }

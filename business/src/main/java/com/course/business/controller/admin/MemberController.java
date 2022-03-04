@@ -30,7 +30,7 @@ public class MemberController {
         ValidatorUtil.length(memberDto.getName(), "昵称", 1, 50);
         ValidatorUtil.require(memberDto.getPassword(), "密码");
         ValidatorUtil.length(memberDto.getAddress(), "家庭住址", 1, 50);
-        ValidatorUtil.length(memberDto.getTelphone(), "手机号", 1, 2000);
+        ValidatorUtil.length(memberDto.getMobile(), "手机号", 1, 2000);
 
         ResponseDto responseDto = new ResponseDto();
         memberService.save(memberDto);

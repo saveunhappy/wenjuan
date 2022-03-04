@@ -454,73 +454,73 @@ public class MemberExample {
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneIsNull() {
-            addCriterion("telphone is null");
+        public Criteria andMobileIsNull() {
+            addCriterion("mobile is null");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneIsNotNull() {
-            addCriterion("telphone is not null");
+        public Criteria andMobileIsNotNull() {
+            addCriterion("mobile is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneEqualTo(String value) {
-            addCriterion("telphone =", value, "telphone");
+        public Criteria andMobileEqualTo(String value) {
+            addCriterion("mobile =", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneNotEqualTo(String value) {
-            addCriterion("telphone <>", value, "telphone");
+        public Criteria andMobileNotEqualTo(String value) {
+            addCriterion("mobile <>", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneGreaterThan(String value) {
-            addCriterion("telphone >", value, "telphone");
+        public Criteria andMobileGreaterThan(String value) {
+            addCriterion("mobile >", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneGreaterThanOrEqualTo(String value) {
-            addCriterion("telphone >=", value, "telphone");
+        public Criteria andMobileGreaterThanOrEqualTo(String value) {
+            addCriterion("mobile >=", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneLessThan(String value) {
-            addCriterion("telphone <", value, "telphone");
+        public Criteria andMobileLessThan(String value) {
+            addCriterion("mobile <", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneLessThanOrEqualTo(String value) {
-            addCriterion("telphone <=", value, "telphone");
+        public Criteria andMobileLessThanOrEqualTo(String value) {
+            addCriterion("mobile <=", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneLike(String value) {
-            addCriterion("telphone like", value, "telphone");
+        public Criteria andMobileLike(String value) {
+            addCriterion("mobile like", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneNotLike(String value) {
-            addCriterion("telphone not like", value, "telphone");
+        public Criteria andMobileNotLike(String value) {
+            addCriterion("mobile not like", value, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneIn(List<String> values) {
-            addCriterion("telphone in", values, "telphone");
+        public Criteria andMobileIn(List<String> values) {
+            addCriterion("mobile in", values, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneNotIn(List<String> values) {
-            addCriterion("telphone not in", values, "telphone");
+        public Criteria andMobileNotIn(List<String> values) {
+            addCriterion("mobile not in", values, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneBetween(String value1, String value2) {
-            addCriterion("telphone between", value1, value2, "telphone");
+        public Criteria andMobileBetween(String value1, String value2) {
+            addCriterion("mobile between", value1, value2, "mobile");
             return (Criteria) this;
         }
 
-        public Criteria andTelphoneNotBetween(String value1, String value2) {
-            addCriterion("telphone not between", value1, value2, "telphone");
+        public Criteria andMobileNotBetween(String value1, String value2) {
+            addCriterion("mobile not between", value1, value2, "mobile");
             return (Criteria) this;
         }
     }

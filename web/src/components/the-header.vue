@@ -35,19 +35,29 @@
 
 
                     <span  class="text-white pr-3">您好：</span>
-                    <button  v-on:click="logout()" class="btn btn-outline-light my-2 my-sm-0">退出登录</button>
+<!--                    <button  v-on:click="logout()" class="btn btn-outline-light my-2 my-sm-0">退出登录</button>-->
                     <button  v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0">登录/注册</button>
         </div>
       </div>
     </nav>
 
 <!--    <the-login ref="loginComponent"></the-login>-->
+    <the-login ref="loginComponent"></the-login>
   </header>
 </template>
 
 <script>
+import TheLogin from "@/components/login";
 export default {
-  name: "theHeader"
+  name: "theHeader",
+  components: {TheLogin},
+  methods: {
+    openLoginModal() {
+      let _this = this;
+      _this.$refs.loginComponent.openLoginModal();
+    },
+
+  }
 }
 </script>
 

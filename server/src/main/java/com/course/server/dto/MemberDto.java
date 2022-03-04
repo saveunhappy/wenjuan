@@ -31,7 +31,7 @@ public class MemberDto {
     /**
      * 手机号
      */
-    private String telphone;
+    private String mobile;
 
     public String getId() {
         return id;
@@ -73,12 +73,12 @@ public class MemberDto {
         this.address = address;
     }
 
-    public String getTelphone() {
-        return telphone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setTelphone(String telphone) {
-        this.telphone = telphone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
 
@@ -93,7 +93,7 @@ public class MemberDto {
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
         sb.append(", address=").append(address);
-        sb.append(", telphone=").append(telphone);
+        sb.append(", mobile=").append(mobile);
         sb.append("]");
         return sb.toString();
     }

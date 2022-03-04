@@ -7,7 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="CHAR" property="password" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, login_name, `name`, `password`, address, telphone
+    id, login_name, `name`, `password`, address, mobile
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.MemberExample" resultMap="BaseResultMap">
     select
@@ -102,10 +102,10 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.Member">
     insert into member (id, login_name, `name`, 
-      `password`, address, telphone
+      `password`, address, mobile
       )
     values (#{id,jdbcType=CHAR}, #{loginName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}
+      #{password,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.Member">
@@ -126,8 +126,8 @@
       <if test="address != null">
         address,
       </if>
-      <if test="telphone != null">
-        telphone,
+      <if test="mobile != null">
+        mobile,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -146,8 +146,8 @@
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="telphone != null">
-        #{telphone,jdbcType=VARCHAR},
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -175,8 +175,8 @@
       <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.telphone != null">
-        telphone = #{record.telphone,jdbcType=VARCHAR},
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -190,7 +190,7 @@
       `name` = #{record.name,jdbcType=VARCHAR},
       `password` = #{record.password,jdbcType=CHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      telphone = #{record.telphone,jdbcType=VARCHAR}
+      mobile = #{record.mobile,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,8 +210,8 @@
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="telphone != null">
-        telphone = #{telphone,jdbcType=VARCHAR},
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=CHAR}
@@ -222,7 +222,7 @@
       `name` = #{name,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=CHAR},
       address = #{address,jdbcType=VARCHAR},
-      telphone = #{telphone,jdbcType=VARCHAR}
+      mobile = #{mobile,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

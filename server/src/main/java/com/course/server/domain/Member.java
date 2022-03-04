@@ -11,7 +11,7 @@ public class Member {
 
     private String address;
 
-    private String telphone;
+    private String mobile;
 
     public String getId() {
         return id;
@@ -53,12 +53,12 @@ public class Member {
         this.address = address;
     }
 
-    public String getTelphone() {
-        return telphone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setTelphone(String telphone) {
-        this.telphone = telphone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Member {
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
         sb.append(", address=").append(address);
-        sb.append(", telphone=").append(telphone);
+        sb.append(", mobile=").append(mobile);
         sb.append("]");
         return sb.toString();
     }
