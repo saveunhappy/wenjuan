@@ -12,6 +12,7 @@ import Plant from "./view/admin/plant.vue";
 import ApplyPassed from "./view/admin/applyPassed.vue";
 import ApplyDeny from "./view/admin/applyDeny.vue";
 import UserLog from "./view/admin/userLog.vue";
+import MemberPlant from "./view/admin/memberPlant.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -90,6 +91,12 @@ export default new Router({
                     path: "business/userLog",
                     name:"business/userLog",
                     component:UserLog,
+                }
+                ,
+                {
+                    path: "business/memberPlant",
+                    name:"business/memberPlant",
+                    component:MemberPlant,
                 }
                 ]
         }

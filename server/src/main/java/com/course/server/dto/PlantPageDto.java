@@ -1,6 +1,16 @@
 package com.course.server.dto;
 
 public class PlantPageDto extends PageDto{
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String status;
 
     public String getStatus() {

@@ -40,6 +40,10 @@ public class MemberService {
         pageDto.setList(memberDtoList);
     }
 
+    public Member findOne(String id){
+       return memberMapper.selectByPrimaryKey(id);
+    }
+
     public void save(MemberDto memberDto){
         Member member = CopyUtil.copy(memberDto, Member.class);
 

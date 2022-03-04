@@ -50,6 +50,10 @@ public class PlantService {
         }
     }
 
+    public Plant findOne(String id){
+        return plantMapper.selectByPrimaryKey(id);
+    }
+
     private void insert(Plant plant){
         Date now = new Date();
         plant.setCreatedAt(now);

@@ -149,50 +149,58 @@
               </li>
 
 
-              <li class="" id="business-userLog-sidebar">
-                <router-link to="/business/userLog">
+              <li class="" id="business-memberPlant-sidebar">
+                <router-link to="/business/memberPlant">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  领养信息审核
+                  领养管理
                 </router-link>
                 <b class="arrow"></b>
               </li>
 
-              <li class="" id="business-applyPassed-sidebar">
-                <router-link to="/business/applyPassed">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  领养审核通过
-                </router-link>
-                <b class="arrow"></b>
-              </li>
-              <li class="" id="business-applyDeny-sidebar">
-                <router-link to="/business/applyDeny">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  领养审核未通过
-                </router-link>
-                <b class="arrow"></b>
-              </li>
-              <li class="" id="business-course-sidebar">
-                <router-link to="/business/course">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  课程管理
-                </router-link>
-                <b class="arrow"></b>
-              </li>
-              <li class="" id="business-chapter-sidebar">
-                <router-link to="/business/chapter">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  大章管理
-                </router-link>
-                <b class="arrow"></b>
-              </li>
+<!--              <li class="" id="business-userLog-sidebar">-->
+<!--                <router-link to="/business/userLog">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  领养信息审核-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
 
-              <li class="" id="business-section-sidebar">
-                <router-link to="/business/section">
-                  <i class="menu-icon fa fa-caret-right"></i>
-                  小节管理
-                </router-link>
-                <b class="arrow"></b>
-              </li>
+<!--              <li class="" id="business-applyPassed-sidebar">-->
+<!--                <router-link to="/business/applyPassed">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  领养审核通过-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
+<!--              <li class="" id="business-applyDeny-sidebar">-->
+<!--                <router-link to="/business/applyDeny">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  领养审核未通过-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
+<!--              <li class="" id="business-course-sidebar">-->
+<!--                <router-link to="/business/course">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  课程管理-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
+<!--              <li class="" id="business-chapter-sidebar">-->
+<!--                <router-link to="/business/chapter">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  大章管理-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
+
+<!--              <li class="" id="business-section-sidebar">-->
+<!--                <router-link to="/business/section">-->
+<!--                  <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                  小节管理-->
+<!--                </router-link>-->
+<!--                <b class="arrow"></b>-->
+<!--              </li>-->
 
             </ul>
           </li>

@@ -1,7 +1,9 @@
 package com.course.server.service;
 
+import com.course.server.domain.Member;
 import com.course.server.domain.MemberPlant;
 import com.course.server.domain.MemberPlantExample;
+import com.course.server.domain.Plant;
 import com.course.server.dto.MemberPlantDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.MemberPlantMapper;
@@ -22,6 +24,10 @@ import java.util.Date;
 public class MemberPlantService {
     @Resource
     private MemberPlantMapper memberPlantMapper;
+    @Resource
+    private PlantService plantService;
+    @Resource
+    private MemberService memberService;
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         MemberPlantExample memberPlantExample = new MemberPlantExample();
@@ -30,6 +36,14 @@ public class MemberPlantService {
         pageDto.setTotal(pageInfo.getTotal());
 
         List<MemberPlantDto> memberPlantDtoList = CopyUtil.copyList(memberPlantList, MemberPlantDto.class);
+        for (MemberPlantDto memberPlantDto : memberPlantDtoList) {
+            if(memberPlantDto.getPlantId()!= null && memberPlantDto.getMemberId()!= null){
+                Plant plant = plantService.findOne(memberPlantDto.getPlantId());
+                memberPlantDto.setPlantId(plant.getName());
+                Member member = memberService.findOne(memberPlantDto.getMemberId());
+                memberPlantDto.setMemberId(member.getName());
+            }
+        }
         pageDto.setList(memberPlantDtoList);
     }
 
