@@ -78,4 +78,12 @@ public class PlantService {
         List<PlantDto> plantDtoList = CopyUtil.copyList(plantList, PlantDto.class);
         pageDto.setList(plantDtoList);
     }
+
+    public PlantDto findPlant(String id){
+        Plant plant = plantMapper.selectByPrimaryKey(id);
+        if(plant == null || !PlantStatusEnum.NO.getCode().equals(plant.getStatus())){
+            return null;
+        }
+        return CopyUtil.copy(plant,PlantDto.class);
+    }
 }

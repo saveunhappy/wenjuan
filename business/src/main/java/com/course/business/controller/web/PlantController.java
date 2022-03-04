@@ -55,6 +55,14 @@ public class PlantController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
+    
+    @GetMapping("/find/{id}")
+    public ResponseDto findCourse(@PathVariable String id){
+        ResponseDto responseDto = new ResponseDto();
+        PlantDto plant = plantService.findPlant(id);
+        responseDto.setContent(plant);
+        return responseDto;
+    }
 
 
 }
