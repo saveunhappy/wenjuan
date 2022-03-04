@@ -2,7 +2,23 @@
   <main role="main">
     <div class="album py-5 bg-light">
       <div class="container">
-        <h3>课程详情</h3>
+        <div class="row course-head">
+          <div class="col-sm-6" id="cover-video-div">
+            <img class="img-fluid" v-bind:src="plant.image">
+          </div>
+          <div class="col-sm-6">
+            <h1>{{plant.name}}</h1>
+            <p class="course-head-item">
+              <span>{{PLANT_STATUS | optionKV(plant.status)}}</span>
+            </p>
+            <p class="course-head-desc">{{plant.summary}}</p>
+            <p class="course-head-button-links">
+              <a v-show="!memberCourse.id" v-on:click="enroll()" class="btn btn-lg btn-primary btn-shadow" href="javascript:;">申请领养</a>
+              <a v-show="memberCourse.id" href="#" class="btn btn-lg btn-success btn-shadow disabled">您已领养</a>
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -13,18 +29,62 @@ export default {
   name: "detail",
   data: function (){
     return{
-
+      id: "",
+      plant: {},
+      memberCourse: {},
+      PLANT_STATUS: PLANT_STATUS,
     }
   },
   mounted() {
-
+    let _this = this;
+    _this.id = _this.$route.query.id;
+    _this.findPlant();
   },
   methods: {
+    findPlant() {
+      let _this = this;
+      _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/plant/find/' + _this.id).then((response)=>{
+        let resp = response.data;
+        _this.plant = resp.content;
+        // 获取报名信息
+        // _this.getEnroll();
+      })
+    },
 
   }
 }
 </script>
 
-<style scoped>
+<style>
+/* 课程信息 */
+.course-head {
+}
+.course-head h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.course-head-item span {
+  margin-right: 1rem;
+}
+.course-head-desc {
+  font-size: 1rem;
+  color: #555
+}
+.course-head a {
+}
+@media (max-width: 700px) {
+  .course-head h1 {
+    font-size: 1.5rem;
+  }
+}
+.chapter-section-tr td{
+  padding: 1rem 1.25rem;
+  vertical-align: middle;
+}
+
+/*行头小图标*/
+.chapter-section-tr td .section-title i{
+  color: #2a6496;
+}
 
 </style>
