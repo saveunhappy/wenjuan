@@ -263,8 +263,10 @@
             console.log("登录成功：", resp.content);
             let loginMember = resp.content;
             // 登录成功
-            Toast.warning("登录成功");
+            Toast.success("登录成功");
 
+
+            _this.$parent.setLoginMember(loginMember);
             $("#login-modal").modal("hide");
           } else {
             Toast.warning(resp.message);
@@ -272,23 +274,6 @@
           }
         });
       },
-      /**
-       * 发送注册短信
-       */
-
-      /**
-       * 发送短信
-       */
-
-      /**
-       * 倒计时
-       * @param btnId
-       */
-
-      /**
-       * 发送忘记密码短信
-       */
-
       resetPassword() {
         let _this = this;
 
