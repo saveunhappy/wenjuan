@@ -73,7 +73,7 @@ public class MemberService {
         Member member = selectByLoginName(memberDto.getLoginName());
         if(member == null){
             logger.info("用户名不存在{}",memberDto.getLoginName());
-            throw new BusinessException(BusinessExceptionCode.LOGIN_MEMBER_ERROR);
+            throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
         } else {
             if (member.getPassword().equals(memberDto.getPassword())) {
                 // 登录成功
@@ -81,7 +81,7 @@ public class MemberService {
                 return loginMemberDto;
             } else {
                 logger.info("密码不对, 输入密码：{}, 数据库密码：{}", memberDto.getPassword(), member.getPassword());
-                throw new BusinessException(BusinessExceptionCode.LOGIN_MEMBER_ERROR);
+                throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
             }
         }
 
@@ -101,4 +101,19 @@ public class MemberService {
         }
 
     }
+    /**
+     * 重置密码
+     */
+    public void resetPassword(MemberDto memberDto) throws BusinessException {
+        Member memberDb = this.selectByLoginName(memberDto.getLoginName());
+        if (memberDb == null) {
+            throw new BusinessException(BusinessExceptionCode.MEMBER_NOT_EXIST);
+        } else {
+            Member member = new Member();
+            member.setId(memberDb.getId());
+            member.setPassword(memberDto.getPassword());
+            memberMapper.updateByPrimaryKeySelective(member);
+        }
+    }
+
 }
