@@ -2,8 +2,11 @@ package com.course.business.controller.web;
 
 import com.course.server.dto.MemberPlantDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.PlantDto;
 import com.course.server.dto.ResponseDto;
+import com.course.server.enums.PlantStatusEnum;
 import com.course.server.service.MemberPlantService;
+import com.course.server.service.PlantService;
 import com.course.server.util.ValidatorUtil;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +18,8 @@ public class MemberPlantController {
     public static final String BUSINESS_NAME = "会员领取植物";
     @Resource
     private MemberPlantService memberPlantService;
+    @Resource
+    private PlantService plantService;
     @PostMapping("/list")
     public ResponseDto memberPlant(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
@@ -30,6 +35,10 @@ public class MemberPlantController {
 
         ResponseDto responseDto = new ResponseDto();
         MemberPlantDto adopt = memberPlantService.adopt(memberPlantDto);
+        PlantDto plant = plantService.findPlant(memberPlantDto.getPlantId());
+        plant.setStatus(PlantStatusEnum.YES.getCode());
+        plantService.save(plant);
+
         responseDto.setContent(adopt);
         return responseDto;
     }

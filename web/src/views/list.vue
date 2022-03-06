@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     let _this = this;
-    _this.$refs.pagination.size=5
+    _this.$refs.pagination.size=6
     _this.listPlants(1);
   },
   methods: {

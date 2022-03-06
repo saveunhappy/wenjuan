@@ -37,6 +37,7 @@ public class PlantService {
         plantPageDto.setTotal(pageInfo.getTotal());
 
         List<PlantDto> plantDtoList = CopyUtil.copyList(plantList, PlantDto.class);
+
         plantPageDto.setList(plantDtoList);
     }
 
