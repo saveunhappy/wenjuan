@@ -26,7 +26,7 @@
             <h3 class="search-title">
               <a href="#" class="blue">{{plant.name}}</a>
             </h3>
-            <p>{{plant.summary}}</p>
+            <p style="width:350px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{plant.summary}}</p>
             <p>
               <button v-on:click="edit(plant)" class="btn btn-white btn-xs btn-info btn-round">
                 编辑
@@ -134,7 +134,11 @@
 
 <script>
 import Pagination from "../../components/pagination";
-
+$(".summary").each(function() {
+  let str = $(this).html();
+  let subStr = str.substring(0, 10);
+  $(this).html(subStr + (str.length > 10 ? '...' + "<a href='#' class='active'>查看更多</a>" : ''));
+});
 export default {
   name: "business-plant",
   components: {Pagination},
@@ -149,11 +153,17 @@ export default {
     let _this = this;
     _this.$refs.pagination.size = 5;
     _this.list(1);
-
+    console.log("---------哈哈哈哈哈");
+    // document.getElementsByClassName("summary")
     //sidebar激活样式方法一
     // this.$parent.activeSidebar("business-plant-sidebar");
   },
   methods: {
+    reduce(){
+      let _this = this;
+
+      _this.plant.summary
+    },
     add() {
       //这个add的作用就是点开那个模态框，新增是save
       let _this = this;

@@ -5,7 +5,7 @@
     </router-link>
     <div class="card-body">
       <h4 class="">{{plant.name}}</h4>
-      <p class="card-text">{{plant.summary}}</p>
+      <p class="card-text" style="width:300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{plant.summary}}</p>
       <div class="d-flex justify-content-between align-items-center">
 
         <div class="btn-group">
