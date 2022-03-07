@@ -17,13 +17,21 @@
             <li class="nav-item active">
               <router-link class="nav-link" to="/list">全部绿植</router-link>
             </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/myadopt" v-on:click="adopt()">
+              我的领养
+              </router-link>
+            </li>
             <form class="form-inline my-2 my-lg-0" method="post" action="">
               <input class="form-control mr-sm-2" type="search" placeholder="搜索你喜欢的植物" aria-label="Search" v-model="name">
               <router-link v-bind:to="'list?name=' + name" v-on:click.native="flushCom">
                 <button class="btn btn-outline-success my-2 my-sm-0">搜索</button>
               </router-link>
             </form>
+
+
           </ul>
+
           <span v-show="loginMember.id" class="text-white pr-3">您好：{{loginMember.name}}</span>
           <button v-show="loginMember.id" v-on:click="logout()" class="btn btn-outline-light my-2 my-sm-0">退出登录</button>
           <button v-show="!loginMember.id" v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0">登录/注册</button>
@@ -78,6 +86,14 @@ export default {
     setLoginMember(loginMember) {
     let _this = this;
     _this.loginMember = loginMember;
+    },
+    adopt(){
+      let _this = this;
+      let loginMember = Tool.getLoginMember();
+      if (Tool.isEmpty(loginMember)) {
+        Toast.warning("请先登录");
+        return;
+      }
     }
 
   }

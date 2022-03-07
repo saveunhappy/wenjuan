@@ -6,6 +6,8 @@ import com.course.server.domain.MemberPlantExample;
 import com.course.server.domain.Plant;
 import com.course.server.dto.MemberPlantDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.PlantDto;
+import com.course.server.enums.PlantStatusEnum;
 import com.course.server.mapper.MemberPlantMapper;
 import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
@@ -13,6 +15,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -46,6 +49,28 @@ public class MemberPlantService {
         }
         pageDto.setList(memberPlantDtoList);
     }
+
+    public void myadopt(MemberPlantDto pageDto){
+        PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
+        MemberPlantExample memberPlantExample = new MemberPlantExample();
+        MemberPlantExample.Criteria criteria = memberPlantExample.createCriteria();
+        if(!StringUtils.isEmpty(pageDto.getMemberId())){
+            criteria.andMemberIdEqualTo(pageDto.getMemberId());
+        }
+        List<MemberPlant> memberPlantList = memberPlantMapper.selectByExample(memberPlantExample);
+        PageInfo pageInfo = new PageInfo(memberPlantList);
+        pageDto.setTotal(pageInfo.getTotal());
+
+        List<MemberPlantDto> memberPlantDtoList = CopyUtil.copyList(memberPlantList, MemberPlantDto.class);
+        List<PlantDto> plantDtoList = new ArrayList<>();
+        for (MemberPlantDto memberPlantDto : memberPlantDtoList) {
+
+            PlantDto plant = plantService.findPlantNoCondition(memberPlantDto.getPlantId());
+            plantDtoList.add(plant);
+        }
+        pageDto.setList(plantDtoList);
+    }
+
 
     public void save(MemberPlantDto memberPlantDto){
         MemberPlant memberPlant = CopyUtil.copy(memberPlantDto, MemberPlant.class);
@@ -100,6 +125,35 @@ public class MemberPlantService {
     public MemberPlantDto getEnroll(MemberPlantDto memberPlantDto) {
         MemberPlant select = this.select(memberPlantDto.getMemberId(), memberPlantDto.getPlantId());
         return CopyUtil.copy(select,MemberPlantDto.class);
+
+    }
+    @Transactional
+    public void cancelAdopt(MemberPlantDto memberPlantDto) {
+        PageHelper.startPage(memberPlantDto.getPage(),memberPlantDto.getSize());
+        MemberPlantExample memberPlantExample = new MemberPlantExample();
+        MemberPlantExample.Criteria criteria = memberPlantExample.createCriteria();
+        if(!StringUtils.isEmpty(memberPlantDto.getPlantId())){
+            PlantDto plantNoCondition = plantService.findPlantNoCondition(memberPlantDto.getPlantId());
+            plantNoCondition.setStatus(PlantStatusEnum.NO.getCode());
+            plantService.save(plantNoCondition);
+            criteria.andPlantIdEqualTo(memberPlantDto.getPlantId());
+        }
+        if(!StringUtils.isEmpty(memberPlantDto.getMemberId())){
+            criteria.andMemberIdEqualTo(memberPlantDto.getMemberId());
+        }
+
+        List<MemberPlant> memberPlantList = memberPlantMapper.selectByExample(memberPlantExample);
+        if(!CollectionUtils.isEmpty(memberPlantList)){
+            for (MemberPlant memberPlant : memberPlantList) {
+                memberPlantMapper.deleteByPrimaryKey(memberPlant.getId());
+            }
+        }
+        PageInfo pageInfo = new PageInfo(memberPlantList);
+        memberPlantDto.setTotal(pageInfo.getTotal());
+
+        List<MemberPlantDto> memberPlantDtoList = CopyUtil.copyList(memberPlantList, MemberPlantDto.class);
+
+        memberPlantDto.setList(memberPlantDtoList);
 
     }
 }

@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Index from "./views/index";
 import List from "./views/list";
 import Detail from "./views/detail.vue";
+import MyAdopt from "./views/myadopt.vue";
 
 Vue.use(Router);
 export default new Router({
@@ -21,6 +22,10 @@ export default new Router({
         ,{
             path:"/detail",
             component: Detail
+        }
+        ,{
+            path:"/myadopt",
+            component: MyAdopt
         }
     ]
 })

@@ -25,6 +25,8 @@ import java.util.Date;
 public class PlantService {
     @Resource
     private PlantMapper plantMapper;
+    @Resource
+    private MemberService memberService;
     public void list(PlantPageDto plantPageDto){
         PageHelper.startPage(plantPageDto.getPage(),plantPageDto.getSize());
         PlantExample plantExample = new PlantExample();
@@ -90,6 +92,13 @@ public class PlantService {
     public PlantDto findPlant(String id){
         Plant plant = plantMapper.selectByPrimaryKey(id);
         if(plant == null || !PlantStatusEnum.NO.getCode().equals(plant.getStatus())){
+            return null;
+        }
+        return CopyUtil.copy(plant,PlantDto.class);
+    }
+    public PlantDto findPlantNoCondition(String id){
+        Plant plant = plantMapper.selectByPrimaryKey(id);
+        if(plant == null){
             return null;
         }
         return CopyUtil.copy(plant,PlantDto.class);

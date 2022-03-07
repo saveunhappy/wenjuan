@@ -1,9 +1,6 @@
 package com.course.business.controller.web;
 
-import com.course.server.dto.MemberPlantDto;
-import com.course.server.dto.PageDto;
-import com.course.server.dto.PlantDto;
-import com.course.server.dto.ResponseDto;
+import com.course.server.dto.*;
 import com.course.server.enums.PlantStatusEnum;
 import com.course.server.service.MemberPlantService;
 import com.course.server.service.PlantService;
@@ -42,6 +39,22 @@ public class MemberPlantController {
         responseDto.setContent(adopt);
         return responseDto;
     }
+
+    @PostMapping("/myadopt")
+    public ResponseDto myadopt(@RequestBody MemberPlantDto memberPlantDto){
+        ResponseDto responseDto = new ResponseDto();
+        memberPlantService.myadopt(memberPlantDto);
+        responseDto.setContent(memberPlantDto);
+        return responseDto;
+    }
+    @PostMapping("/cancelAdopt")
+    public ResponseDto cancelAdopt(@RequestBody MemberPlantDto memberPlantDto){
+        ResponseDto responseDto = new ResponseDto();
+        memberPlantService.cancelAdopt(memberPlantDto);
+        responseDto.setContent(memberPlantDto);
+        return responseDto;
+    }
+
 
     @PostMapping("get-enroll")
     public ResponseDto getEnroll(@RequestBody MemberPlantDto memberPlantDto){
