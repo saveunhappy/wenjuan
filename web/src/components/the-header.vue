@@ -25,7 +25,7 @@
             <form class="form-inline my-2 my-lg-0" method="post" action="">
               <input class="form-control mr-sm-2" type="search" placeholder="搜索你喜欢的植物" aria-label="Search" v-model="name">
               <router-link v-bind:to="'list?name=' + name" v-on:click.native="flushCom">
-                <button class="btn btn-outline-success my-2 my-sm-0">搜索</button>
+                <button class="btn btn-outline-light my-2 my-sm-0">搜索</button>
               </router-link>
             </form>
 
