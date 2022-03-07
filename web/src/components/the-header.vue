@@ -18,9 +18,9 @@
               <router-link class="nav-link" to="/list">全部绿植</router-link>
             </li>
             <li class="nav-item active">
-              <router-link class="nav-link" to="/myadopt" v-on:click="adopt()">
+              <a class="nav-link" v-on:click="adopt()">
               我的领养
-              </router-link>
+              </a>
             </li>
             <form class="form-inline my-2 my-lg-0" method="post" action="">
               <input class="form-control mr-sm-2" type="search" placeholder="搜索你喜欢的植物" aria-label="Search" v-model="name">
@@ -93,6 +93,8 @@ export default {
       if (Tool.isEmpty(loginMember)) {
         Toast.warning("请先登录");
         return;
+      }else {
+        _this.$router.push("/myadopt");
       }
     }
 
