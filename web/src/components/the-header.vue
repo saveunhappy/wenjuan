@@ -21,6 +21,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 更多
               </a>
+
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">关于我们</a>
                 <a class="dropdown-item" href="#">渠道合作</a>
