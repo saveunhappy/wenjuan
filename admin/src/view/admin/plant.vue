@@ -40,50 +40,6 @@
         </div>
       </div>
     </div>
-<!--    <table id="simple-table" class="table  table-bordered table-hover">-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--         <th>id</th>-->
-
-<!--         <th>绿植名称</th>-->
-
-<!--         <th>概述</th>-->
-
-<!--         <th>绿植封面</th>-->
-
-<!--         <th>状态</th>-->
-
-
-<!--        <th>操作</th>-->
-<!--      </tr>-->
-
-<!--      </thead>-->
-
-<!--      <tbody>-->
-<!--      <tr v-for="plant in plants">-->
-
-
-
-<!--              <td>{{plant.id}}</td>-->
-<!--              <td>{{plant.name}}</td>-->
-<!--              <td>{{plant.summary}}</td>-->
-<!--              <td>{{plant.image}}</td>-->
-<!--              <td>{{PLANT_STATUS | optionKV(plant.status)}}</td>-->
-<!--        <td>-->
-
-<!--          <div class="hidden-sm hidden-xs btn-group">-->
-<!--            <button v-on:click="edit(plant)" class="btn btn-xs btn-info">-->
-<!--              <i class="ace-icon fa fa-pencil bigger-120"></i>-->
-<!--            </button>-->
-
-<!--            <button v-on:click="del(plant.id)" class="btn btn-xs btn-danger">-->
-<!--              <i class="ace-icon fa fa-trash-o bigger-120"></i>-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -17,18 +17,12 @@
             <li class="nav-item active">
               <router-link class="nav-link" to="/list">全部绿植</router-link>
             </li>
-            <li class="nav-item dropdown active">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                更多
-              </a>
-
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">关于我们</a>
-                <a class="dropdown-item" href="#">渠道合作</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">更多信息</a>
-              </div>
-            </li>
+            <form class="form-inline my-2 my-lg-0" method="post" action="">
+              <input class="form-control mr-sm-2" type="search" placeholder="搜索你喜欢的植物" aria-label="Search" v-model="name">
+              <router-link v-bind:to="'list?name=' + name" v-on:click.native="flushCom">
+                <button class="btn btn-outline-success my-2 my-sm-0">搜索</button>
+              </router-link>
+            </form>
           </ul>
           <span v-show="loginMember.id" class="text-white pr-3">您好：{{loginMember.name}}</span>
           <button v-show="loginMember.id" v-on:click="logout()" class="btn btn-outline-light my-2 my-sm-0">退出登录</button>
@@ -55,14 +49,21 @@ export default {
   data: function () {
     return {
       loginMember: {},
+      name:""
     }
   },
   mounted() {
     let _this = this;
     _this.loginMember = Tool.getLoginMember();
 
+    console.log("name=====>>>>>>>>>>>>>>>",name);
   },
   methods: {
+    flushCom(){
+      let _this = this;
+      _this.$router.go(0);
+    },
+
   logout(){
     let _this = this;
     Tool.setLoginMember(null);

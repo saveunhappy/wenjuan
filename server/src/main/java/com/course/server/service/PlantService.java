@@ -32,6 +32,9 @@ public class PlantService {
         if(!StringUtils.isEmpty(plantPageDto.getStatus())){
             criteria.andStatusEqualTo(plantPageDto.getStatus());
         }
+        if(!StringUtils.isEmpty(plantPageDto.getName())){
+            criteria.andNameLike("%" +plantPageDto.getName()+"%");
+        }
         List<Plant> plantList = plantMapper.selectByExample(plantExample);
         PageInfo pageInfo = new PageInfo(plantList);
         plantPageDto.setTotal(pageInfo.getTotal());

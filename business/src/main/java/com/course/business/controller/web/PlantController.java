@@ -25,6 +25,7 @@ public class PlantController {
         responseDto.setContent(plantPageDto);
         return responseDto;
     }
+
     @PostMapping("/save")
     public ResponseDto save(@RequestBody PlantDto plantDto){
         // 保存校验

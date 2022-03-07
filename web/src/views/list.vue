@@ -34,14 +34,18 @@ export default {
   mounted() {
     let _this = this;
     _this.$refs.pagination.size=6
-    _this.listPlants(1);
+    _this.name = _this.$route.query.name;
+    // _this.name = _this.$route.query.name;
+    console.log("name---------------------",_this.name)
+    _this.listPlants(1,_this.name);
   },
   methods: {
     listPlants(page){
       let _this = this;
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/web/plant/list",{
         page: page,
-        size: _this.$refs.pagination.size
+        size: _this.$refs.pagination.size,
+        name:_this.name
       }).then((response) => {
         console.log("查询用户列表结果", response);
         let resp = response.data;
