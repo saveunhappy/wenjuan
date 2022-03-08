@@ -15,8 +15,8 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.plant</groupId>
-    <artifactId>plant</artifactId>
+    <groupId>com.course</groupId>
+    <artifactId>course</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>plant</name>
     <description>Demo project for Spring Boot</description>

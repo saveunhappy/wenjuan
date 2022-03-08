@@ -49,7 +49,7 @@ import ThePlant from "@/components/the-plant";
 import Pagination from "@/components/pagination";
 import TheLogin from "@/components/login";
 export default {
-  name: "myadopt",
+  name: "myadoptrefresh",
   components: {Pagination, ThePlant,TheLogin},
   data: function (){
     return{
@@ -94,7 +94,7 @@ export default {
         if(resp.success){
           console.log(resp);
           Toast.success("取消领养成功");
-          _this.$router.push("/myadoptrefresh");
+          _this.$router.push("/myadopt");
           // _this.$router.go(0);
         }
       })

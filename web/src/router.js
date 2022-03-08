@@ -4,6 +4,7 @@ import Index from "./views/index";
 import List from "./views/list";
 import Detail from "./views/detail.vue";
 import MyAdopt from "./views/myadopt.vue";
+import MyAdoptRefresh from "./views/myadoptrefresh.vue";
 
 Vue.use(Router);
 export default new Router({
@@ -26,6 +27,10 @@ export default new Router({
         ,{
             path:"/myadopt",
             component: MyAdopt
+        }
+        ,{
+            path:"/myadoptrefresh",
+            component: MyAdoptRefresh
         }
     ]
 })
