@@ -1,5 +1,7 @@
 package com.course.server.service;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.listener.PageReadListener;
 import com.course.server.domain.Student;
 import com.course.server.domain.StudentExample;
 import com.course.server.dto.AvgScoreDto;
@@ -11,14 +13,11 @@ import com.course.server.util.CopyUtil;
 import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 @Service
 public class StudentService {
@@ -69,6 +68,9 @@ public class StudentService {
         pageDto.setList(studentDtoList);
     }
     public static BigDecimal divideGetAvg(BigDecimal bigDecimal,List studentList){
+        if(studentList.size()==0){
+            return new BigDecimal("0");
+        }
         return bigDecimal.divide(new BigDecimal(String.valueOf(studentList.size())),2,BigDecimal.ROUND_HALF_UP);
     }
     public void save(StudentDto studentDto){
@@ -91,5 +93,22 @@ public class StudentService {
 
     public void delete(String id) {
         studentMapper.deleteByPrimaryKey(id);
+    }
+
+
+    public void upload(){
+        StudentExample studentExample = new StudentExample();
+        List<Student> studentList = studentMapper.selectByExample(studentExample);
+        for (Student student : studentList) {
+            studentMapper.deleteByPrimaryKey(student.getId());
+        }
+        EasyExcel.read("D:\\axiaoyun\\wenjuan\\server\\aaa.xlsx", Student.class, new PageReadListener<Student>(dataList -> {
+            for (Student student : dataList) {
+                student.setId(UuidUtil.getShortUuid());
+
+                studentMapper.insert(student);
+            }
+        })).sheet().doRead();
+
     }
 }

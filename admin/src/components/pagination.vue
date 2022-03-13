@@ -30,12 +30,13 @@
     <span class="m--padding-10">
         每页
         <select v-model="size">
-            <option value="1">1</option>
-            <option value="6">6</option>
-            <option value="12">12</option>
-            <option value="24">24</option>
+<!--            <option value="1">1</option>-->
+<!--            <option value="6">6</option>-->
+<!--            <option value="12">12</option>-->
+<!--            <option value="24">24</option>-->
             <option value="60">60</option>
             <option value="120">120</option>
+            <option value="1000">1000</option>
         </select>
         条，共【{{total}}】条
     </span>

@@ -10,6 +10,12 @@
         <i class="ace-icon fa fa-refresh"></i>
         刷新
       </button>
+
+      &nbsp;
+      <button v-on:click="upload()" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-refresh"></i>
+        导入数据
+      </button>
     </p>
     <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
     <table id="simple-table" class="table  table-bordered table-hover">
@@ -196,7 +202,7 @@ export default {
   mounted() {
     let _this = this;
 
-    _this.$refs.pagination.size = 5;
+    _this.$refs.pagination.size = 1000;
     _this.list(1);
     //sidebar激活样式方法一
     // this.$parent.activeSidebar("business-student-sidebar");
@@ -284,6 +290,17 @@ export default {
           }
         })
     });
+    },
+
+    upload() {
+      let _this = this;
+        _this.$ajax.get(process.env.VUE_APP_SERVER + "/business/admin/student/upload").then((response) => {
+          console.log("导入数据", response);
+          // let resp = response.data;
+            Toast.success("导入成功");
+            _this.list(1);
+
+        })
     },
   }
 }

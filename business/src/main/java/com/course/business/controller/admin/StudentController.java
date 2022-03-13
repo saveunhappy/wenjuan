@@ -41,4 +41,10 @@ public class StudentController {
         return responseDto;
     }
 
+    @GetMapping("/upload")
+    public ResponseDto upload(){
+        ResponseDto responseDto = new ResponseDto();
+        studentService.upload();
+        return responseDto;
+    }
 }

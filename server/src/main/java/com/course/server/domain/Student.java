@@ -3,7 +3,6 @@ package com.course.server.domain;
 import java.math.BigDecimal;
 
 public class Student {
-    private String id;
 
     private String className;
 
@@ -24,6 +23,7 @@ public class Student {
     private BigDecimal classBehave;
 
     private BigDecimal finalResult;
+    private String id;
 
     public String getId() {
         return id;
