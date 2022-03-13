@@ -106,5 +106,25 @@ insert into plant (id, name, summary, image,status, created_at, updated_at) VALU
 ,'0',now(),now());
 
 
-insert into
+drop table if exists `student`;
+create table `student` (
+                          `id` char(8) not null default '' comment 'id',
+                          `class_name` varchar(50)  comment '班级',
+                          `student_number` varchar(50) comment '学号',
+                          `name` varchar(32)  comment '姓名',
+                          `gender` char(1)  comment '状态|枚举[GenderStatusEnum]:MALE("1", "男性"),FEMALE("0", "女性")',
+                           `school_system` int(50) comment '学制',
+                           `final_exam` decimal(50) comment '结课考试',
+                           `usual_grade` decimal(50) comment '平时成绩',
+                           `unit_test` decimal(50) comment '单元测试',
+                           `class_behave` decimal(50) comment '课堂表现与考勤',
+                           `final_exam_avg` decimal(50) default 0 comment '结课考试平均数',
+                           `usual_grade_avg` decimal(50) default 0 comment '平时成绩平均数',
+                           `unit_test_avg` decimal(50) default 0 comment '单元测试平均数',
+                           `class_behave_avg` decimal(50) default 0 comment '课堂表现与考勤平均数',
+                              primary key (`id`)
+
+) engine=innodb default charset=utf8mb4 comment='学生';
+insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave) VALUES
+('00000000','中文201','2020012314','赵黎明','男','4','93','80','90','10')
 
