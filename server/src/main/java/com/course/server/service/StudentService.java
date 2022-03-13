@@ -56,10 +56,10 @@ public class StudentService {
         }
         AvgScoreDto avgScoreDto = new AvgScoreDto();
         avgScoreDto.setId(AVG_ID);
-        avgScoreDto.setFinalExamAvg(finalExamAvg);
-        avgScoreDto.setUnitTestAvg(usualGradeAvg);
-        avgScoreDto.setUsualGradeAvg(usualGradeAvg);
-        avgScoreDto.setClassBehaveAvg(classBehaveAvg);
+        avgScoreDto.setFinalExamAvg(divideGetAvg(finalExamAvg,studentList));
+        avgScoreDto.setUnitTestAvg(divideGetAvg(usualGradeAvg,studentList));
+        avgScoreDto.setUsualGradeAvg(divideGetAvg(usualGradeAvg,studentList));
+        avgScoreDto.setClassBehaveAvg(divideGetAvg(classBehaveAvg,studentList));
         avgScoreService.save(avgScoreDto);
 
         PageInfo pageInfo = new PageInfo(studentList);
@@ -68,7 +68,9 @@ public class StudentService {
         List<StudentDto> studentDtoList = CopyUtil.copyList(studentList, StudentDto.class);
         pageDto.setList(studentDtoList);
     }
-
+    public static BigDecimal divideGetAvg(BigDecimal bigDecimal,List studentList){
+        return bigDecimal.divide(new BigDecimal(String.valueOf(studentList.size())),2,BigDecimal.ROUND_HALF_UP);
+    }
     public void save(StudentDto studentDto){
         Student student = CopyUtil.copy(studentDto, Student.class);
 
