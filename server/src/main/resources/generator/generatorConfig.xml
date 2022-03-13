@@ -56,7 +56,8 @@
 <!--        <table tableName="member_plant" domainObjectName="MemberPlant"/>-->
 <!--        <table tableName="sms" domainObjectName="Sms"/>-->
 <!--        <table tableName="member_course" domainObjectName="MemberCourse"/>-->
-        <table tableName="student" domainObjectName="Student"/>
+<!--        <table tableName="student" domainObjectName="Student"/>-->
+        <table tableName="avg_score" domainObjectName="AvgScore"/>
 
 
     </context>

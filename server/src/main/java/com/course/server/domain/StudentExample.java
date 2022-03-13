@@ -755,243 +755,63 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgIsNull() {
-            addCriterion("final_exam_avg is null");
+        public Criteria andFinalResultIsNull() {
+            addCriterion("final_result is null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgIsNotNull() {
-            addCriterion("final_exam_avg is not null");
+        public Criteria andFinalResultIsNotNull() {
+            addCriterion("final_result is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgEqualTo(BigDecimal value) {
-            addCriterion("final_exam_avg =", value, "finalExamAvg");
+        public Criteria andFinalResultEqualTo(BigDecimal value) {
+            addCriterion("final_result =", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgNotEqualTo(BigDecimal value) {
-            addCriterion("final_exam_avg <>", value, "finalExamAvg");
+        public Criteria andFinalResultNotEqualTo(BigDecimal value) {
+            addCriterion("final_result <>", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgGreaterThan(BigDecimal value) {
-            addCriterion("final_exam_avg >", value, "finalExamAvg");
+        public Criteria andFinalResultGreaterThan(BigDecimal value) {
+            addCriterion("final_result >", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("final_exam_avg >=", value, "finalExamAvg");
+        public Criteria andFinalResultGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("final_result >=", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgLessThan(BigDecimal value) {
-            addCriterion("final_exam_avg <", value, "finalExamAvg");
+        public Criteria andFinalResultLessThan(BigDecimal value) {
+            addCriterion("final_result <", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("final_exam_avg <=", value, "finalExamAvg");
+        public Criteria andFinalResultLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("final_result <=", value, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgIn(List<BigDecimal> values) {
-            addCriterion("final_exam_avg in", values, "finalExamAvg");
+        public Criteria andFinalResultIn(List<BigDecimal> values) {
+            addCriterion("final_result in", values, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgNotIn(List<BigDecimal> values) {
-            addCriterion("final_exam_avg not in", values, "finalExamAvg");
+        public Criteria andFinalResultNotIn(List<BigDecimal> values) {
+            addCriterion("final_result not in", values, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("final_exam_avg between", value1, value2, "finalExamAvg");
+        public Criteria andFinalResultBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("final_result between", value1, value2, "finalResult");
             return (Criteria) this;
         }
 
-        public Criteria andFinalExamAvgNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("final_exam_avg not between", value1, value2, "finalExamAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgIsNull() {
-            addCriterion("usual_grade_avg is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgIsNotNull() {
-            addCriterion("usual_grade_avg is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgEqualTo(BigDecimal value) {
-            addCriterion("usual_grade_avg =", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgNotEqualTo(BigDecimal value) {
-            addCriterion("usual_grade_avg <>", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgGreaterThan(BigDecimal value) {
-            addCriterion("usual_grade_avg >", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("usual_grade_avg >=", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgLessThan(BigDecimal value) {
-            addCriterion("usual_grade_avg <", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("usual_grade_avg <=", value, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgIn(List<BigDecimal> values) {
-            addCriterion("usual_grade_avg in", values, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgNotIn(List<BigDecimal> values) {
-            addCriterion("usual_grade_avg not in", values, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("usual_grade_avg between", value1, value2, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUsualGradeAvgNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("usual_grade_avg not between", value1, value2, "usualGradeAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgIsNull() {
-            addCriterion("unit_test_avg is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgIsNotNull() {
-            addCriterion("unit_test_avg is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgEqualTo(BigDecimal value) {
-            addCriterion("unit_test_avg =", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgNotEqualTo(BigDecimal value) {
-            addCriterion("unit_test_avg <>", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgGreaterThan(BigDecimal value) {
-            addCriterion("unit_test_avg >", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("unit_test_avg >=", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgLessThan(BigDecimal value) {
-            addCriterion("unit_test_avg <", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("unit_test_avg <=", value, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgIn(List<BigDecimal> values) {
-            addCriterion("unit_test_avg in", values, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgNotIn(List<BigDecimal> values) {
-            addCriterion("unit_test_avg not in", values, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("unit_test_avg between", value1, value2, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andUnitTestAvgNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("unit_test_avg not between", value1, value2, "unitTestAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgIsNull() {
-            addCriterion("class_behave_avg is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgIsNotNull() {
-            addCriterion("class_behave_avg is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgEqualTo(BigDecimal value) {
-            addCriterion("class_behave_avg =", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgNotEqualTo(BigDecimal value) {
-            addCriterion("class_behave_avg <>", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgGreaterThan(BigDecimal value) {
-            addCriterion("class_behave_avg >", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("class_behave_avg >=", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgLessThan(BigDecimal value) {
-            addCriterion("class_behave_avg <", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("class_behave_avg <=", value, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgIn(List<BigDecimal> values) {
-            addCriterion("class_behave_avg in", values, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgNotIn(List<BigDecimal> values) {
-            addCriterion("class_behave_avg not in", values, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("class_behave_avg between", value1, value2, "classBehaveAvg");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassBehaveAvgNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("class_behave_avg not between", value1, value2, "classBehaveAvg");
+        public Criteria andFinalResultNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("final_result not between", value1, value2, "finalResult");
             return (Criteria) this;
         }
     }

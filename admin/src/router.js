@@ -13,6 +13,7 @@ import ApplyPassed from "./view/admin/applyPassed.vue";
 import ApplyDeny from "./view/admin/applyDeny.vue";
 import UserLog from "./view/admin/userLog.vue";
 import MemberPlant from "./view/admin/memberPlant.vue";
+import Student from "./view/admin/student.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -20,12 +21,8 @@ export default new Router({
     routes:[
         {
         path: "*",
-        redirect:"/login",
+        redirect:"/",
     },
-        {
-            path: "",
-            redirect:"/login",
-        },
         {
             path: "/login",
             component:Login
@@ -97,6 +94,12 @@ export default new Router({
                     path: "business/memberPlant",
                     name:"business/memberPlant",
                     component:MemberPlant,
+                }
+                ,
+                {
+                    path: "business/student",
+                    name:"business/student",
+                    component:Student,
                 }
                 ]
         }

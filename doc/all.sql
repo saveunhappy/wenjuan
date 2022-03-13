@@ -118,13 +118,26 @@ create table `student` (
                            `usual_grade` decimal(50) comment '平时成绩',
                            `unit_test` decimal(50) comment '单元测试',
                            `class_behave` decimal(50) comment '课堂表现与考勤',
-                           `final_exam_avg` decimal(50) default 0 comment '结课考试平均数',
-                           `usual_grade_avg` decimal(50) default 0 comment '平时成绩平均数',
-                           `unit_test_avg` decimal(50) default 0 comment '单元测试平均数',
-                           `class_behave_avg` decimal(50) default 0 comment '课堂表现与考勤平均数',
+                           `final_result` decimal(50) comment '综合成绩',
                               primary key (`id`)
 
 ) engine=innodb default charset=utf8mb4 comment='学生';
-insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave) VALUES
-('00000000','中文201','2020012314','赵黎明','男','4','93','80','90','10')
+insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave,final_result) VALUES
+('00000000','中文201','20181314101','赵利明','1','4','93','80','90','10','0');
+insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave,final_result) VALUES
+('00000001','中文201','20201314101','屈明坤','1','4','87','81','90','10','0');
+insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave,final_result) VALUES
+('00000002','中文201','20201314102','孙浩硯','1','4','90','90','90','90','0');
+insert into student (id,class_name, student_number, name, gender, school_system, final_exam, usual_grade, unit_test, class_behave,final_result) VALUES
+('00000003','中文201','20201314103','谭连海','1','4','48','66','70','11','0');
 
+
+drop table if exists `avg_score`;
+create table `avg_score` (
+                           `id` char(8) not null default '' comment 'id',
+                           `final_exam_avg` decimal(50) comment '结课考试平均分',
+                           `usual_grade_avg` decimal(50) comment '平时成绩平均分',
+                           `unit_test_avg` decimal(50) comment '单元测试平均分',
+                           `final_result_avg` decimal(50) comment '课堂表现与考勤平均分',
+                           primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='平均分';

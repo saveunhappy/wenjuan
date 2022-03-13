@@ -1,28 +1,62 @@
-package com.course.server.domain;
+package com.course.server.dto;
 
 import java.math.BigDecimal;
 
-public class Student {
+public class StudentDto {
+
+    /**
+     * id
+     */
     private String id;
 
+    /**
+     * 班级
+     */
     private String className;
 
+    /**
+     * 学号
+     */
     private String studentNumber;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 状态|枚举[GenderStatusEnum]:MALE("1", "男性"),FEMALE("0", "女性")
+     */
     private String gender;
 
+    /**
+     * 学制
+     */
     private Integer schoolSystem;
 
+    /**
+     * 结课考试
+     */
     private BigDecimal finalExam;
 
+    /**
+     * 平时成绩
+     */
     private BigDecimal usualGrade;
 
+    /**
+     * 单元测试
+     */
     private BigDecimal unitTest;
 
+    /**
+     * 课堂表现与考勤
+     */
     private BigDecimal classBehave;
 
+    /**
+     * 综合成绩
+     */
     private BigDecimal finalResult;
 
     public String getId() {
@@ -113,6 +147,7 @@ public class Student {
         this.finalResult = finalResult;
     }
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -133,4 +168,5 @@ public class Student {
         sb.append("]");
         return sb.toString();
     }
+
 }
