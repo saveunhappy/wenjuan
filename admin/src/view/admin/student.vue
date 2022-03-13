@@ -53,7 +53,12 @@
               <td>{{student.usualGrade}}</td>
               <td>{{student.unitTest}}</td>
               <td>{{student.classBehave}}</td>
-              <td>{{student.finalResult}}</td>
+              <td v-show="student.finalResult < 60">
+                <div style="color: red">{{student.finalResult}}</div>
+              </td>
+               <td v-show="student.finalResult > 60">
+                 {{student.finalResult}}
+               </td>
         <td>
 
           <div class="hidden-sm hidden-xs btn-group">
@@ -186,7 +191,6 @@ export default {
       GENDER_STATUS: GENDER_STATUS,
       avgScores:[],
       avgScore:{},
-
     }
   },
   mounted() {
@@ -194,7 +198,6 @@ export default {
 
     _this.$refs.pagination.size = 5;
     _this.list(1);
-
     //sidebar激活样式方法一
     // this.$parent.activeSidebar("business-student-sidebar");
   },
@@ -281,8 +284,12 @@ export default {
           }
         })
     });
-    }
-
+    },
   }
 }
 </script>
+<style>
+.finalResult{
+  color: red;
+}
+</style>
