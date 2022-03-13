@@ -138,6 +138,6 @@ create table `avg_score` (
                            `final_exam_avg` decimal(50) comment '结课考试平均分',
                            `usual_grade_avg` decimal(50) comment '平时成绩平均分',
                            `unit_test_avg` decimal(50) comment '单元测试平均分',
-                           `final_result_avg` decimal(50) comment '课堂表现与考勤平均分',
+                           `class_behave_avg` decimal(50) comment '课堂表现与考勤平均分',
                            primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='平均分';

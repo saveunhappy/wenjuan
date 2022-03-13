@@ -79,10 +79,10 @@
         <th></th>
 
         <th></th>
-        <th>{{finalExamAvg}}</th>
-        <th>{{usualGradeAvg}}</th>
-        <th>{{unitTestAvg}}</th>
-        <th>{{classBehaveAvg}}</th>
+        <th>{{avgScore.finalExamAvg}}</th>
+        <th>{{avgScore.usualGradeAvg}}</th>
+        <th>{{avgScore.unitTestAvg}}</th>
+        <th>{{avgScore.classBehaveAvg}}</th>
 
         <th></th>
         <th></th>
@@ -184,10 +184,8 @@ export default {
       student: {},
       students: [],
       GENDER_STATUS: GENDER_STATUS,
-      finalExamAvg:parseFloat(),
-      usualGradeAvg:parseFloat(),
-      unitTestAvg:parseFloat(),
-      classBehaveAvg:parseFloat(),
+      avgScores:[],
+      avgScore:{},
 
     }
   },
@@ -215,10 +213,7 @@ export default {
     },
     list(page) {
       let _this = this;
-      let finalExamAvg = 0;
-      let usualGradeAvg = 0;
-      let unitTestAvg = 0;
-      let classBehaveAvg = 0;
+
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/student/list",
           {
@@ -229,22 +224,21 @@ export default {
         console.log("查询学生列表结果", response);
         let resp = response.data;
         _this.students = resp.content.list;
+        _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/avgScore/list",
+            {
+              page: page,
+              size: _this.$refs.pagination.size
+            }).then((response) => {
+          Loading.hide();
+          console.log("查询平均分列表结果", response);
+          let resp = response.data;
+          _this.avgScores = resp.content.list;
+          _this.avgScore = _this.avgScores[0];
+          console.log("avgScores",_this.avgScores[0]);
+          console.log("avgScore",_this.avgScore);
+        })
 
-        for (let i = 0; i < _this.students.length; i++) {
-          console.log("_this.students[i].finalExam",_this.students[i].finalExam);
-          finalExamAvg += parseFloat(_this.students[i].finalExam);
-          usualGradeAvg += parseFloat(_this.students[i].usualGrade);
-          unitTestAvg += parseFloat(_this.students[i].unitTest);
-          classBehaveAvg += parseFloat(_this.students[i].classBehave);
-        }
-        finalExamAvg = finalExamAvg/_this.students.length;
-        usualGradeAvg = usualGradeAvg/_this.students.length;
-        unitTestAvg = unitTestAvg/_this.students.length;
-        classBehaveAvg = classBehaveAvg/_this.students.length;
-        console.log("finalExamAvg",finalExamAvg);
-        console.log("usualGradeAvg",usualGradeAvg);
-        console.log("unitTestAvg",unitTestAvg);
-        console.log("classBehaveAvg",classBehaveAvg);
+
         _this.$refs.pagination.render(page, resp.content.total);
       })
     },

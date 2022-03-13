@@ -1,16 +1,32 @@
-package com.course.server.domain;
+package com.course.server.dto;
 
 import java.math.BigDecimal;
 
-public class AvgScore {
+public class AvgScoreDto {
+
+    /**
+     * id
+     */
     private String id;
 
+    /**
+     * 结课考试平均分
+     */
     private BigDecimal finalExamAvg;
 
+    /**
+     * 平时成绩平均分
+     */
     private BigDecimal usualGradeAvg;
 
+    /**
+     * 单元测试平均分
+     */
     private BigDecimal unitTestAvg;
 
+    /**
+     * 课堂表现与考勤平均分
+     */
     private BigDecimal classBehaveAvg;
 
     public String getId() {
@@ -53,6 +69,7 @@ public class AvgScore {
         this.classBehaveAvg = classBehaveAvg;
     }
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -67,4 +84,5 @@ public class AvgScore {
         sb.append("]");
         return sb.toString();
     }
+
 }
