@@ -83,7 +83,7 @@ public class StudentService {
         }
     }
 
-    private void insert(Student student){
+    public void insert(Student student){
         student.setId(UuidUtil.getShortUuid());
         studentMapper.insert(student);
     }
