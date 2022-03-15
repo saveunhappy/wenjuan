@@ -65,7 +65,14 @@
               <li class="" id="business-student-sidebar">
                 <router-link to="/business/student">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  学生管理
+                  综合成绩
+                </router-link>
+                <b class="arrow"></b>
+              </li>
+              <li class="" id="business-courseTarget-sidebar">
+                <router-link to="/business/courseTarget">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  评价结果
                 </router-link>
                 <b class="arrow"></b>
               </li>

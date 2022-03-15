@@ -141,3 +141,34 @@ create table `avg_score` (
                            `class_behave_avg` decimal(50) comment '课堂表现与考勤平均分',
                            primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='平均分';
+
+drop table if exists `course_target`;
+create table `course_target` (
+                             `id` char(8) not null default '' comment 'id',
+                             `target` varchar(200) comment '课程目标',
+                             `teacher_evaluate` decimal(50) comment '老师评价',
+                             `student_evaluate` decimal(50) comment '学生评价',
+                             primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='课程目标';
+
+insert into course_target(id, target, teacher_evaluate, student_evaluate)
+ VALUES ('0000000','课程目标1','0.7','0.8');
+insert into course_target(id, target, teacher_evaluate, student_evaluate)
+VALUES ('0000001','课程目标2','0.71','0.88');
+insert into course_target(id, target, teacher_evaluate, student_evaluate)
+VALUES ('0000002','课程目标3','0.72','0.81');
+
+drop table if exists `course_target_low`;
+create table `course_target_low` (
+                                 `id` char(8) not null default '' comment 'id',
+                                 `teacher_evaluate` decimal(50) comment '老师评价',
+                                 `student_evaluate` decimal(50) comment '学生评价',
+                                 primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='课程目标';
+
+insert into course_target_low(id, teacher_evaluate, student_evaluate)
+VALUES ('0000000','0.7','0.8');
+
+
+
+
