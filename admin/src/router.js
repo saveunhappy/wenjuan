@@ -15,6 +15,7 @@ import UserLog from "./view/admin/userLog.vue";
 import MemberPlant from "./view/admin/memberPlant.vue";
 import Student from "./view/admin/student.vue";
 import CourseTarget from "./view/admin/courseTarget.vue";
+import CourseComment from "./view/admin/courseComment.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -107,6 +108,12 @@ export default new Router({
                     path: "business/courseTarget",
                     name:"business/courseTarget",
                     component:CourseTarget,
+                }
+                ,
+                {
+                    path: "business/courseComment",
+                    name:"business/courseComment",
+                    component:CourseComment,
                 }
                 ]
         }

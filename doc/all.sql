@@ -167,7 +167,18 @@ create table `course_target_low` (
 ) engine=innodb default charset=utf8mb4 comment='课程目标';
 
 insert into course_target_low(id, teacher_evaluate, student_evaluate)
-VALUES ('0000000','0.7','0.8');
+VALUES ('00000000','0.7','0.8');
+
+drop table if exists `course_comment`;
+create table `course_comment` (
+                                     `id` char(8) not null default '' comment 'id',
+                                     `course_target_id` char(8) comment '课程目标id',
+                                     `course_comment` char(1)  comment '状态|枚举[CourseCommentStatusEnum]: A("A", "A"),B("B", "B"),C("C", "C"),D("D", "D"),E("E", "E")',
+                                     primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='课程目标';
+
+insert into course_comment(id, course_target_id, course_comment)
+VALUES ('00000000','024LLSYR','A');
 
 
 

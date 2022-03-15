@@ -59,7 +59,7 @@
 <!--        <table tableName="student" domainObjectName="Student"/>-->
 <!--        <table tableName="avg_score" domainObjectName="AvgScore"/>-->
 <!--        <table tableName="course_target" domainObjectName="CourseTarget"/>-->
-        <table tableName="course_target_low" domainObjectName="CourseTargetLow"/>
+        <table tableName="course_comment" domainObjectName="CourseComment"/>
 
 
     </context>

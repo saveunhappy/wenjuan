@@ -76,6 +76,13 @@
                 </router-link>
                 <b class="arrow"></b>
               </li>
+              <li class="" id="business-courseComment-sidebar">
+                <router-link to="/business/courseComment">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  课程评价
+                </router-link>
+                <b class="arrow"></b>
+              </li>
             </ul>
           </li>
 
