@@ -15,11 +15,11 @@
     <table id="simple-table" class="table  table-bordered table-hover">
       <thead>
       <tr>
-         <th>id</th>
+        <th>id</th>
 
-         <th>课程目标</th>
+        <th>课程目标</th>
 
-         <th>评价</th>
+        <th>评价</th>
         <th>操作</th>
       </tr>
 
@@ -27,9 +27,9 @@
 
       <tbody>
       <tr v-for="courseComment in courseCommentsBak">
-              <td>{{courseComment.id}}</td>
-              <td>{{courseComment.courseTargetId}}</td>
-              <td>{{COURSE_COMMENT_STATUS | optionKV(courseComment.courseComment)}}</td>
+        <td>{{courseComment.id}}</td>
+        <td>{{courseComment.courseTargetId}}</td>
+        <td>{{COURSE_COMMENT_STATUS | optionKV(courseComment.courseComment)}}</td>
         <td>
 
           <div class="hidden-sm hidden-xs btn-group">
@@ -55,24 +55,24 @@
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">课程目标</label>
-                  <div class="col-sm-10">
-                    <select v-model="courseComment.courseTargetId" class="form-control">
-                      <option v-for="o in courseTargets" v-bind:value="o.id">{{ o.target }}</option>
-                    </select>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">课程目标</label>
+                <div class="col-sm-10">
+                  <select v-model="courseComment.courseTargetId" class="form-control">
+                    <option v-for="o in courseTargets" v-bind:value="o.id">{{ o.target }}</option>
+                  </select>
 
-<!--                    <input v-model="courseComment.courseTargetId" class="form-control">-->
-                  </div>
+                  <!--                    <input v-model="courseComment.courseTargetId" class="form-control">-->
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">评价</label>
-                 <div class="col-sm-10">
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">评价</label>
+                <div class="col-sm-10">
                   <select v-model="courseComment.courseComment" class="form-control">
                     <option v-for="o in COURSE_COMMENT_STATUS" v-bind:value="o.key">{{ o.value }}</option>
                   </select>
-                  </div>
                 </div>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -198,7 +198,7 @@ export default {
 
           }
         })
-    });
+      });
     }
 
   }
