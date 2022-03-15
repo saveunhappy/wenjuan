@@ -6,6 +6,7 @@
     <result column="target" jdbcType="VARCHAR" property="target" />
     <result column="teacher_evaluate" jdbcType="DECIMAL" property="teacherEvaluate" />
     <result column="student_evaluate" jdbcType="DECIMAL" property="studentEvaluate" />
+    <result column="goal_score" jdbcType="DECIMAL" property="goalScore" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, target, teacher_evaluate, student_evaluate
+    id, target, teacher_evaluate, student_evaluate, goal_score
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseTargetExample" resultMap="BaseResultMap">
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.CourseTarget">
     insert into course_target (id, target, teacher_evaluate, 
-      student_evaluate)
+      student_evaluate, goal_score)
     values (#{id,jdbcType=CHAR}, #{target,jdbcType=VARCHAR}, #{teacherEvaluate,jdbcType=DECIMAL}, 
-      #{studentEvaluate,jdbcType=DECIMAL})
+      #{studentEvaluate,jdbcType=DECIMAL}, #{goalScore,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseTarget">
     insert into course_target
@@ -119,6 +120,9 @@
       <if test="studentEvaluate != null">
         student_evaluate,
       </if>
+      <if test="goalScore != null">
+        goal_score,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="studentEvaluate != null">
         #{studentEvaluate,jdbcType=DECIMAL},
+      </if>
+      <if test="goalScore != null">
+        #{goalScore,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.studentEvaluate != null">
         student_evaluate = #{record.studentEvaluate,jdbcType=DECIMAL},
       </if>
+      <if test="record.goalScore != null">
+        goal_score = #{record.goalScore,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set id = #{record.id,jdbcType=CHAR},
       target = #{record.target,jdbcType=VARCHAR},
       teacher_evaluate = #{record.teacherEvaluate,jdbcType=DECIMAL},
-      student_evaluate = #{record.studentEvaluate,jdbcType=DECIMAL}
+      student_evaluate = #{record.studentEvaluate,jdbcType=DECIMAL},
+      goal_score = #{record.goalScore,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="studentEvaluate != null">
         student_evaluate = #{studentEvaluate,jdbcType=DECIMAL},
       </if>
+      <if test="goalScore != null">
+        goal_score = #{goalScore,jdbcType=DECIMAL},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -190,7 +204,8 @@
     update course_target
     set target = #{target,jdbcType=VARCHAR},
       teacher_evaluate = #{teacherEvaluate,jdbcType=DECIMAL},
-      student_evaluate = #{studentEvaluate,jdbcType=DECIMAL}
+      student_evaluate = #{studentEvaluate,jdbcType=DECIMAL},
+      goal_score = #{goalScore,jdbcType=DECIMAL}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

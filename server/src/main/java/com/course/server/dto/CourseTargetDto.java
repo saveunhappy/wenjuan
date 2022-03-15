@@ -24,6 +24,11 @@ public class CourseTargetDto {
      */
     private BigDecimal studentEvaluate;
 
+    /**
+     * 目标分支
+     */
+    private BigDecimal goalScore;
+
     public String getId() {
         return id;
     }
@@ -56,6 +61,14 @@ public class CourseTargetDto {
         this.studentEvaluate = studentEvaluate;
     }
 
+    public BigDecimal getGoalScore() {
+        return goalScore;
+    }
+
+    public void setGoalScore(BigDecimal goalScore) {
+        this.goalScore = goalScore;
+    }
+
 
     @Override
     public String toString() {
@@ -67,6 +80,7 @@ public class CourseTargetDto {
         sb.append(", target=").append(target);
         sb.append(", teacherEvaluate=").append(teacherEvaluate);
         sb.append(", studentEvaluate=").append(studentEvaluate);
+        sb.append(", goalScore=").append(goalScore);
         sb.append("]");
         return sb.toString();
     }

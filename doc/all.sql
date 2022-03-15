@@ -148,15 +148,16 @@ create table `course_target` (
                              `target` varchar(200) comment '课程目标',
                              `teacher_evaluate` decimal(50) comment '老师评价',
                              `student_evaluate` decimal(50) comment '学生评价',
+                             `goal_score` decimal(50) comment '目标分值',
                              primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课程目标';
 
-insert into course_target(id, target, teacher_evaluate, student_evaluate)
- VALUES ('0000000','课程目标1','0.7','0.8');
-insert into course_target(id, target, teacher_evaluate, student_evaluate)
-VALUES ('0000001','课程目标2','0.71','0.88');
-insert into course_target(id, target, teacher_evaluate, student_evaluate)
-VALUES ('0000002','课程目标3','0.72','0.81');
+insert into course_target(id, target, teacher_evaluate, student_evaluate,goal_score)
+ VALUES ('0000000','课程目标1','0.7','0.8','16.8');
+insert into course_target(id, target, teacher_evaluate, student_evaluate,goal_score)
+VALUES ('0000001','课程目标2','0.71','0.88','18');
+insert into course_target(id, target, teacher_evaluate, student_evaluate,goal_score)
+VALUES ('0000002','课程目标3','0.72','0.81','17');
 
 drop table if exists `course_target_low`;
 create table `course_target_low` (

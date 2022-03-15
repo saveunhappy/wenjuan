@@ -22,6 +22,8 @@
          <th>老师评价</th>
 
          <th>学生评价</th>
+
+         <th>目标分值</th>
         <th>操作</th>
       </tr>
 
@@ -33,6 +35,7 @@
               <td>{{courseTarget.target}}</td>
               <td>{{courseTarget.teacherEvaluate}}</td>
               <td>{{courseTarget.studentEvaluate}}</td>
+              <td>{{courseTarget.goalScore}}</td>
         <td>
 
           <div class="hidden-sm hidden-xs btn-group">
@@ -53,6 +56,7 @@
 
         <th>{{courseTargetLow.teacherEvaluate}}</th>
         <th>{{}}</th>
+        <th></th>
       </tr>
       </tbody>
     </table>
@@ -82,6 +86,12 @@
                   <label class="col-sm-2 control-label">学生评价</label>
                   <div class="col-sm-10">
                     <input v-model="courseTarget.studentEvaluate" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">目标分支</label>
+                  <div class="col-sm-10">
+                    <input v-model="courseTarget.goalScore" class="form-control">
                   </div>
                 </div>
             </form>
