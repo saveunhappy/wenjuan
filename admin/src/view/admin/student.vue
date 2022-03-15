@@ -12,14 +12,18 @@
       </button>
       &nbsp;
       <button v-on:click="delAll()" class="btn btn-white btn-default btn-round">
-        <i class="ace-icon fa fa-refresh"></i>
+        <i class="ace-icon fa fa-close"></i>
         清空数据
       </button>
-
       &nbsp;
       <button v-on:click="openModal()" class="btn btn-white btn-default btn-round">
-        <i class="ace-icon fa fa-refresh"></i>
+        <i class="ace-icon fa fa-upload"></i>
         导入数据
+      </button>
+      &nbsp;
+      <button v-on:click="download()" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-cloud-download"></i>
+        导出数据
       </button>
     </p>
     <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
@@ -254,13 +258,11 @@ export default {
     list(page) {
       let _this = this;
 
-      Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/student/list",
           {
             page: page,
             size: _this.$refs.pagination.size
           }).then((response) => {
-        Loading.hide();
         console.log("查询学生列表结果", response);
         let resp = response.data;
         _this.students = resp.content.list;
@@ -269,7 +271,6 @@ export default {
               page: page,
               size: _this.$refs.pagination.size
             }).then((response) => {
-          Loading.hide();
           console.log("查询平均分列表结果", response);
           let resp = response.data;
           _this.avgScores = resp.content.list;
@@ -348,8 +349,31 @@ export default {
         let resp = response.data;
         if (resp.success) {
           $("#form-modal2").modal('hide');
+          Toast.success("导入成功");
         }
         _this.list(1);
+      })
+    },
+    delAll(){
+      let _this = this;
+      _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/student/deleteAll").then((response) => {
+        let resp = response.data;
+        // if (resp.success) {
+        //
+        // }
+        _this.list(1);
+      })
+    },
+    download(){
+      let _this = this;
+      _this.$ajax.get(process.env.VUE_APP_SERVER + "/business/admin/student/download").then((response) => {
+        console.log("download",response.data);
+        let resp = response.data;
+        if(resp.success) {
+          Toast.success("导出成功");
+        }else{
+          Toast.error(resp.message);
+        }
       })
     },
   }

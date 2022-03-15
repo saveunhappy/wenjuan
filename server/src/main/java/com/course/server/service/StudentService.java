@@ -7,6 +7,7 @@ import com.course.server.domain.StudentExample;
 import com.course.server.dto.AvgScoreDto;
 import com.course.server.dto.StudentDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.StudentExcellDto;
 import com.course.server.mapper.AvgScoreMapper;
 import com.course.server.mapper.StudentMapper;
 import com.course.server.util.CopyUtil;
@@ -109,6 +110,22 @@ public class StudentService {
                 studentMapper.insert(student);
             }
         })).sheet().doRead();
+    }
 
+    public void deleteAll(){
+        StudentExample studentExample = new StudentExample();
+        List<Student> studentList = studentMapper.selectByExample(studentExample);
+        for (Student student : studentList) {
+            studentMapper.deleteByPrimaryKey(student.getId());
+        }
+        avgScoreMapper.deleteByPrimaryKey(AVG_ID);
+
+        List<StudentDto> studentDtoList = CopyUtil.copyList(studentList, StudentDto.class);
+    }
+    public List<StudentExcellDto> selectAll(){
+        StudentExample studentExample = new StudentExample();
+        List<Student> studentList = studentMapper.selectByExample(studentExample);
+        List<StudentExcellDto> studentDtoList = CopyUtil.copyList(studentList, StudentExcellDto.class);
+        return studentDtoList;
     }
 }

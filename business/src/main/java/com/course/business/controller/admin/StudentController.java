@@ -1,11 +1,17 @@
 package com.course.business.controller.admin;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.read.listener.PageReadListener;
+import com.alibaba.excel.util.ListUtils;
+import com.alibaba.excel.util.MapUtils;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.fastjson.JSON;
 import com.course.server.domain.Student;
-import com.course.server.dto.StudentDto;
-import com.course.server.dto.PageDto;
-import com.course.server.dto.ResponseDto;
+import com.course.server.dto.*;
+import com.course.server.exception.BusinessException;
+import com.course.server.exception.BusinessExceptionCode;
+import com.course.server.service.AvgScoreService;
 import com.course.server.service.StudentService;
 import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
@@ -13,7 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/student")
@@ -21,6 +32,8 @@ public class StudentController {
     public static final String BUSINESS_NAME = "学生";
     @Resource
     private StudentService studentService;
+    @Resource
+    private AvgScoreService avgScoreService;
     @PostMapping("/list")
     public ResponseDto student(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
@@ -71,5 +84,46 @@ public class StudentController {
             }
         })).sheet().doRead();
         return responseDto;
+    }
+
+    @PostMapping("/deleteAll")
+    public ResponseDto deleteAll(){
+        ResponseDto responseDto = new ResponseDto();
+        studentService.deleteAll();
+        return responseDto;
+    }
+    @GetMapping("download")
+    public ResponseDto download() throws IOException {
+        ResponseDto responseDto = new ResponseDto();
+        // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        String fileName = "测试测试.xlsx";
+//        ExcelWriter excelWriter = EasyExcel.write(fileName, StudentExcellDto.class).build();
+//        WriteSheet writeSheet = EasyExcel.writerSheet("模板").build();
+//        excelWriter.write(data(), writeSheet);
+//        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
+//        WriteSheet writeSheet = EasyExcel.writerSheet(0, "学生信息1").head(Student.class).build();
+//        excelWriter.write(data(), writeSheet);
+
+//        writeSheet = EasyExcel.writerSheet(1, "学生信息2").head(AvgScoreDto.class).build();
+//        excelWriter.write(avg(), writeSheet);
+//        excelWriter.finish();
+        try {
+            EasyExcel.write(fileName, StudentExcellDto.class).sheet("sheet1").sheetNo(1).automaticMergeHead(true).doWrite(data());
+//            EasyExcel.write(fileName, AvgScoreDto.class).sheet("sheet2").sheetNo(2).doWrite(avg());
+        } catch (Exception e) {
+            throw new BusinessException(BusinessExceptionCode.FILE_NOT_FOUND);
+        }
+        return responseDto;
+    }
+
+    private List<StudentExcellDto> data() {
+        List<StudentExcellDto> studentExcellDtos = studentService.selectAll();
+        return studentExcellDtos;
+    }
+
+    private List<AvgScoreDto> avg() {
+        List<AvgScoreDto> avg = avgScoreService.getAvg();
+        return avg;
     }
 }

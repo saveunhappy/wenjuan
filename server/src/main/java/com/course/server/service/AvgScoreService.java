@@ -31,6 +31,14 @@ public class AvgScoreService {
         pageDto.setList(avgScoreDtoList);
     }
 
+    public List<AvgScoreDto> getAvg(){
+        AvgScoreExample avgScoreExample = new AvgScoreExample();
+        List<AvgScore> avgScoreList = avgScoreMapper.selectByExample(avgScoreExample);
+
+        List<AvgScoreDto> avgScoreDtoList = CopyUtil.copyList(avgScoreList, AvgScoreDto.class);
+        return avgScoreDtoList;
+    }
+
     public void save(AvgScoreDto avgScoreDto){
         AvgScore avgScore = CopyUtil.copy(avgScoreDto, AvgScore.class);
         avgScore.setId(avgScoreDto.getId());

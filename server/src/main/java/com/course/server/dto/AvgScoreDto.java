@@ -1,5 +1,8 @@
 package com.course.server.dto;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
+
 import java.math.BigDecimal;
 
 public class AvgScoreDto {
@@ -7,26 +10,32 @@ public class AvgScoreDto {
     /**
      * id
      */
+    @ExcelIgnore
+    @ExcelProperty
     private String id;
 
     /**
      * 结课考试平均分
      */
+    @ExcelProperty(value = "结课考试平均分")
     private BigDecimal finalExamAvg;
 
     /**
      * 平时成绩平均分
      */
+    @ExcelProperty(value = "平时成绩平均分")
     private BigDecimal usualGradeAvg;
 
     /**
      * 单元测试平均分
      */
+    @ExcelProperty(value = "单元测试平均分")
     private BigDecimal unitTestAvg;
 
     /**
      * 课堂表现与考勤平均分
      */
+    @ExcelProperty(value = "课堂表现与考勤平均分")
     private BigDecimal classBehaveAvg;
 
     public String getId() {

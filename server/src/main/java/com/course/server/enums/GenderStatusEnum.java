@@ -1,8 +1,8 @@
 package com.course.server.enums;
 
 public enum GenderStatusEnum {
-    MALE("1", "男性"),
-    FEMALE("0", "女性");
+    MALE("男", "男"),
+    FEMALE("女", "女");
 
     private String code;
 
