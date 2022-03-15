@@ -180,12 +180,6 @@
                     <input v-model="student.classBehave" class="form-control">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">综合成绩</label>
-                  <div class="col-sm-10">
-                    <input v-model="student.finalResult" class="form-control">
-                  </div>
-                </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -262,7 +256,6 @@ export default {
     },
     list(page) {
       let _this = this;
-
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/student/list",
           {
             page: page,

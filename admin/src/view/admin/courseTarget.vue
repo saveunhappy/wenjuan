@@ -46,6 +46,14 @@
           </div>
         </td>
       </tr>
+      <tr>
+        <th>整体课程目标</th>
+
+        <th></th>
+
+        <th>{{courseTargetLow.teacherEvaluate}}</th>
+        <th>{{}}</th>
+      </tr>
       </tbody>
     </table>
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -98,11 +106,13 @@ export default {
     return {
       courseTarget: {},
       courseTargets: [],
+      courseTargetLows:[],
+      courseTargetLow:{},
     }
   },
   mounted() {
     let _this = this;
-    _this.$refs.pagination.size = 5;
+    _this.$refs.pagination.size = 1000;
     _this.list(1);
 
     //sidebar激活样式方法一
@@ -123,16 +133,27 @@ export default {
     },
     list(page) {
       let _this = this;
-      Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseTarget/list",
           {
             page: page,
             size: _this.$refs.pagination.size
           }).then((response) => {
-        Loading.hide();
         console.log("查询课程目标列表结果", response);
         let resp = response.data;
         _this.courseTargets = resp.content.list;
+        _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseTargetLow/list",
+            {
+              page: page,
+              size: _this.$refs.pagination.size
+            }).then((response) => {
+          console.log("查询平均分列表结果", response);
+          let resp = response.data;
+          _this.courseTargetLows = resp.content.list;
+          _this.courseTargetLow = _this.courseTargetLows[0];
+
+          console.log("courseTargetLows",_this.courseTargetLows[0]);
+        })
+
         _this.$refs.pagination.render(page, resp.content.total);
       })
     },
