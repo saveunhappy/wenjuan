@@ -363,9 +363,10 @@ export default {
       let _this = this;
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/student/deleteAll").then((response) => {
         let resp = response.data;
-        // if (resp.success) {
-        //
-        // }
+        console.log("delAll",resp);
+        if (resp.success) {
+          Toast.success("清除成功");
+        }
         _this.list(1);
       })
     },
