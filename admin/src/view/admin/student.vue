@@ -21,10 +21,15 @@
         导入数据
       </button>
       &nbsp;
-      <button v-on:click="download()" class="btn btn-white btn-default btn-round">
+<!--      <button v-on:click="download()" class="btn btn-white btn-default btn-round">-->
+<!--        <i class="ace-icon fa fa-cloud-download"></i>-->
+<!--        导出数据-->
+<!--      </button>-->
+      <button class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-cloud-download"></i>
-        导出数据
+        <a href="http://127.0.0.1:9002/business/admin/student/download">导出数据</a>
       </button>
+
     </p>
     <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
     <table id="simple-table" class="table  table-bordered table-hover">
@@ -376,6 +381,7 @@ export default {
         }
       })
     },
+
   }
 }
 </script>

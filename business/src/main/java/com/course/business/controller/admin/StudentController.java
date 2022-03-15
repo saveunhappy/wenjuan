@@ -93,27 +93,25 @@ public class StudentController {
         return responseDto;
     }
     @GetMapping("download")
-    public ResponseDto download() throws IOException {
+    public ResponseDto download(HttpServletResponse response) throws IOException {
         ResponseDto responseDto = new ResponseDto();
         // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
         // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-        String fileName = "测试测试.xlsx";
-//        ExcelWriter excelWriter = EasyExcel.write(fileName, StudentExcellDto.class).build();
-//        WriteSheet writeSheet = EasyExcel.writerSheet("模板").build();
-//        excelWriter.write(data(), writeSheet);
-//        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
-//        WriteSheet writeSheet = EasyExcel.writerSheet(0, "学生信息1").head(Student.class).build();
-//        excelWriter.write(data(), writeSheet);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+        // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+        String fileName = URLEncoder.encode("计算机应用基础20级", "UTF-8").replaceAll("\\+", "%20");
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), StudentExcellDto.class).sheet("模板").doWrite(data());
 
-//        writeSheet = EasyExcel.writerSheet(1, "学生信息2").head(AvgScoreDto.class).build();
-//        excelWriter.write(avg(), writeSheet);
-//        excelWriter.finish();
-        try {
-            EasyExcel.write(fileName, StudentExcellDto.class).sheet("sheet1").sheetNo(1).automaticMergeHead(true).doWrite(data());
-//            EasyExcel.write(fileName, AvgScoreDto.class).sheet("sheet2").sheetNo(2).doWrite(avg());
-        } catch (Exception e) {
-            throw new BusinessException(BusinessExceptionCode.FILE_NOT_FOUND);
-        }
+//        String fileName = "测试测试.xlsx";
+
+
+//        try {
+//            EasyExcel.write(fileName, StudentExcellDto.class).sheet("sheet1").doWrite(data());
+//        } catch (Exception e) {
+//            throw new BusinessException(BusinessExceptionCode.FILE_NOT_FOUND);
+//        }
         return responseDto;
     }
 
