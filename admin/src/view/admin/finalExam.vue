@@ -146,12 +146,7 @@ export default {
       })
     },
     save() {
-      let _this = this;
-        // 保存校验
-        if (1 != 1
-        ) {
-          return;
-        }
+
 
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/finalExam/save",
           _this.finalExam).then((response) => {
