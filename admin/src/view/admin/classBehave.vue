@@ -111,7 +111,7 @@ export default {
   },
   mounted() {
     let _this = this;
-    _this.$refs.pagination.size = 5;
+    _this.$refs.pagination.size = 1000;
     _this.list(1);
 
     //sidebar激活样式方法一
