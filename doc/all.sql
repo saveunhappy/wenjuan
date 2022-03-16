@@ -114,11 +114,11 @@ create table `student` (
                           `name` varchar(32)  comment '姓名',
                           `gender` char(1)  comment '状态|枚举[GenderStatusEnum]:MALE("1", "男性"),FEMALE("0", "女性")',
                            `school_system` int(50) comment '学制',
-                           `final_exam` decimal(50) comment '结课考试',
-                           `usual_grade` decimal(50) comment '平时成绩',
-                           `unit_test` decimal(50) comment '单元测试',
-                           `class_behave` decimal(50) comment '课堂表现与考勤',
-                           `final_result` decimal(50) comment '综合成绩',
+                           `final_exam` decimal(50,2) comment '结课考试',
+                           `usual_grade` decimal(50,2) comment '平时成绩',
+                           `unit_test` decimal(50,2) comment '单元测试',
+                           `class_behave` decimal(50,2) comment '课堂表现与考勤',
+                           `final_result` decimal(50,2) comment '综合成绩',
                               primary key (`id`)
 
 ) engine=innodb default charset=utf8mb4 comment='学生';
@@ -135,10 +135,10 @@ insert into student (id,class_name, student_number, name, gender, school_system,
 drop table if exists `avg_score`;
 create table `avg_score` (
                            `id` char(8) not null default '' comment 'id',
-                           `final_exam_avg` decimal(50) comment '结课考试平均分',
-                           `usual_grade_avg` decimal(50) comment '平时成绩平均分',
-                           `unit_test_avg` decimal(50) comment '单元测试平均分',
-                           `class_behave_avg` decimal(50) comment '课堂表现与考勤平均分',
+                           `final_exam_avg` decimal(50,2) comment '结课考试平均分',
+                           `usual_grade_avg` decimal(50,2) comment '平时成绩平均分',
+                           `unit_test_avg` decimal(50,2) comment '单元测试平均分',
+                           `class_behave_avg` decimal(50,2) comment '课堂表现与考勤平均分',
                            primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='平均分';
 
@@ -146,9 +146,9 @@ drop table if exists `course_target`;
 create table `course_target` (
                              `id` char(8) not null default '' comment 'id',
                              `target` varchar(200) comment '课程目标',
-                             `teacher_evaluate` decimal(50) comment '老师评价',
-                             `student_evaluate` decimal(50) comment '学生评价',
-                             `goal_score` decimal(50) comment '目标分值',
+                             `teacher_evaluate` decimal(50,2) comment '老师评价',
+                             `student_evaluate` decimal(50,2) comment '学生评价',
+                             `goal_score` decimal(50,2) comment '目标分值',
                              primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课程目标';
 
@@ -162,8 +162,8 @@ VALUES ('0000002','课程目标3','0.72','0.81','17');
 drop table if exists `course_target_low`;
 create table `course_target_low` (
                                  `id` char(8) not null default '' comment 'id',
-                                 `teacher_evaluate` decimal(50) comment '老师评价',
-                                 `student_evaluate` decimal(50) comment '学生评价',
+                                 `teacher_evaluate` decimal(50,2) comment '老师评价',
+                                 `student_evaluate` decimal(50,2) comment '学生评价',
                                  primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课程目标';
 
