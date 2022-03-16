@@ -17,6 +17,7 @@ import Student from "./view/admin/student.vue";
 import CourseTarget from "./view/admin/courseTarget.vue";
 import CourseComment from "./view/admin/courseComment.vue";
 import FinalExam from "./view/admin/finalExam.vue";
+import ClassBehave from "./view/admin/classBehave.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -115,11 +116,18 @@ export default new Router({
                     path: "business/courseComment",
                     name:"business/courseComment",
                     component:CourseComment,
-                },
+                }
+                ,
                 {
                     path: "business/finalExam",
                     name:"business/finalExam",
                     component:FinalExam,
+                }
+                ,
+                {
+                    path: "business/classBehave",
+                    name:"business/classBehave",
+                    component:ClassBehave,
                 }
                 ]
         }

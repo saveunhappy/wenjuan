@@ -90,6 +90,13 @@
                 </router-link>
                 <b class="arrow"></b>
               </li>
+              <li class="" id="business-classBehave-sidebar">
+                <router-link to="/business/classBehave">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                 课堂考勤
+                </router-link>
+                <b class="arrow"></b>
+              </li>
             </ul>
           </li>
 
