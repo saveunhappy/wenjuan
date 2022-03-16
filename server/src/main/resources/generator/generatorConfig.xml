@@ -61,7 +61,8 @@
 <!--        <table tableName="course_target" domainObjectName="CourseTarget"/>-->
 <!--        <table tableName="course_comment" domainObjectName="CourseComment"/>-->
 <!--        <table tableName="final_exam" domainObjectName="finalExam"/>-->
-        <table tableName="class_behave" domainObjectName="classBehave"/>
+<!--        <table tableName="class_behave" domainObjectName="classBehave"/>-->
+        <table tableName="usual_grade" domainObjectName="usualGrade"/>
 
 <!--        final_exam-->
 <!--        class_behave-->

@@ -97,6 +97,13 @@
                 </router-link>
                 <b class="arrow"></b>
               </li>
+              <li class="" id="business-usualGrade-sidebar">
+                <router-link to="/business/usualGrade">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                 平时成绩
+                </router-link>
+                <b class="arrow"></b>
+              </li>
             </ul>
           </li>
 

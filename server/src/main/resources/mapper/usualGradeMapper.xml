@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.course.server.mapper.usualGradeMapper">
+  <resultMap id="BaseResultMap" type="com.course.server.domain.usualGrade">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="course_target_id" jdbcType="CHAR" property="courseTargetId" />
+    <result column="final_exam" jdbcType="DECIMAL" property="finalExam" />
+    <result column="usual_grade" jdbcType="DECIMAL" property="usualGrade" />
+    <result column="class_behave" jdbcType="DECIMAL" property="classBehave" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, course_target_id, final_exam, usual_grade, class_behave
+  </sql>
+  <select id="selectByExample" parameterType="com.course.server.domain.usualGradeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from usual_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from usual_grade
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from usual_grade
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.course.server.domain.usualGradeExample">
+    delete from usual_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.course.server.domain.usualGrade">
+    insert into usual_grade (id, course_target_id, final_exam, 
+      usual_grade, class_behave)
+    values (#{id,jdbcType=CHAR}, #{courseTargetId,jdbcType=CHAR}, #{finalExam,jdbcType=DECIMAL}, 
+      #{usualGrade,jdbcType=DECIMAL}, #{classBehave,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.course.server.domain.usualGrade">
+    insert into usual_grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseTargetId != null">
+        course_target_id,
+      </if>
+      <if test="finalExam != null">
+        final_exam,
+      </if>
+      <if test="usualGrade != null">
+        usual_grade,
+      </if>
+      <if test="classBehave != null">
+        class_behave,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="courseTargetId != null">
+        #{courseTargetId,jdbcType=CHAR},
+      </if>
+      <if test="finalExam != null">
+        #{finalExam,jdbcType=DECIMAL},
+      </if>
+      <if test="usualGrade != null">
+        #{usualGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="classBehave != null">
+        #{classBehave,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.course.server.domain.usualGradeExample" resultType="java.lang.Long">
+    select count(*) from usual_grade
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update usual_grade
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.courseTargetId != null">
+        course_target_id = #{record.courseTargetId,jdbcType=CHAR},
+      </if>
+      <if test="record.finalExam != null">
+        final_exam = #{record.finalExam,jdbcType=DECIMAL},
+      </if>
+      <if test="record.usualGrade != null">
+        usual_grade = #{record.usualGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="record.classBehave != null">
+        class_behave = #{record.classBehave,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update usual_grade
+    set id = #{record.id,jdbcType=CHAR},
+      course_target_id = #{record.courseTargetId,jdbcType=CHAR},
+      final_exam = #{record.finalExam,jdbcType=DECIMAL},
+      usual_grade = #{record.usualGrade,jdbcType=DECIMAL},
+      class_behave = #{record.classBehave,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.course.server.domain.usualGrade">
+    update usual_grade
+    <set>
+      <if test="courseTargetId != null">
+        course_target_id = #{courseTargetId,jdbcType=CHAR},
+      </if>
+      <if test="finalExam != null">
+        final_exam = #{finalExam,jdbcType=DECIMAL},
+      </if>
+      <if test="usualGrade != null">
+        usual_grade = #{usualGrade,jdbcType=DECIMAL},
+      </if>
+      <if test="classBehave != null">
+        class_behave = #{classBehave,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.course.server.domain.usualGrade">
+    update usual_grade
+    set course_target_id = #{courseTargetId,jdbcType=CHAR},
+      final_exam = #{finalExam,jdbcType=DECIMAL},
+      usual_grade = #{usualGrade,jdbcType=DECIMAL},
+      class_behave = #{classBehave,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

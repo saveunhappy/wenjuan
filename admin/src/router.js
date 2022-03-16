@@ -18,6 +18,7 @@ import CourseTarget from "./view/admin/courseTarget.vue";
 import CourseComment from "./view/admin/courseComment.vue";
 import FinalExam from "./view/admin/finalExam.vue";
 import ClassBehave from "./view/admin/classBehave.vue";
+import UsualGrade from "./view/admin/usualGrade.vue";
 Vue.use(Router);
 export default new Router({
     mode:"history",
@@ -128,6 +129,12 @@ export default new Router({
                     path: "business/classBehave",
                     name:"business/classBehave",
                     component:ClassBehave,
+                }
+                ,
+                {
+                    path: "business/usualGrade",
+                    name:"business/usualGrade",
+                    component:UsualGrade,
                 }
                 ]
         }
