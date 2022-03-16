@@ -181,6 +181,42 @@ create table `course_comment` (
 insert into course_comment(id, course_target_id, course_comment)
 VALUES ('00000000','024LLSYR','A');
 
+drop table if exists `final_exam`;
+create table `final_exam` (
+                              `id` char(8) not null default '' comment 'id',
+                              `course_target_id` char(8) comment '课程目标id',
+                              `weight` decimal(50,2) comment '权重',
+                              `goal_grade` decimal(50,2) comment '结课考试',
+                              `actual_avg_grade` decimal(50,2) comment '实际平均分',
+                              primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='结课考试';
+insert into final_exam (id, course_target_id, weight, goal_grade, actual_avg_grade) VALUES
+('00000000','00000000','0.33','0.33','0.33');
+
+drop table if exists `class_behave`;
+create table `class_behave` (
+                             `id` char(8) not null default '' comment 'id',
+                             `course_target_id` char(8) comment '课程目标id',
+                             `weight` decimal(50,2) comment '权重',
+                             `goal_grade` decimal(50,2) comment '结课考试',
+                             `actual_avg_grade` decimal(50,2) comment '实际平均分',
+                             primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='课堂表现';
+insert into class_behave (id, course_target_id, weight, goal_grade, actual_avg_grade) VALUES
+('00000000','00000000','0.33','0.33','0.33');
+
+drop table if exists `usual_grade`;
+create table `usual_grade` (
+                             `id` char(8) not null default '' comment 'id',
+                             `course_target_id` char(8) comment '课程目标id',
+                             `final_exam` decimal(50,2) comment '结课考试平均分',
+                             `usual_grade` decimal(50,2) comment '平时成绩平均分',
+                             `class_behave` decimal(50,2) comment '课堂表现与考勤平均分',
+                             primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='平时作业';
+insert into usual_grade (id, course_target_id, final_exam, usual_grade, class_behave) VALUES
+('00000000','00000000','0.33','0.33','0.33');
+
 
 
 

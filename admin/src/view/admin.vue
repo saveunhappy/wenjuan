@@ -83,6 +83,13 @@
                 </router-link>
                 <b class="arrow"></b>
               </li>
+              <li class="" id="business-finalExam-sidebar">
+                <router-link to="/business/finalExam">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  结课考试
+                </router-link>
+                <b class="arrow"></b>
+              </li>
             </ul>
           </li>
 

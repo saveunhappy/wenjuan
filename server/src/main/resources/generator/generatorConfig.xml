@@ -58,8 +58,13 @@
 <!--        <table tableName="member_course" domainObjectName="MemberCourse"/>-->
 <!--        <table tableName="student" domainObjectName="Student"/>-->
 <!--        <table tableName="avg_score" domainObjectName="AvgScore"/>-->
-        <table tableName="course_target" domainObjectName="CourseTarget"/>
+<!--        <table tableName="course_target" domainObjectName="CourseTarget"/>-->
 <!--        <table tableName="course_comment" domainObjectName="CourseComment"/>-->
+        <table tableName="final_exam" domainObjectName="finalExam"/>
+
+<!--        final_exam-->
+<!--        class_behave-->
+<!--        usual_grade-->
 
 
     </context>
