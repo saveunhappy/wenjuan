@@ -21,7 +21,7 @@
 
          <th>权重</th>
 
-         <th>结课考试</th>
+         <th>目标分值</th>
 
          <th>实际平均分</th>
         <th>操作</th>
@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">结课考试</label>
+                  <label class="col-sm-2 control-label">目标分值</label>
                   <div class="col-sm-10">
                     <input v-model="finalExam.goalGrade" class="form-control">
                   </div>

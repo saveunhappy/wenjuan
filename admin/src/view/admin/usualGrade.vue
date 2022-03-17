@@ -19,11 +19,11 @@
 
          <th>课程目标id</th>
 
-         <th>结课考试平均分</th>
+         <th>权重</th>
 
-         <th>平时成绩平均分</th>
+         <th>目标分值</th>
 
-         <th>课堂表现与考勤平均分</th>
+         <th>实际平均分</th>
         <th>操作</th>
       </tr>
 
@@ -33,9 +33,9 @@
       <tr v-for="usualGrade in usualGrades">
               <td>{{usualGrade.id}}</td>
               <td>{{usualGrade.courseTargetId}}</td>
-              <td>{{usualGrade.finalExam}}</td>
-              <td>{{usualGrade.usualGrade}}</td>
-              <td>{{usualGrade.classBehave}}</td>
+              <td>{{usualGrade.weight}}</td>
+              <td>{{usualGrade.goalGrade}}</td>
+              <td>{{usualGrade.actualAvgGrade}}</td>
         <td>
 
           <div class="hidden-sm hidden-xs btn-group">
@@ -68,21 +68,21 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">结课考试平均分</label>
+                  <label class="col-sm-2 control-label">权重</label>
                   <div class="col-sm-10">
-                    <input v-model="usualGrade.finalExam" class="form-control">
+                    <input v-model="usualGrade.weight" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">平时成绩平均分</label>
+                  <label class="col-sm-2 control-label">目标分值</label>
                   <div class="col-sm-10">
-                    <input v-model="usualGrade.usualGrade" class="form-control">
+                    <input v-model="usualGrade.goalGrade" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">课堂表现与考勤平均分</label>
+                  <label class="col-sm-2 control-label">实际平均分</label>
                   <div class="col-sm-10">
-                    <input v-model="usualGrade.classBehave" class="form-control">
+                    <input v-model="usualGrade.actualAvgGrade" class="form-control">
                   </div>
                 </div>
             </form>
@@ -111,7 +111,7 @@ export default {
   },
   mounted() {
     let _this = this;
-    _this.$refs.pagination.size = 1000;
+    _this.$refs.pagination.size = 5;
     _this.list(1);
 
     //sidebar激活样式方法一
@@ -147,6 +147,7 @@ export default {
     },
     save() {
       let _this = this;
+
 
       _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/usualGrade/save",
           _this.usualGrade).then((response) => {

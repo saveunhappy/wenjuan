@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.course.server.domain.usualGrade">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="course_target_id" jdbcType="CHAR" property="courseTargetId" />
-    <result column="final_exam" jdbcType="DECIMAL" property="finalExam" />
-    <result column="usual_grade" jdbcType="DECIMAL" property="usualGrade" />
-    <result column="class_behave" jdbcType="DECIMAL" property="classBehave" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="goal_grade" jdbcType="DECIMAL" property="goalGrade" />
+    <result column="actual_avg_grade" jdbcType="DECIMAL" property="actualAvgGrade" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, course_target_id, final_exam, usual_grade, class_behave
+    id, course_target_id, weight, goal_grade, actual_avg_grade
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.usualGradeExample" resultMap="BaseResultMap">
     select
@@ -100,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.usualGrade">
-    insert into usual_grade (id, course_target_id, final_exam, 
-      usual_grade, class_behave)
-    values (#{id,jdbcType=CHAR}, #{courseTargetId,jdbcType=CHAR}, #{finalExam,jdbcType=DECIMAL}, 
-      #{usualGrade,jdbcType=DECIMAL}, #{classBehave,jdbcType=DECIMAL})
+    insert into usual_grade (id, course_target_id, weight, 
+      goal_grade, actual_avg_grade)
+    values (#{id,jdbcType=CHAR}, #{courseTargetId,jdbcType=CHAR}, #{weight,jdbcType=DECIMAL}, 
+      #{goalGrade,jdbcType=DECIMAL}, #{actualAvgGrade,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.usualGrade">
     insert into usual_grade
@@ -114,14 +114,14 @@
       <if test="courseTargetId != null">
         course_target_id,
       </if>
-      <if test="finalExam != null">
-        final_exam,
+      <if test="weight != null">
+        weight,
       </if>
-      <if test="usualGrade != null">
-        usual_grade,
+      <if test="goalGrade != null">
+        goal_grade,
       </if>
-      <if test="classBehave != null">
-        class_behave,
+      <if test="actualAvgGrade != null">
+        actual_avg_grade,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -131,14 +131,14 @@
       <if test="courseTargetId != null">
         #{courseTargetId,jdbcType=CHAR},
       </if>
-      <if test="finalExam != null">
-        #{finalExam,jdbcType=DECIMAL},
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
       </if>
-      <if test="usualGrade != null">
-        #{usualGrade,jdbcType=DECIMAL},
+      <if test="goalGrade != null">
+        #{goalGrade,jdbcType=DECIMAL},
       </if>
-      <if test="classBehave != null">
-        #{classBehave,jdbcType=DECIMAL},
+      <if test="actualAvgGrade != null">
+        #{actualAvgGrade,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -157,14 +157,14 @@
       <if test="record.courseTargetId != null">
         course_target_id = #{record.courseTargetId,jdbcType=CHAR},
       </if>
-      <if test="record.finalExam != null">
-        final_exam = #{record.finalExam,jdbcType=DECIMAL},
+      <if test="record.weight != null">
+        weight = #{record.weight,jdbcType=DECIMAL},
       </if>
-      <if test="record.usualGrade != null">
-        usual_grade = #{record.usualGrade,jdbcType=DECIMAL},
+      <if test="record.goalGrade != null">
+        goal_grade = #{record.goalGrade,jdbcType=DECIMAL},
       </if>
-      <if test="record.classBehave != null">
-        class_behave = #{record.classBehave,jdbcType=DECIMAL},
+      <if test="record.actualAvgGrade != null">
+        actual_avg_grade = #{record.actualAvgGrade,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -175,9 +175,9 @@
     update usual_grade
     set id = #{record.id,jdbcType=CHAR},
       course_target_id = #{record.courseTargetId,jdbcType=CHAR},
-      final_exam = #{record.finalExam,jdbcType=DECIMAL},
-      usual_grade = #{record.usualGrade,jdbcType=DECIMAL},
-      class_behave = #{record.classBehave,jdbcType=DECIMAL}
+      weight = #{record.weight,jdbcType=DECIMAL},
+      goal_grade = #{record.goalGrade,jdbcType=DECIMAL},
+      actual_avg_grade = #{record.actualAvgGrade,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -188,14 +188,14 @@
       <if test="courseTargetId != null">
         course_target_id = #{courseTargetId,jdbcType=CHAR},
       </if>
-      <if test="finalExam != null">
-        final_exam = #{finalExam,jdbcType=DECIMAL},
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DECIMAL},
       </if>
-      <if test="usualGrade != null">
-        usual_grade = #{usualGrade,jdbcType=DECIMAL},
+      <if test="goalGrade != null">
+        goal_grade = #{goalGrade,jdbcType=DECIMAL},
       </if>
-      <if test="classBehave != null">
-        class_behave = #{classBehave,jdbcType=DECIMAL},
+      <if test="actualAvgGrade != null">
+        actual_avg_grade = #{actualAvgGrade,jdbcType=DECIMAL},
       </if>
     </set>
     where id = #{id,jdbcType=CHAR}
@@ -203,9 +203,9 @@
   <update id="updateByPrimaryKey" parameterType="com.course.server.domain.usualGrade">
     update usual_grade
     set course_target_id = #{courseTargetId,jdbcType=CHAR},
-      final_exam = #{finalExam,jdbcType=DECIMAL},
-      usual_grade = #{usualGrade,jdbcType=DECIMAL},
-      class_behave = #{classBehave,jdbcType=DECIMAL}
+      weight = #{weight,jdbcType=DECIMAL},
+      goal_grade = #{goalGrade,jdbcType=DECIMAL},
+      actual_avg_grade = #{actualAvgGrade,jdbcType=DECIMAL}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>
