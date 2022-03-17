@@ -17,7 +17,7 @@
       <tr>
          <th>id</th>
 
-         <th>课程目标id</th>
+         <th>课程目标</th>
 
          <th>权重</th>
 
@@ -30,7 +30,7 @@
       </thead>
 
       <tbody>
-      <tr v-for="usualGrade in usualGrades">
+      <tr v-for="usualGrade in usualGradesBak">
               <td>{{usualGrade.id}}</td>
               <td>{{usualGrade.courseTargetId}}</td>
               <td>{{usualGrade.weight}}</td>
@@ -64,7 +64,11 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">课程目标id</label>
                   <div class="col-sm-10">
-                    <input v-model="usualGrade.courseTargetId" class="form-control">
+
+                    <select v-model="usualGrade.courseTargetId" class="form-control">
+                      <option v-for="o in courseTargets" v-bind:value="o.id">{{ o.target }}</option>
+                    </select>
+<!--                    <input v-model="usualGrade.courseTargetId" class="form-control">-->
                   </div>
                 </div>
                 <div class="form-group">
@@ -107,13 +111,17 @@ export default {
     return {
       usualGrade: {},
       usualGrades: [],
+      usualGradesBak: [],
+      courseTarget: {},
+      courseTargets: [],
+      courseTargetsBak: [],
     }
   },
   mounted() {
     let _this = this;
     _this.$refs.pagination.size = 5;
     _this.list(1);
-
+    _this.listCourseTarget(1);
     //sidebar激活样式方法一
     // this.$parent.activeSidebar("business-usualGrade-sidebar");
   },
@@ -142,7 +150,31 @@ export default {
         console.log("查询平时作业列表结果", response);
         let resp = response.data;
         _this.usualGrades = resp.content.list;
+        _this.usualGradesBak = resp.content.list;
         _this.$refs.pagination.render(page, resp.content.total);
+      })
+    },
+    listCourseTarget(page) {
+      let _this = this;
+      _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseTarget/list",
+          {
+            page: page,
+            size: _this.$refs.pagination.size
+          }).then((response) => {
+        console.log("查询课程所有！！", response);
+        let resp = response.data;
+        _this.courseTargets = resp.content.list;
+        _this.courseTargetsBak = resp.content.list;
+        console.log("_this.courseTargetsBak",_this.courseTargetsBak);
+        for (let i = 0; i < _this.usualGradesBak.length  ; i++) {
+          for (let j = 0; j < _this.courseTargetsBak.length; j++) {
+            if(_this.usualGradesBak[i].courseTargetId === _this.courseTargetsBak[j].id){
+              _this.usualGradesBak[i].courseTargetId = _this.courseTargetsBak[j].target;
+              console.log("_this.usualGradesBak.get(j).courseTargetId",_this.usualGradesBak[i].courseTargetId);
+              console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
+            }
+          }
+        }
       })
     },
     save() {
@@ -157,6 +189,7 @@ export default {
           $("#form-modal").modal('hide');
           _this.list(1)
           Toast.success("保存成功");
+          _this.$router.go(0);
         }else{
           Toast.warning(resp.message);
 
