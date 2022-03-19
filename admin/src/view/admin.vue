@@ -15,28 +15,12 @@
         <div class="navbar-header pull-left">
           <a href="index.html" class="navbar-brand">
             <small>
-              <i class="fa"></i>
-              绿植领养系统
+              <i class="fa fa-hand-peace-o"></i>
+              学科课程达成度分析系统
             </small>
           </a>
         </div>
 
-        <div class="navbar-buttons navbar-header pull-right" role="navigation">
-          <ul class="nav ace-nav">
-            <li class="light-green dropdown-modal">
-              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                <span class="user-info">
-								</span>
-
-                <i class="ace-icon fa fa-caret-down"></i>
-              </a>
-
-              <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
-              </ul>
-            </li>
-          </ul>
-        </div>
       </div><!-- /.navbar-container -->
     </div>
 
@@ -216,7 +200,4 @@
   }
 </script>
 <style scoped>
-#navbar{
-  background: rgb(154,188,50);
-}
 </style>
