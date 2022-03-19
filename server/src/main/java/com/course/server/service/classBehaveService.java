@@ -20,7 +20,7 @@ import java.util.List;
 public class classBehaveService {
     @Resource
     private classBehaveMapper classBehaveMapper;
-    public void list(PageDto pageDto){
+    public void list(classBehaveDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         classBehaveExample classBehaveExample = new classBehaveExample();
         List<classBehave> classBehaveList = classBehaveMapper.selectByExample(classBehaveExample);
@@ -30,6 +30,21 @@ public class classBehaveService {
         List<classBehaveDto> classBehaveDtoList = CopyUtil.copyList(classBehaveList, classBehaveDto.class);
         pageDto.setList(classBehaveDtoList);
     }
+
+    public classBehaveDto getOne(String courseTargetId){
+        classBehaveExample classBehaveExample = new classBehaveExample();
+        com.course.server.domain.classBehaveExample.Criteria criteria = classBehaveExample.createCriteria();
+        if(!StringUtils.isEmpty(courseTargetId)){
+            criteria.andCourseTargetIdEqualTo(courseTargetId);
+        }
+        List<classBehave> classBehaveList = classBehaveMapper.selectByExample(classBehaveExample);
+        List<classBehaveDto> classBehaveDtoList = CopyUtil.copyList(classBehaveList, classBehaveDto.class);
+        if(classBehaveDtoList.size()==0){
+            return null;
+        }
+        return classBehaveDtoList.get(0);
+    }
+
 
     public void save(classBehaveDto classBehaveDto){
         classBehave classBehave = CopyUtil.copy(classBehaveDto, classBehave.class);

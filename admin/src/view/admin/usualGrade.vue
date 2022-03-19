@@ -33,7 +33,7 @@
       <tr v-for="usualGrade in usualGradesBak">
               <td>{{usualGrade.id}}</td>
               <td>{{usualGrade.courseTargetId}}</td>
-              <td>{{usualGrade.weight}}</td>
+              <td>{{usualGrade.weight * 100}}%</td>
               <td>{{usualGrade.goalGrade}}</td>
               <td>{{usualGrade.actualAvgGrade}}</td>
         <td>
@@ -72,21 +72,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">权重</label>
-                  <div class="col-sm-10">
-                    <input v-model="usualGrade.weight" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-sm-2 control-label">目标分值</label>
                   <div class="col-sm-10">
                     <input v-model="usualGrade.goalGrade" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">实际平均分</label>
-                  <div class="col-sm-10">
-                    <input v-model="usualGrade.actualAvgGrade" class="form-control">
                   </div>
                 </div>
             </form>

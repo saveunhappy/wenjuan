@@ -20,15 +20,32 @@ import java.util.List;
 public class finalExamService {
     @Resource
     private finalExamMapper finalExamMapper;
-    public void list(PageDto pageDto){
+    public void list(finalExamDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         finalExamExample finalExamExample = new finalExamExample();
+
         List<finalExam> finalExamList = finalExamMapper.selectByExample(finalExamExample);
         PageInfo pageInfo = new PageInfo(finalExamList);
         pageDto.setTotal(pageInfo.getTotal());
 
         List<finalExamDto> finalExamDtoList = CopyUtil.copyList(finalExamList, finalExamDto.class);
         pageDto.setList(finalExamDtoList);
+    }
+
+    public finalExamDto getOne(String courseTargetId){
+        finalExamExample finalExamExample = new finalExamExample();
+        com.course.server.domain.finalExamExample.Criteria criteria = finalExamExample.createCriteria();
+
+        if(!StringUtils.isEmpty(courseTargetId)){
+            criteria.andCourseTargetIdEqualTo(courseTargetId);
+        }
+        List<finalExam> finalExamList = finalExamMapper.selectByExample(finalExamExample);
+
+        List<finalExamDto> finalExamDtoList = CopyUtil.copyList(finalExamList, finalExamDto.class);
+        if(finalExamDtoList.size() == 0){
+            return null;
+        }
+        return finalExamDtoList.get(0);
     }
 
     public void save(finalExamDto finalExamDto){

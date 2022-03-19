@@ -16,7 +16,7 @@ public class finalExamController {
     @Resource
     private finalExamService finalExamService;
     @PostMapping("/list")
-    public ResponseDto finalExam(@RequestBody PageDto pageDto){
+    public ResponseDto finalExam(@RequestBody finalExamDto pageDto){
         ResponseDto responseDto = new ResponseDto();
         finalExamService.list(pageDto);
         responseDto.setContent(pageDto);

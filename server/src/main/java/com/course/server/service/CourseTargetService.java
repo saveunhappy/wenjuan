@@ -3,9 +3,7 @@ package com.course.server.service;
 import com.course.server.domain.CourseTarget;
 import com.course.server.domain.CourseTargetExample;
 import com.course.server.domain.CourseTargetLow;
-import com.course.server.dto.CourseTargetDto;
-import com.course.server.dto.CourseTargetLowDto;
-import com.course.server.dto.PageDto;
+import com.course.server.dto.*;
 import com.course.server.mapper.CourseTargetLowMapper;
 import com.course.server.mapper.CourseTargetMapper;
 import com.course.server.util.CopyUtil;
@@ -34,10 +32,46 @@ public class CourseTargetService {
     private CourseTargetLowService courseTargetLowService;
     @Resource
     private CourseTargetLowMapper courseTargetLowMapper;
+    @Resource
+    private finalExamService finalExamService;
+    @Resource
+    private classBehaveService classBehaveService;
+    @Resource
+    private usualGradeService usualGradeService;
+    @Resource
+    private AvgScoreService avgScoreService;
+
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         CourseTargetExample courseTargetExample = new CourseTargetExample();
         List<CourseTarget> courseTargetList = courseTargetMapper.selectByExample(courseTargetExample);
+        List<AvgScoreDto> avgScoreDtos = avgScoreService.getAvg();
+        AvgScoreDto avgScoreDto = avgScoreDtos.get(0);
+        BigDecimal hundred = new BigDecimal("100");
+        for (CourseTarget courseTarget : courseTargetList) {
+            String id = courseTarget.getId();
+            finalExamDto finalExamDto = finalExamService.getOne(id);
+            classBehaveDto classBehaveDto = classBehaveService.getOne(id);
+            usualGradeDto usualGradeDto = usualGradeService.getOne(id);
+            if(finalExamDto!= null&& classBehaveDto!=null&&usualGradeDto!=null){
+                BigDecimal finalExamGrade = finalExamDto.getGoalGrade();
+                BigDecimal classBehaveGoalGrade = classBehaveDto.getGoalGrade();
+                BigDecimal usualGradeGoalGrade = usualGradeDto.getGoalGrade();
+
+                finalExamDto.setWeight(getWeight(finalExamGrade,classBehaveGoalGrade,usualGradeGoalGrade));
+                classBehaveDto.setWeight(getWeight(classBehaveGoalGrade,finalExamGrade,usualGradeGoalGrade));
+                usualGradeDto.setWeight(getWeight(usualGradeGoalGrade,finalExamGrade,classBehaveGoalGrade));
+
+
+                finalExamDto.setActualAvgGrade(finalExamGrade.multiply(avgScoreDto.getFinalExamAvg().divide(hundred,2)));
+                classBehaveDto.setActualAvgGrade(classBehaveGoalGrade.multiply(avgScoreDto.getClassBehaveAvg().divide(hundred,2)));
+                usualGradeDto.setActualAvgGrade(usualGradeGoalGrade.multiply(avgScoreDto.getUsualGradeAvg()).divide(hundred,2));
+                finalExamService.save(finalExamDto);
+                classBehaveService.save(classBehaveDto);
+                usualGradeService.save(usualGradeDto);
+            }
+
+        }
         courseTargetLowMapper.deleteByPrimaryKey(COURSE_ID);
         CourseTargetLowDto courseTargetLow = new CourseTargetLowDto();
         List<BigDecimal> teacherList = courseTargetList.stream().map(CourseTarget::getTeacherEvaluate).collect(Collectors.toList());
@@ -60,7 +94,14 @@ public class CourseTargetService {
         List<CourseTargetDto> courseTargetDtoList = CopyUtil.copyList(courseTargetList, CourseTargetDto.class);
         pageDto.setList(courseTargetDtoList);
     }
+    public BigDecimal getWeight(BigDecimal finalExamGrade,BigDecimal classBehaveGoalGrade,BigDecimal usualGradeGoalGrade){
+        if(finalExamGrade == null || classBehaveGoalGrade == null || usualGradeGoalGrade == null){
+            return BigDecimal.ZERO;
+        }
+        BigDecimal sum = finalExamGrade.add(classBehaveGoalGrade).add(usualGradeGoalGrade);
+        return finalExamGrade.divide(sum,3);
 
+    }
     public void save(CourseTargetDto courseTargetDto){
         CourseTarget courseTarget = CopyUtil.copy(courseTargetDto, CourseTarget.class);
 

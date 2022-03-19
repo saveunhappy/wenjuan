@@ -30,6 +30,20 @@ public class usualGradeService {
         List<usualGradeDto> usualGradeDtoList = CopyUtil.copyList(usualGradeList, usualGradeDto.class);
         pageDto.setList(usualGradeDtoList);
     }
+    public usualGradeDto getOne(String courseTargetId){
+        usualGradeExample usualGradeExample = new usualGradeExample();
+        com.course.server.domain.usualGradeExample.Criteria criteria = usualGradeExample.createCriteria();
+
+        if(!StringUtils.isEmpty(courseTargetId)){
+            criteria.andCourseTargetIdEqualTo(courseTargetId);
+        }
+        List<usualGrade> usualGradeList = usualGradeMapper.selectByExample(usualGradeExample);
+        List<usualGradeDto> usualGradeDtoList = CopyUtil.copyList(usualGradeList, usualGradeDto.class);
+        if(usualGradeDtoList.size() == 0){
+            return  null;
+        }
+        return usualGradeDtoList.get(0);
+    }
 
     public void save(usualGradeDto usualGradeDto){
         usualGrade usualGrade = CopyUtil.copy(usualGradeDto, usualGrade.class);

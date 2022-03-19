@@ -33,8 +33,8 @@
       <tr v-for="classBehave in classBehavesBak">
               <td>{{classBehave.id}}</td>
               <td>{{classBehave.courseTargetId}}</td>
-              <td>{{classBehave.weight}}</td>
-              <td>{{classBehave.goalGrade}}</td>
+              <td>{{classBehave.weight* 100}}%</td>
+              <td>{{classBehave.goalGrade }}</td>
               <td>{{classBehave.actualAvgGrade}}</td>
         <td>
 
@@ -71,21 +71,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">权重</label>
-                  <div class="col-sm-10">
-                    <input v-model="classBehave.weight" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-sm-2 control-label">目标分值</label>
                   <div class="col-sm-10">
                     <input v-model="classBehave.goalGrade" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">实际平均分</label>
-                  <div class="col-sm-10">
-                    <input v-model="classBehave.actualAvgGrade" class="form-control">
                   </div>
                 </div>
             </form>

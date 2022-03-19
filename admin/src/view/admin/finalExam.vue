@@ -33,7 +33,7 @@
       <tr v-for="finalExam in finalExamsBak">
               <td>{{finalExam.id}}</td>
               <td>{{finalExam.courseTargetId}}</td>
-              <td>{{finalExam.weight}}</td>
+              <td>{{finalExam.weight * 100}}%</td>
               <td>{{finalExam.goalGrade}}</td>
               <td>{{finalExam.actualAvgGrade}}</td>
         <td>
@@ -71,21 +71,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">权重</label>
-                  <div class="col-sm-10">
-                    <input v-model="finalExam.weight" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label class="col-sm-2 control-label">目标分值</label>
                   <div class="col-sm-10">
                     <input v-model="finalExam.goalGrade" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">实际平均分</label>
-                  <div class="col-sm-10">
-                    <input v-model="finalExam.actualAvgGrade" class="form-control">
                   </div>
                 </div>
             </form>

@@ -2,7 +2,7 @@ package com.course.server.dto;
 
 import java.math.BigDecimal;
 
-public class usualGradeDto {
+public class usualGradeDto extends PageDto{
 
     /**
      * id

@@ -16,7 +16,7 @@ public class classBehaveController {
     @Resource
     private classBehaveService classBehaveService;
     @PostMapping("/list")
-    public ResponseDto classBehave(@RequestBody PageDto pageDto){
+    public ResponseDto classBehave(@RequestBody classBehaveDto pageDto){
         ResponseDto responseDto = new ResponseDto();
         classBehaveService.list(pageDto);
         responseDto.setContent(pageDto);
