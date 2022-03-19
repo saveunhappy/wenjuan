@@ -164,6 +164,7 @@ create table `course_target_low` (
                                  `id` char(8) not null default '' comment 'id',
                                  `teacher_evaluate` decimal(50,2) comment '老师评价',
                                  `student_evaluate` decimal(50,2) comment '学生评价',
+                                 `goal_grade` decimal(50,2) comment '目标达成评价值',
                                  primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课程目标';
 

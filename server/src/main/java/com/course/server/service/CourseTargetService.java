@@ -97,9 +97,19 @@ public class CourseTargetService {
                 teacherLow = teacher;
             }
         }
+        List<BigDecimal> goalScoresList = courseTargetList.stream().map(CourseTarget::getGoalScore).collect(Collectors.toList());
+        BigDecimal goalLow = teacherList.get(0);
+
+        for (BigDecimal goalScore : goalScoresList) {
+            if(goalLow.compareTo(goalScore) >= 0){
+                goalLow = goalScore;
+            }
+        }
+
 
         courseTargetLow.setId(COURSE_ID);
         courseTargetLow.setTeacherEvaluate(teacherLow);
+        courseTargetLow.setGoalGrade(goalLow);
         courseTargetLowService.save(courseTargetLow);
 
 

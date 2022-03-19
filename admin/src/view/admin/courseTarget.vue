@@ -56,7 +56,7 @@
 
         <th>{{courseTargetLow.teacherEvaluate}}</th>
         <th>{{}}</th>
-        <th></th>
+        <th>{{courseTargetLow.goalGrade}}</th>
       </tr>
       </tbody>
     </table>

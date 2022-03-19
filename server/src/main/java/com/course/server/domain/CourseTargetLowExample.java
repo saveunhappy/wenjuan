@@ -294,6 +294,66 @@ public class CourseTargetLowExample {
             addCriterion("student_evaluate not between", value1, value2, "studentEvaluate");
             return (Criteria) this;
         }
+
+        public Criteria andGoalGradeIsNull() {
+            addCriterion("goal_grade is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeIsNotNull() {
+            addCriterion("goal_grade is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeEqualTo(BigDecimal value) {
+            addCriterion("goal_grade =", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeNotEqualTo(BigDecimal value) {
+            addCriterion("goal_grade <>", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeGreaterThan(BigDecimal value) {
+            addCriterion("goal_grade >", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("goal_grade >=", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeLessThan(BigDecimal value) {
+            addCriterion("goal_grade <", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("goal_grade <=", value, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeIn(List<BigDecimal> values) {
+            addCriterion("goal_grade in", values, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeNotIn(List<BigDecimal> values) {
+            addCriterion("goal_grade not in", values, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("goal_grade between", value1, value2, "goalGrade");
+            return (Criteria) this;
+        }
+
+        public Criteria andGoalGradeNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("goal_grade not between", value1, value2, "goalGrade");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
