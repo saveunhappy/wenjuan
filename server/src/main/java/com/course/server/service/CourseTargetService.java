@@ -59,9 +59,6 @@ public class CourseTargetService {
                 String courseTargetId = finalExamDto.getCourseTargetId();
                 CourseTarget courseTargetGoalEvaluate = courseTargetMapper.selectByPrimaryKey(courseTargetId);
 
-
-
-
                 BigDecimal finalExamGrade = finalExamDto.getGoalGrade();
                 BigDecimal classBehaveGoalGrade = classBehaveDto.getGoalGrade();
                 BigDecimal usualGradeGoalGrade = usualGradeDto.getGoalGrade();
@@ -119,6 +116,19 @@ public class CourseTargetService {
         List<CourseTargetDto> courseTargetDtoList = CopyUtil.copyList(courseTargetList, CourseTargetDto.class);
         pageDto.setList(courseTargetDtoList);
     }
+
+    public CourseTargetDto getOne(String courseTargetId){
+
+        CourseTargetExample courseTargetExample = new CourseTargetExample();
+        CourseTargetExample.Criteria criteria = courseTargetExample.createCriteria();
+        if(courseTargetId != null){
+            criteria.andIdEqualTo(courseTargetId);
+        }
+        List<CourseTarget> courseTargetList = courseTargetMapper.selectByExample(courseTargetExample);
+        List<CourseTargetDto> courseTargetDtos = CopyUtil.copyList(courseTargetList, CourseTargetDto.class);
+        return courseTargetDtos.get(0);
+    }
+
     public BigDecimal getWeight(BigDecimal finalExamGrade,BigDecimal classBehaveGoalGrade,BigDecimal usualGradeGoalGrade){
         if(finalExamGrade == null || classBehaveGoalGrade == null || usualGradeGoalGrade == null){
             return BigDecimal.ZERO;
