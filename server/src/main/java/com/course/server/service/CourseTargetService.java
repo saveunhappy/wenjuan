@@ -40,6 +40,8 @@ public class CourseTargetService {
     private usualGradeService usualGradeService;
     @Resource
     private AvgScoreService avgScoreService;
+    @Resource
+    private CourseTargetService courseTargetService;
 
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
@@ -54,6 +56,12 @@ public class CourseTargetService {
             classBehaveDto classBehaveDto = classBehaveService.getOne(id);
             usualGradeDto usualGradeDto = usualGradeService.getOne(id);
             if(finalExamDto!= null&& classBehaveDto!=null&&usualGradeDto!=null){
+                String courseTargetId = finalExamDto.getCourseTargetId();
+                CourseTarget courseTargetGoalEvaluate = courseTargetMapper.selectByPrimaryKey(courseTargetId);
+
+
+
+
                 BigDecimal finalExamGrade = finalExamDto.getGoalGrade();
                 BigDecimal classBehaveGoalGrade = classBehaveDto.getGoalGrade();
                 BigDecimal usualGradeGoalGrade = usualGradeDto.getGoalGrade();
@@ -69,6 +77,13 @@ public class CourseTargetService {
                 finalExamService.save(finalExamDto);
                 classBehaveService.save(classBehaveDto);
                 usualGradeService.save(usualGradeDto);
+                BigDecimal finalExamGoalEvaluate = finalExamDto.getActualAvgGrade().divide(finalExamDto.getGoalGrade(), 2).multiply(finalExamDto.getWeight());
+                BigDecimal classBehaveGoalEvaluate = classBehaveDto.getActualAvgGrade().divide(classBehaveDto.getGoalGrade(), 2).multiply(classBehaveDto.getWeight());
+                BigDecimal usualGradeGoalEvaluate = usualGradeDto.getActualAvgGrade().divide(usualGradeDto.getGoalGrade(), 2).multiply(classBehaveDto.getWeight());
+
+                courseTargetGoalEvaluate.setGoalScore(finalExamGoalEvaluate.add(classBehaveGoalEvaluate).add(usualGradeGoalEvaluate));
+                CourseTargetDto targetDto = CopyUtil.copy(courseTargetGoalEvaluate, CourseTargetDto.class);
+                courseTargetService.save(targetDto);
             }
 
         }

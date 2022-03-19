@@ -23,7 +23,7 @@
 
          <th>学生评价</th>
 
-         <th>目标分值</th>
+         <th>目标达成评价值</th>
         <th>操作</th>
       </tr>
 
@@ -80,18 +80,6 @@
                   <label class="col-sm-2 control-label">老师评价</label>
                   <div class="col-sm-10">
                     <input v-model="courseTarget.teacherEvaluate" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">学生评价</label>
-                  <div class="col-sm-10">
-                    <input v-model="courseTarget.studentEvaluate" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">目标分支</label>
-                  <div class="col-sm-10">
-                    <input v-model="courseTarget.goalScore" class="form-control">
                   </div>
                 </div>
             </form>
