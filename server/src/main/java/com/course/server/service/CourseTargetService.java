@@ -68,15 +68,15 @@ public class CourseTargetService {
                 usualGradeDto.setWeight(getWeight(usualGradeGoalGrade,finalExamGrade,classBehaveGoalGrade));
 
 
-                finalExamDto.setActualAvgGrade(finalExamGrade.multiply(avgScoreDto.getFinalExamAvg().divide(hundred,2)));
-                classBehaveDto.setActualAvgGrade(classBehaveGoalGrade.multiply(avgScoreDto.getClassBehaveAvg().divide(hundred,2)));
+                finalExamDto.setActualAvgGrade(finalExamGrade.multiply(avgScoreDto.getFinalExamAvg()).divide(hundred,2));
+                classBehaveDto.setActualAvgGrade(classBehaveGoalGrade.multiply(avgScoreDto.getClassBehaveAvg()).divide(hundred,2));
                 usualGradeDto.setActualAvgGrade(usualGradeGoalGrade.multiply(avgScoreDto.getUsualGradeAvg()).divide(hundred,2));
                 finalExamService.save(finalExamDto);
                 classBehaveService.save(classBehaveDto);
                 usualGradeService.save(usualGradeDto);
                 BigDecimal finalExamGoalEvaluate = finalExamDto.getActualAvgGrade().divide(finalExamDto.getGoalGrade(), 2).multiply(finalExamDto.getWeight());
                 BigDecimal classBehaveGoalEvaluate = classBehaveDto.getActualAvgGrade().divide(classBehaveDto.getGoalGrade(), 2).multiply(classBehaveDto.getWeight());
-                BigDecimal usualGradeGoalEvaluate = usualGradeDto.getActualAvgGrade().divide(usualGradeDto.getGoalGrade(), 2).multiply(classBehaveDto.getWeight());
+                BigDecimal usualGradeGoalEvaluate = usualGradeDto.getActualAvgGrade().divide(usualGradeDto.getGoalGrade(), 2).multiply(usualGradeDto.getWeight());
 
                 courseTargetGoalEvaluate.setGoalScore(finalExamGoalEvaluate.add(classBehaveGoalEvaluate).add(usualGradeGoalEvaluate));
                 CourseTargetDto targetDto = CopyUtil.copy(courseTargetGoalEvaluate, CourseTargetDto.class);

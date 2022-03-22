@@ -139,6 +139,7 @@ export default {
         _this.classBehaves = resp.content.list;
         _this.classBehavesBak = resp.content.list;
         _this.$refs.pagination.render(page, resp.content.total);
+
       })
     },
     listCourseTarget(page) {
