@@ -30,9 +30,9 @@
       </thead>
 
       <tbody>
-      <tr v-for="finalExam in finalExamsBak">
+      <tr v-for="finalExam in finalExams">
               <td>{{finalExam.id}}</td>
-              <td>{{finalExam.courseTargetId}}</td>
+              <td>{{finalExam.courseTargetName}}</td>
               <td>{{finalExam.weight * 100}}%</td>
               <td>{{finalExam.goalGrade}}</td>
               <td>{{finalExam.actualAvgGrade}}</td>
@@ -152,17 +152,17 @@ export default {
         console.log("查询课程所有！！", response);
         let resp = response.data;
         _this.courseTargets = resp.content.list;
-        _this.courseTargetsBak = resp.content.list;
-        console.log("_this.courseTargetsBak",_this.courseTargetsBak);
-        for (let i = 0; i < _this.finalExamsBak.length  ; i++) {
-          for (let j = 0; j < _this.courseTargetsBak.length; j++) {
-            if(_this.finalExamsBak[i].courseTargetId === _this.courseTargetsBak[j].id){
-              _this.finalExamsBak[i].courseTargetId = _this.courseTargetsBak[j].target;
-              console.log("_this.finalExamsBak.get(j).courseTargetId",_this.finalExamsBak[i].courseTargetId);
-              console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
-            }
-          }
-        }
+        // _this.courseTargetsBak = resp.content.list;
+        // console.log("_this.courseTargetsBak",_this.courseTargetsBak);
+        // for (let i = 0; i < _this.finalExamsBak.length  ; i++) {
+        //   for (let j = 0; j < _this.courseTargetsBak.length; j++) {
+        //     if(_this.finalExamsBak[i].courseTargetId === _this.courseTargetsBak[j].id){
+        //       _this.finalExamsBak[i].courseTargetId = _this.courseTargetsBak[j].target;
+        //       console.log("_this.finalExamsBak.get(j).courseTargetId",_this.finalExamsBak[i].courseTargetId);
+        //       console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
+        //     }
+        //   }
+        // }
       })
     },
     save() {
@@ -176,7 +176,7 @@ export default {
           $("#form-modal").modal('hide');
           _this.list(1)
           Toast.success("保存成功");
-          _this.$router.go(0);
+          // _this.$router.go(0);
         }else{
           Toast.warning(resp.message);
 

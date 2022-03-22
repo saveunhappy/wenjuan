@@ -7,6 +7,8 @@ public class finalExam {
 
     private String courseTargetId;
 
+    private String courseTargetName;
+
     private BigDecimal weight;
 
     private BigDecimal goalGrade;
@@ -27,6 +29,14 @@ public class finalExam {
 
     public void setCourseTargetId(String courseTargetId) {
         this.courseTargetId = courseTargetId;
+    }
+
+    public String getCourseTargetName() {
+        return courseTargetName;
+    }
+
+    public void setCourseTargetName(String courseTargetName) {
+        this.courseTargetName = courseTargetName;
     }
 
     public BigDecimal getWeight() {
@@ -61,6 +71,7 @@ public class finalExam {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", courseTargetId=").append(courseTargetId);
+        sb.append(", courseTargetName=").append(courseTargetName);
         sb.append(", weight=").append(weight);
         sb.append(", goalGrade=").append(goalGrade);
         sb.append(", actualAvgGrade=").append(actualAvgGrade);

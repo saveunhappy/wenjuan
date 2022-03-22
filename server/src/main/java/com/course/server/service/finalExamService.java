@@ -2,6 +2,7 @@ package com.course.server.service;
 
 import com.course.server.domain.finalExam;
 import com.course.server.domain.finalExamExample;
+import com.course.server.dto.CourseTargetDto;
 import com.course.server.dto.finalExamDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.finalExamMapper;
@@ -20,6 +21,8 @@ import java.util.List;
 public class finalExamService {
     @Resource
     private finalExamMapper finalExamMapper;
+    @Resource
+    private CourseTargetService courseTargetService;
     public void list(finalExamDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         finalExamExample finalExamExample = new finalExamExample();
@@ -50,7 +53,8 @@ public class finalExamService {
 
     public void save(finalExamDto finalExamDto){
         finalExam finalExam = CopyUtil.copy(finalExamDto, finalExam.class);
-
+        CourseTargetDto courseTargetDto =  courseTargetService.getOne(finalExam.getCourseTargetId());
+        finalExam.setCourseTargetName(courseTargetDto.getTarget());
         if(StringUtils.isEmpty(finalExamDto.getId())){
             this.insert(finalExam);
         }else{
