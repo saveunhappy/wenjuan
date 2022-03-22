@@ -1,6 +1,8 @@
 package com.course.server.dto;
 
 
+import com.alibaba.excel.annotation.ExcelProperty;
+
 public class CourseCommentDto {
 
     /**
@@ -11,11 +13,13 @@ public class CourseCommentDto {
     /**
      * 课程目标id
      */
+
     private String courseTargetId;
 
     /**
      * 状态|枚举[CourseCommentStatusEnum]: A("A", "A"),B("B", "B"),C("C", "C"),D("D", "D"),E("E", "E")
      */
+    @ExcelProperty(index = 0)
     private String courseComment;
 
     public String getId() {

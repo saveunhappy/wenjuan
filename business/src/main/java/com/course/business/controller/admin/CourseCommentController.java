@@ -1,13 +1,20 @@
 package com.course.business.controller.admin;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.listener.PageReadListener;
+import com.course.server.domain.CourseComment;
+import com.course.server.domain.Student;
 import com.course.server.dto.CourseCommentDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.CourseCommentService;
+import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/admin/courseComment")
@@ -35,6 +42,32 @@ public class CourseCommentController {
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
         courseCommentService.delete(id);
+        return responseDto;
+    }
+
+    @PostMapping("/deleteAll")
+    public ResponseDto deleteAll(){
+        ResponseDto responseDto = new ResponseDto();
+        courseCommentService.deleteAll();
+        return responseDto;
+    }
+
+    @PostMapping("/upload")
+    @ResponseBody
+    public ResponseDto upload(MultipartFile file,String courseTargetId) throws IOException {
+
+        ResponseDto responseDto = new ResponseDto();
+        String courseTargetIdFromHtml = courseTargetId;
+        EasyExcel.read(file.getInputStream(), CourseCommentDto.class, new PageReadListener<CourseCommentDto>(dataList -> {
+            for (CourseCommentDto courseCommentDto : dataList) {
+                courseCommentDto.setCourseTargetId(courseTargetIdFromHtml);
+                courseCommentDto.setCourseComment(courseCommentDto.getCourseComment().substring(0,1));
+                courseCommentService.save(courseCommentDto);
+                System.out.println(courseCommentDto);
+//                student.setId(UuidUtil.getShortUuid());
+//                studentService.insert(student);
+            }
+        })).sheet().doRead();
         return responseDto;
     }
 

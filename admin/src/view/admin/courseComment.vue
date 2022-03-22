@@ -10,6 +10,16 @@
         <i class="ace-icon fa fa-refresh"></i>
         刷新
       </button>
+      &nbsp;
+      <button v-on:click="delAll()" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-close"></i>
+        清空数据
+      </button>
+      &nbsp;
+      <button v-on:click="openModal()" class="btn btn-white btn-default btn-round">
+        <i class="ace-icon fa fa-upload"></i>
+        导入数据
+      </button>
     </p>
     <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
     <table id="simple-table" class="table  table-bordered table-hover">
@@ -82,6 +92,44 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <div id="form-modal2" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">表单</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">课程目标</label>
+                <div class="col-sm-10">
+                  <select v-model="courseComment.courseTargetId" class="form-control" id="course-target-id">
+                    <option v-for="o in courseTargets" v-bind:value="o.id" >{{ o.target }}</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">选择文件</label>
+                <div class="col-sm-10">
+                  <input type="file" id="file-upload-input">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button v-on:click="upload()" type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
   </div>
 </template>
 
@@ -199,7 +247,43 @@ export default {
           }
         })
       });
-    }
+    },
+    delAll(){
+      let _this = this;
+      _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseComment/deleteAll").then((response) => {
+        let resp = response.data;
+        console.log("delAll",resp);
+        if (resp.success) {
+          Toast.success("清除成功");
+        }
+        _this.list(1);
+      })
+    },
+
+    openModal() {
+      let _this = this;
+      $("#form-modal2").modal('show');
+    },
+    upload() {
+      let _this = this;
+
+      let formData = new window.FormData();
+      let myselect = document.querySelector("#course-target-id");
+      let index=myselect.selectedIndex;
+      console.log("myselect.options[index].value;",myselect.options[index].value);
+      formData.append("file",document.querySelector("#file-upload-input").files[0]);
+      // formData.append("courseTargetId",document.querySelector("#course-target-id").getAttribute("value"));
+      formData.append("courseTargetId",myselect.options[index].value);
+      _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseComment/upload",formData).then((response) => {
+        console.log("导入数据", response);
+        let resp = response.data;
+        if (resp.success) {
+          $("#form-modal2").modal('hide');
+          Toast.success("导入成功");
+        }
+        _this.list(1);
+      })
+    },
 
   }
 }

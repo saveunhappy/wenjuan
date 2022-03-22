@@ -1,12 +1,10 @@
 package com.course.server.service;
 
-import com.course.server.domain.CourseComment;
-import com.course.server.domain.CourseCommentExample;
-import com.course.server.domain.CourseTarget;
-import com.course.server.domain.CourseTargetExample;
+import com.course.server.domain.*;
 import com.course.server.dto.CourseCommentDto;
 import com.course.server.dto.CourseTargetDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.StudentDto;
 import com.course.server.enums.CourseCommentStatusEnum;
 import com.course.server.mapper.CourseCommentMapper;
 import com.course.server.mapper.CourseTargetMapper;
@@ -77,14 +75,17 @@ public class CourseCommentService {
 //                    .add(d.multiply(new BigDecimal("0.4")).divide(count,2))
 //                    .add(e.multiply(new BigDecimal("0.2")).divide(count,2));
 //
-            studentComment = a.multiply(new BigDecimal("1"))
-                    .add(b.multiply(new BigDecimal("0.8")))
-                    .add(c.multiply(new BigDecimal("0.6")))
-                    .add(d.multiply(new BigDecimal("0.4")))
-                    .add(e.multiply(new BigDecimal("0.2")))
-                    .divide(count,2,BigDecimal.ROUND_HALF_UP);
-            targetDto.setStudentEvaluate(studentComment);
-            courseTargetService.save(targetDto);
+            if(!BigDecimal.ZERO.equals(count)){
+                studentComment = a.multiply(new BigDecimal("1"))
+                        .add(b.multiply(new BigDecimal("0.8")))
+                        .add(c.multiply(new BigDecimal("0.6")))
+                        .add(d.multiply(new BigDecimal("0.4")))
+                        .add(e.multiply(new BigDecimal("0.2")))
+                        .divide(count,2,BigDecimal.ROUND_HALF_UP);
+                targetDto.setStudentEvaluate(studentComment);
+                courseTargetService.save(targetDto);
+            }
+
         }
 
 
@@ -127,5 +128,13 @@ public class CourseCommentService {
         List<CourseComment> courseTargetList = courseCommentMapper.selectByExample(courseTargetExample);
         List<CourseCommentDto> CourseCommentDtos = CopyUtil.copyList(courseTargetList, CourseCommentDto.class);
         return CourseCommentDtos;
+    }
+
+    public void deleteAll() {
+        CourseCommentExample studentExample = new CourseCommentExample();
+        List<CourseComment> courseCommentList = courseCommentMapper.selectByExample(studentExample);
+        for (CourseComment courseComment : courseCommentList) {
+            courseCommentMapper.deleteByPrimaryKey(courseComment.getId());
+        }
     }
 }

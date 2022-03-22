@@ -90,26 +90,37 @@ public class CourseTargetService {
         BigDecimal teacherLow = teacherList.get(0);
 
         for (BigDecimal teacher : teacherList) {
-            if(teacherLow.compareTo(teacher) >= 0){
-                teacherLow = teacher;
+            if(teacher != null){
+                if(teacherLow.compareTo(teacher) >= 0){
+                    teacherLow = teacher;
+                }
             }
+
         }
+
         List<BigDecimal> goalScoresList = courseTargetList.stream().map(CourseTarget::getGoalScore).collect(Collectors.toList());
+
         BigDecimal goalLow = teacherList.get(0);
 
         for (BigDecimal goalScore : goalScoresList) {
-            if(goalLow.compareTo(goalScore) >= 0){
-                goalLow = goalScore;
+            if(goalScore!= null){
+                if(goalLow.compareTo(goalScore) >= 0){
+                    goalLow = goalScore;
+                }
             }
+
         }
 
         List<BigDecimal> studentList = courseTargetList.stream().map(CourseTarget::getStudentEvaluate).collect(Collectors.toList());
         BigDecimal studentLow = studentList.get(0);
 
         for (BigDecimal student : studentList) {
-            if(studentLow.compareTo(student) >= 0){
-                studentLow = student;
+            if(student!= null){
+                if(studentLow.compareTo(student) >= 0){
+                    studentLow = student;
+                }
             }
+
         }
 
 
