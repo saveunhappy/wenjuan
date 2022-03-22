@@ -98,7 +98,8 @@ public class CourseCommentService {
 
     public void save(CourseCommentDto courseCommentDto){
         CourseComment courseComment = CopyUtil.copy(courseCommentDto, CourseComment.class);
-
+        CourseTargetDto courseTargetDto =  courseTargetService.getOne(courseComment.getCourseTargetId());
+        courseComment.setCourseTargetName(courseTargetDto.getTarget());
         if(StringUtils.isEmpty(courseCommentDto.getId())){
             this.insert(courseComment);
         }else{

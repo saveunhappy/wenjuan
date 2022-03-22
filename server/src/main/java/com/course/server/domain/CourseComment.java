@@ -5,6 +5,8 @@ public class CourseComment {
 
     private String courseTargetId;
 
+    private String courseTargetName;
+
     private String courseComment;
 
     public String getId() {
@@ -23,6 +25,14 @@ public class CourseComment {
         this.courseTargetId = courseTargetId;
     }
 
+    public String getCourseTargetName() {
+        return courseTargetName;
+    }
+
+    public void setCourseTargetName(String courseTargetName) {
+        this.courseTargetName = courseTargetName;
+    }
+
     public String getCourseComment() {
         return courseComment;
     }
@@ -39,6 +49,7 @@ public class CourseComment {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", courseTargetId=").append(courseTargetId);
+        sb.append(", courseTargetName=").append(courseTargetName);
         sb.append(", courseComment=").append(courseComment);
         sb.append("]");
         return sb.toString();

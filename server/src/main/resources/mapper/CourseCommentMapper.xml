@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.course.server.domain.CourseComment">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="course_target_id" jdbcType="CHAR" property="courseTargetId" />
+    <result column="course_target_name" jdbcType="VARCHAR" property="courseTargetName" />
     <result column="course_comment" jdbcType="CHAR" property="courseComment" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, course_target_id, course_comment
+    id, course_target_id, course_target_name, course_comment
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseCommentExample" resultMap="BaseResultMap">
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.CourseComment">
-    insert into course_comment (id, course_target_id, course_comment
-      )
-    values (#{id,jdbcType=CHAR}, #{courseTargetId,jdbcType=CHAR}, #{courseComment,jdbcType=CHAR}
-      )
+    insert into course_comment (id, course_target_id, course_target_name, 
+      course_comment)
+    values (#{id,jdbcType=CHAR}, #{courseTargetId,jdbcType=CHAR}, #{courseTargetName,jdbcType=VARCHAR}, 
+      #{courseComment,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseComment">
     insert into course_comment
@@ -111,6 +112,9 @@
       </if>
       <if test="courseTargetId != null">
         course_target_id,
+      </if>
+      <if test="courseTargetName != null">
+        course_target_name,
       </if>
       <if test="courseComment != null">
         course_comment,
@@ -122,6 +126,9 @@
       </if>
       <if test="courseTargetId != null">
         #{courseTargetId,jdbcType=CHAR},
+      </if>
+      <if test="courseTargetName != null">
+        #{courseTargetName,jdbcType=VARCHAR},
       </if>
       <if test="courseComment != null">
         #{courseComment,jdbcType=CHAR},
@@ -143,6 +150,9 @@
       <if test="record.courseTargetId != null">
         course_target_id = #{record.courseTargetId,jdbcType=CHAR},
       </if>
+      <if test="record.courseTargetName != null">
+        course_target_name = #{record.courseTargetName,jdbcType=VARCHAR},
+      </if>
       <if test="record.courseComment != null">
         course_comment = #{record.courseComment,jdbcType=CHAR},
       </if>
@@ -155,6 +165,7 @@
     update course_comment
     set id = #{record.id,jdbcType=CHAR},
       course_target_id = #{record.courseTargetId,jdbcType=CHAR},
+      course_target_name = #{record.courseTargetName,jdbcType=VARCHAR},
       course_comment = #{record.courseComment,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,6 +177,9 @@
       <if test="courseTargetId != null">
         course_target_id = #{courseTargetId,jdbcType=CHAR},
       </if>
+      <if test="courseTargetName != null">
+        course_target_name = #{courseTargetName,jdbcType=VARCHAR},
+      </if>
       <if test="courseComment != null">
         course_comment = #{courseComment,jdbcType=CHAR},
       </if>
@@ -175,6 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="com.course.server.domain.CourseComment">
     update course_comment
     set course_target_id = #{courseTargetId,jdbcType=CHAR},
+      course_target_name = #{courseTargetName,jdbcType=VARCHAR},
       course_comment = #{courseComment,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>

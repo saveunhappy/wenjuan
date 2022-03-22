@@ -244,6 +244,76 @@ public class CourseCommentExample {
             return (Criteria) this;
         }
 
+        public Criteria andCourseTargetNameIsNull() {
+            addCriterion("course_target_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameIsNotNull() {
+            addCriterion("course_target_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameEqualTo(String value) {
+            addCriterion("course_target_name =", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameNotEqualTo(String value) {
+            addCriterion("course_target_name <>", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameGreaterThan(String value) {
+            addCriterion("course_target_name >", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameGreaterThanOrEqualTo(String value) {
+            addCriterion("course_target_name >=", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameLessThan(String value) {
+            addCriterion("course_target_name <", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameLessThanOrEqualTo(String value) {
+            addCriterion("course_target_name <=", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameLike(String value) {
+            addCriterion("course_target_name like", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameNotLike(String value) {
+            addCriterion("course_target_name not like", value, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameIn(List<String> values) {
+            addCriterion("course_target_name in", values, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameNotIn(List<String> values) {
+            addCriterion("course_target_name not in", values, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameBetween(String value1, String value2) {
+            addCriterion("course_target_name between", value1, value2, "courseTargetName");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseTargetNameNotBetween(String value1, String value2) {
+            addCriterion("course_target_name not between", value1, value2, "courseTargetName");
+            return (Criteria) this;
+        }
+
         public Criteria andCourseCommentIsNull() {
             addCriterion("course_comment is null");
             return (Criteria) this;

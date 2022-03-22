@@ -13,8 +13,12 @@ public class CourseCommentDto {
     /**
      * 课程目标id
      */
-
     private String courseTargetId;
+
+    /**
+     * 课程目标名称
+     */
+    private String courseTargetName;
 
     /**
      * 状态|枚举[CourseCommentStatusEnum]: A("A", "A"),B("B", "B"),C("C", "C"),D("D", "D"),E("E", "E")
@@ -38,6 +42,14 @@ public class CourseCommentDto {
         this.courseTargetId = courseTargetId;
     }
 
+    public String getCourseTargetName() {
+        return courseTargetName;
+    }
+
+    public void setCourseTargetName(String courseTargetName) {
+        this.courseTargetName = courseTargetName;
+    }
+
     public String getCourseComment() {
         return courseComment;
     }
@@ -55,6 +67,7 @@ public class CourseCommentDto {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", courseTargetId=").append(courseTargetId);
+        sb.append(", courseTargetName=").append(courseTargetName);
         sb.append(", courseComment=").append(courseComment);
         sb.append("]");
         return sb.toString();

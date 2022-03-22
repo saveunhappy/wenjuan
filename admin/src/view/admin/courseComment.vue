@@ -36,9 +36,9 @@
       </thead>
 
       <tbody>
-      <tr v-for="courseComment in courseCommentsBak">
+      <tr v-for="courseComment in courseComments">
         <td>{{courseComment.id}}</td>
-        <td>{{courseComment.courseTargetId}}</td>
+        <td>{{courseComment.courseTargetName}}</td>
         <td>{{COURSE_COMMENT_STATUS | optionKV(courseComment.courseComment)}}</td>
         <td>
 
@@ -167,7 +167,6 @@ export default {
       $("#form-modal").modal('show');
     },
     edit(courseComment) {
-      //这个add的作用就是点开那个模态框，新增是save
       let _this = this;
       _this.courseComment = $.extend({}, courseComment);
       $("#form-modal").modal('show');
@@ -200,17 +199,17 @@ export default {
         console.log("查询课程所有！！", response);
         let resp = response.data;
         _this.courseTargets = resp.content.list;
-        _this.courseTargetsBak = resp.content.list;
-        console.log("_this.courseTargetsBak",_this.courseTargetsBak);
-        for (let i = 0; i < _this.courseCommentsBak.length  ; i++) {
-          for (let j = 0; j < _this.courseTargetsBak.length; j++) {
-            if(_this.courseCommentsBak[i].courseTargetId === _this.courseTargetsBak[j].id){
-              _this.courseCommentsBak[i].courseTargetId = _this.courseTargetsBak[j].target;
-              console.log("_this.courseCommentsBak.get(j).courseTargetId",_this.courseCommentsBak[i].courseTargetId);
-              console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
-            }
-          }
-        }
+        // _this.courseTargetsBak = resp.content.list;
+        // console.log("_this.courseTargetsBak",_this.courseTargetsBak);
+        // for (let i = 0; i < _this.courseCommentsBak.length  ; i++) {
+        //   for (let j = 0; j < _this.courseTargetsBak.length; j++) {
+        //     if(_this.courseCommentsBak[i].courseTargetId === _this.courseTargetsBak[j].id){
+        //       _this.courseCommentsBak[i].courseTargetId = _this.courseTargetsBak[j].target;
+        //       console.log("_this.courseCommentsBak.get(j).courseTargetId",_this.courseCommentsBak[i].courseTargetId);
+        //       console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
+        //     }
+        //   }
+        // }
 
 
       })
@@ -225,7 +224,6 @@ export default {
           $("#form-modal").modal('hide');
           _this.list(1);
           Toast.success("保存成功");
-          _this.$router.go(0);
           // _this.list(1);
         }else{
           Toast.warning(resp.message);

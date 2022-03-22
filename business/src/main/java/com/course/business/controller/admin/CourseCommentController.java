@@ -5,9 +5,11 @@ import com.alibaba.excel.read.listener.PageReadListener;
 import com.course.server.domain.CourseComment;
 import com.course.server.domain.Student;
 import com.course.server.dto.CourseCommentDto;
+import com.course.server.dto.CourseTargetDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.CourseCommentService;
+import com.course.server.service.CourseTargetService;
 import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,8 @@ public class CourseCommentController {
     public static final String BUSINESS_NAME = "课程目标";
     @Resource
     private CourseCommentService courseCommentService;
+    @Resource
+    private CourseTargetService courseTargetService;
     @PostMapping("/list")
     public ResponseDto courseComment(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
@@ -58,10 +62,13 @@ public class CourseCommentController {
 
         ResponseDto responseDto = new ResponseDto();
         String courseTargetIdFromHtml = courseTargetId;
+        CourseTargetDto courseTargetDto = courseTargetService.getOne(courseTargetIdFromHtml);
+        String targetName = courseTargetDto.getTarget();
         EasyExcel.read(file.getInputStream(), CourseCommentDto.class, new PageReadListener<CourseCommentDto>(dataList -> {
             for (CourseCommentDto courseCommentDto : dataList) {
                 courseCommentDto.setCourseTargetId(courseTargetIdFromHtml);
                 courseCommentDto.setCourseComment(courseCommentDto.getCourseComment().substring(0,1));
+                courseCommentDto.setCourseTargetName(targetName);
                 courseCommentService.save(courseCommentDto);
                 System.out.println(courseCommentDto);
 //                student.setId(UuidUtil.getShortUuid());
