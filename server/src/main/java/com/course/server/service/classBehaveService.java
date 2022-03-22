@@ -2,6 +2,7 @@ package com.course.server.service;
 
 import com.course.server.domain.classBehave;
 import com.course.server.domain.classBehaveExample;
+import com.course.server.dto.CourseTargetDto;
 import com.course.server.dto.classBehaveDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.classBehaveMapper;
@@ -20,6 +21,8 @@ import java.util.List;
 public class classBehaveService {
     @Resource
     private classBehaveMapper classBehaveMapper;
+    @Resource
+    private CourseTargetService courseTargetService;
     public void list(classBehaveDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         classBehaveExample classBehaveExample = new classBehaveExample();
@@ -48,7 +51,8 @@ public class classBehaveService {
 
     public void save(classBehaveDto classBehaveDto){
         classBehave classBehave = CopyUtil.copy(classBehaveDto, classBehave.class);
-
+        CourseTargetDto courseTargetDto =  courseTargetService.getOne(classBehave.getCourseTargetId());
+        classBehave.setCourseTargetName(courseTargetDto.getTarget());
         if(StringUtils.isEmpty(classBehaveDto.getId())){
             this.insert(classBehave);
         }else{

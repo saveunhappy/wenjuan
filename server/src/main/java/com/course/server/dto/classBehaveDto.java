@@ -15,12 +15,17 @@ public class classBehaveDto extends PageDto{
     private String courseTargetId;
 
     /**
+     * 课程目标名称
+     */
+    private String courseTargetName;
+
+    /**
      * 权重
      */
     private BigDecimal weight;
 
     /**
-     * 结课考试
+     * 目标分值
      */
     private BigDecimal goalGrade;
 
@@ -43,6 +48,14 @@ public class classBehaveDto extends PageDto{
 
     public void setCourseTargetId(String courseTargetId) {
         this.courseTargetId = courseTargetId;
+    }
+
+    public String getCourseTargetName() {
+        return courseTargetName;
+    }
+
+    public void setCourseTargetName(String courseTargetName) {
+        this.courseTargetName = courseTargetName;
     }
 
     public BigDecimal getWeight() {
@@ -78,6 +91,7 @@ public class classBehaveDto extends PageDto{
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", courseTargetId=").append(courseTargetId);
+        sb.append(", courseTargetName=").append(courseTargetName);
         sb.append(", weight=").append(weight);
         sb.append(", goalGrade=").append(goalGrade);
         sb.append(", actualAvgGrade=").append(actualAvgGrade);

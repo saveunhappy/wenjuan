@@ -30,9 +30,9 @@
       </thead>
 
       <tbody>
-      <tr v-for="classBehave in classBehavesBak">
+      <tr v-for="classBehave in classBehaves">
               <td>{{classBehave.id}}</td>
-              <td>{{classBehave.courseTargetId}}</td>
+              <td>{{classBehave.courseTargetName}}</td>
               <td>{{classBehave.weight* 100}}%</td>
               <td>{{classBehave.goalGrade }}</td>
               <td>{{classBehave.actualAvgGrade}}</td>
@@ -151,17 +151,17 @@ export default {
         console.log("查询课程所有！！", response);
         let resp = response.data;
         _this.courseTargets = resp.content.list;
-        _this.courseTargetsBak = resp.content.list;
-        console.log("_this.courseTargetsBak",_this.courseTargetsBak);
-        for (let i = 0; i < _this.classBehavesBak.length  ; i++) {
-          for (let j = 0; j < _this.courseTargetsBak.length; j++) {
-            if(_this.classBehavesBak[i].courseTargetId === _this.courseTargetsBak[j].id){
-              _this.classBehavesBak[i].courseTargetId = _this.courseTargetsBak[j].target;
-              console.log("_this.classBehavesBak.get(j).courseTargetId",_this.classBehavesBak[i].courseTargetId);
-              console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
-            }
-          }
-        }
+        // _this.courseTargetsBak = resp.content.list;
+        // console.log("_this.courseTargetsBak",_this.courseTargetsBak);
+        // for (let i = 0; i < _this.classBehavesBak.length  ; i++) {
+        //   for (let j = 0; j < _this.courseTargetsBak.length; j++) {
+        //     if(_this.classBehavesBak[i].courseTargetId === _this.courseTargetsBak[j].id){
+        //       _this.classBehavesBak[i].courseTargetId = _this.courseTargetsBak[j].target;
+        //       console.log("_this.classBehavesBak.get(j).courseTargetId",_this.classBehavesBak[i].courseTargetId);
+        //       console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
+        //     }
+        //   }
+        // }
       })
     },
     save() {

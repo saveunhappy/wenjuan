@@ -200,13 +200,14 @@ drop table if exists `class_behave`;
 create table `class_behave` (
                              `id` char(8) not null default '' comment 'id',
                              `course_target_id` char(8) comment '课程目标id',
+                             `course_target_name` varchar(200) comment '课程目标名称',
                              `weight` decimal(50,2) comment '权重',
                              `goal_grade` decimal(50,2) comment '目标分值',
                              `actual_avg_grade` decimal(50,2) comment '实际平均分',
                              primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='课堂表现';
-insert into class_behave (id, course_target_id, weight, goal_grade, actual_avg_grade) VALUES
-('00000000','00000000','0.33','0.33','0.33');
+insert into class_behave (id, course_target_id,course_target_name, weight, goal_grade, actual_avg_grade) VALUES
+('00000000','0000000','课程目标1','0.33','0.33','0.33');
 
 drop table if exists `usual_grade`;
 create table `usual_grade` (
