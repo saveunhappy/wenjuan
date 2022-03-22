@@ -30,9 +30,9 @@
       </thead>
 
       <tbody>
-      <tr v-for="usualGrade in usualGradesBak">
+      <tr v-for="usualGrade in usualGrades">
               <td>{{usualGrade.id}}</td>
-              <td>{{usualGrade.courseTargetId}}</td>
+              <td>{{usualGrade.courseTargetName}}</td>
               <td>{{usualGrade.weight * 100}}%</td>
               <td>{{usualGrade.goalGrade}}</td>
               <td>{{usualGrade.actualAvgGrade}}</td>
@@ -152,17 +152,6 @@ export default {
         console.log("查询课程所有！！", response);
         let resp = response.data;
         _this.courseTargets = resp.content.list;
-        _this.courseTargetsBak = resp.content.list;
-        console.log("_this.courseTargetsBak",_this.courseTargetsBak);
-        for (let i = 0; i < _this.usualGradesBak.length  ; i++) {
-          for (let j = 0; j < _this.courseTargetsBak.length; j++) {
-            if(_this.usualGradesBak[i].courseTargetId === _this.courseTargetsBak[j].id){
-              _this.usualGradesBak[i].courseTargetId = _this.courseTargetsBak[j].target;
-              console.log("_this.usualGradesBak.get(j).courseTargetId",_this.usualGradesBak[i].courseTargetId);
-              console.log(" _this.courseTargetsBak.get(i).target", _this.courseTargetsBak[j].target);
-            }
-          }
-        }
       })
     },
     save() {

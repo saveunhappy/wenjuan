@@ -1,7 +1,9 @@
 package com.course.server.service;
 
+import com.course.server.domain.classBehave;
 import com.course.server.domain.usualGrade;
 import com.course.server.domain.usualGradeExample;
+import com.course.server.dto.CourseTargetDto;
 import com.course.server.dto.usualGradeDto;
 import com.course.server.dto.PageDto;
 import com.course.server.mapper.usualGradeMapper;
@@ -20,6 +22,8 @@ import java.util.List;
 public class usualGradeService {
     @Resource
     private usualGradeMapper usualGradeMapper;
+    @Resource
+    private CourseTargetService courseTargetService;
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         usualGradeExample usualGradeExample = new usualGradeExample();
@@ -47,7 +51,8 @@ public class usualGradeService {
 
     public void save(usualGradeDto usualGradeDto){
         usualGrade usualGrade = CopyUtil.copy(usualGradeDto, usualGrade.class);
-
+        CourseTargetDto courseTargetDto =  courseTargetService.getOne(usualGrade.getCourseTargetId());
+        usualGrade.setCourseTargetName(courseTargetDto.getTarget());
         if(StringUtils.isEmpty(usualGradeDto.getId())){
             this.insert(usualGrade);
         }else{
