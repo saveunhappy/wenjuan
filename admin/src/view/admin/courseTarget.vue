@@ -181,7 +181,6 @@ export default {
     del(id) {
       let _this = this;
       Confirm.show("删除课程目标后不可恢复!",function () {
-        Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/courseTarget/delete/" + id).then((response) => {
           console.log("删除课程目标列表结果", response);
           let resp = response.data;

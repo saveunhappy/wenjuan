@@ -75,13 +75,13 @@ public class CourseCommentService {
 //                    .add(d.multiply(new BigDecimal("0.4")).divide(count,2))
 //                    .add(e.multiply(new BigDecimal("0.2")).divide(count,2));
 //
-            if(!BigDecimal.ZERO.equals(courseTargetIdList.size())){
+            if(!BigDecimal.ZERO.equals(courseCommentDtoList.size())){
                 studentComment = a.multiply(new BigDecimal("1"))
                         .add(b.multiply(new BigDecimal("0.8")))
                         .add(c.multiply(new BigDecimal("0.6")))
                         .add(d.multiply(new BigDecimal("0.4")))
                         .add(e.multiply(new BigDecimal("0.2")))
-                        .divide(BigDecimal.valueOf(courseTargetIdList.size()),2,BigDecimal.ROUND_HALF_UP);
+                        .divide(BigDecimal.valueOf(courseCommentDtoList.size()),2,BigDecimal.ROUND_HALF_UP);
                 targetDto.setStudentEvaluate(studentComment);
                 courseTargetService.save(targetDto);
             }
