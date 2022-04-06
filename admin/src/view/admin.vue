@@ -88,6 +88,13 @@
                 </router-link>
                 <b class="arrow"></b>
               </li>
+              <li class="" id="business-unitTest-sidebar">
+                <router-link to="/business/unitTest">
+                  <i class="menu-icon fa fa-caret-right"></i>
+                  单元测试
+                </router-link>
+                <b class="arrow"></b>
+              </li>
             </ul>
           </li>
 

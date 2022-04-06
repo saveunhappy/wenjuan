@@ -57,7 +57,7 @@ public class StudentService {
         AvgScoreDto avgScoreDto = new AvgScoreDto();
         avgScoreDto.setId(AVG_ID);
         avgScoreDto.setFinalExamAvg(divideGetAvg(finalExamAvg,studentList));
-        avgScoreDto.setUnitTestAvg(divideGetAvg(usualGradeAvg,studentList));
+        avgScoreDto.setUnitTestAvg(divideGetAvg(unitTestAvg,studentList));
         avgScoreDto.setUsualGradeAvg(divideGetAvg(usualGradeAvg,studentList));
         avgScoreDto.setClassBehaveAvg(divideGetAvg(classBehaveAvg,studentList));
         avgScoreService.save(avgScoreDto);
