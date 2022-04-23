@@ -15,6 +15,7 @@ import com.course.server.service.AvgScoreService;
 import com.course.server.service.StudentService;
 import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,6 +36,10 @@ public class StudentController {
     @Resource
     private AvgScoreService avgScoreService;
     @PostMapping("/list")
+    @ApiOperation(value = "查看学生列表",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto student(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
         studentService.list(pageDto);
@@ -42,6 +47,10 @@ public class StudentController {
         return responseDto;
     }
     @PostMapping("/save")
+    @ApiOperation(value = "新增学生信息",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto save(@RequestBody StudentDto studentDto){
         // 保存校验
         ValidatorUtil.length(studentDto.getClassName(), "班级", 1, 50);
@@ -54,6 +63,10 @@ public class StudentController {
         return responseDto;
     }
     @PostMapping("/delete/{id}")
+    @ApiOperation(value = "删除学生信息",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
         studentService.delete(id);
@@ -74,6 +87,10 @@ public class StudentController {
      * <p>3. 直接读即可
      */
     @PostMapping("/upload")
+    @ApiOperation(value = "上传学生信息",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     @ResponseBody
     public ResponseDto upload(MultipartFile file) throws IOException {
         ResponseDto responseDto = new ResponseDto();
@@ -87,12 +104,20 @@ public class StudentController {
     }
 
     @PostMapping("/deleteAll")
+    @ApiOperation(value = "删除所有学生信息",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto deleteAll(){
         ResponseDto responseDto = new ResponseDto();
         studentService.deleteAll();
         return responseDto;
     }
     @GetMapping("download")
+    @ApiOperation(value = "下载学生信息",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto download(HttpServletResponse response) throws IOException {
         ResponseDto responseDto = new ResponseDto();
         // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman

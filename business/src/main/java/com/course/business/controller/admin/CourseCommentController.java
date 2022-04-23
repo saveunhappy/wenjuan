@@ -12,6 +12,7 @@ import com.course.server.service.CourseCommentService;
 import com.course.server.service.CourseTargetService;
 import com.course.server.util.UuidUtil;
 import com.course.server.util.ValidatorUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +28,10 @@ public class CourseCommentController {
     @Resource
     private CourseTargetService courseTargetService;
     @PostMapping("/list")
+    @ApiOperation(value = "查看课程评价列表",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto courseComment(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
         courseCommentService.list(pageDto);
@@ -34,6 +39,10 @@ public class CourseCommentController {
         return responseDto;
     }
     @PostMapping("/save")
+    @ApiOperation(value = "新增课程评价",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto save(@RequestBody CourseCommentDto courseCommentDto){
         // 保存校验
 
@@ -43,6 +52,10 @@ public class CourseCommentController {
         return responseDto;
     }
     @PostMapping("/delete/{id}")
+    @ApiOperation(value = "删除课程评价",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
         courseCommentService.delete(id);
@@ -50,6 +63,10 @@ public class CourseCommentController {
     }
 
     @PostMapping("/deleteAll")
+    @ApiOperation(value = "删除所有课程评价",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto deleteAll(){
         ResponseDto responseDto = new ResponseDto();
         courseCommentService.deleteAll();
@@ -57,6 +74,10 @@ public class CourseCommentController {
     }
 
     @PostMapping("/upload")
+    @ApiOperation(value = "上传课程评价文件",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     @ResponseBody
     public ResponseDto upload(MultipartFile file,String courseTargetId) throws IOException {
 

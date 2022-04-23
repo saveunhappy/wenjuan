@@ -105,7 +105,7 @@ public class CourseTargetService {
 
         List<BigDecimal> goalScoresList = courseTargetList.stream().map(CourseTarget::getGoalScore).collect(Collectors.toList());
 
-        BigDecimal goalLow = teacherList.get(0);
+        BigDecimal goalLow = goalScoresList.get(0);
 
         for (BigDecimal goalScore : goalScoresList) {
             if(goalScore!= null){

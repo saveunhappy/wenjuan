@@ -5,6 +5,7 @@ import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.service.CourseTargetLowService;
 import com.course.server.util.ValidatorUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,6 +17,10 @@ public class CourseTargetLowController {
     @Resource
     private CourseTargetLowService courseTargetLowService;
     @PostMapping("/list")
+    @ApiOperation(value = "查看课程目标最低",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto courseTargetLow(@RequestBody PageDto pageDto){
         ResponseDto responseDto = new ResponseDto();
         courseTargetLowService.list(pageDto);
@@ -23,6 +28,10 @@ public class CourseTargetLowController {
         return responseDto;
     }
     @PostMapping("/save")
+    @ApiOperation(value = "新增课程目标最低",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto save(@RequestBody CourseTargetLowDto courseTargetLowDto){
         // 保存校验
 
@@ -32,6 +41,10 @@ public class CourseTargetLowController {
         return responseDto;
     }
     @PostMapping("/delete/{id}")
+    @ApiOperation(value = "删除课程目标最低",
+            response = ResponseDto.class,
+            httpMethod = "POST"
+    )
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
         courseTargetLowService.delete(id);
