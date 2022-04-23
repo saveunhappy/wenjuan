@@ -38,10 +38,13 @@ public class CourseTargetService {
     private classBehaveService classBehaveService;
     @Resource
     private usualGradeService usualGradeService;
+
     @Resource
     private unitTestService unitTestService;
+
     @Resource
     private AvgScoreService avgScoreService;
+
     @Resource
     private CourseTargetService courseTargetService;
 

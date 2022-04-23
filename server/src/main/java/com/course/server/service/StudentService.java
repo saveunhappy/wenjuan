@@ -29,6 +29,7 @@ public class StudentService {
     private AvgScoreMapper avgScoreMapper;
     @Resource
     private AvgScoreService avgScoreService;
+
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         StudentExample studentExample = new StudentExample();

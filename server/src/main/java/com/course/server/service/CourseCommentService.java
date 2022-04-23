@@ -35,11 +35,9 @@ public class CourseCommentService {
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         CourseCommentExample courseCommentExample = new CourseCommentExample();
         List<CourseComment> courseCommentList = courseCommentMapper.selectByExample(courseCommentExample);
-        BigDecimal count = new BigDecimal(String.valueOf(courseCommentList.size()));
         CourseTargetExample courseTargetExample = new CourseTargetExample();
         List<CourseTarget> courseTargetList = courseTargetMapper.selectByExample(courseTargetExample);
         List<String> courseTargetIdList = courseTargetList.stream().map(CourseTarget::getId).collect(Collectors.toList());
-        BigDecimal studentComments = new BigDecimal("0");
         for (String courseTargetId : courseTargetIdList) {
             BigDecimal studentComment = new BigDecimal("0");
             BigDecimal a = new BigDecimal("0");
@@ -48,11 +46,6 @@ public class CourseCommentService {
             BigDecimal d = new BigDecimal("0");
             BigDecimal e = new BigDecimal("0");
 
-//            BigDecimal A = new BigDecimal("0");
-//            BigDecimal B = new BigDecimal("0");
-//            BigDecimal C = new BigDecimal("0");
-//            BigDecimal D = new BigDecimal("0");
-//            BigDecimal E = new BigDecimal("0");
             //筛选出每一个id，就是每一个课程id
             CourseTargetDto targetDto = courseTargetService.getOne(courseTargetId);
             List<CourseCommentDto> courseCommentDtoList = getList(courseTargetId);
@@ -69,12 +62,6 @@ public class CourseCommentService {
                    e =  e.add(new BigDecimal("1"));
                 }
             }
-//            studentComment = a.multiply(new BigDecimal("1")).divide(count,2)
-//                    .add(b.multiply(new BigDecimal("0.8")).divide(count,2))
-//                    .add(c.multiply(new BigDecimal("0.6")).divide(count,2))
-//                    .add(d.multiply(new BigDecimal("0.4")).divide(count,2))
-//                    .add(e.multiply(new BigDecimal("0.2")).divide(count,2));
-//
             if(!BigDecimal.ZERO.equals(courseCommentDtoList.size())){
                 studentComment = a.multiply(new BigDecimal("1"))
                         .add(b.multiply(new BigDecimal("0.8")))
